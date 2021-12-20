@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/savingsScreen"
+        android:icon="@drawable/ic_savings"
+        android:title="savings" />
+
+    <item
+        android:id="@+id/currencyScreen"
+        android:icon="@drawable/ic_euro"
+        android:title="currency"/>
+
+    <item android:id="@+id/calculatorScreen"
+        android:icon="@drawable/ic_calculator"
+        android:title="calculator"/>
+
+    <item android:id="@+id/cryptoScreen"
+        android:icon="@drawable/ic_bitcoin"
+        android:title="cryptocurrency"/>
+
+
+
+</menu>
