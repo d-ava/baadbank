@@ -9,8 +9,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CRYPTO FRAGMENT"
+        android:text="CRYPTO fragment"
         android:layout_marginTop="100dp"
+        android:fontFamily="@font/ubuntu_bold"
         android:textSize="30sp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
