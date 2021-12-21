@@ -4,6 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <View
+        android:id="@+id/topLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/bb_green_01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="54dp"
+        app:layout_constraintBottom_toTopOf="@id/topLine"
+        android:layout_marginStart="8dp"
+        android:scaleType="fitStart"
+        android:layout_height="9dp"
+        android:src="@drawable/ic_baadbanklogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/homeNavContainer"
         android:layout_width="match_parent"
@@ -15,6 +40,16 @@
 
         />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/bb_green_01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/homeNavTab"
+
+        />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavTab"
         android:layout_width="match_parent"
@@ -22,6 +57,7 @@
         android:background="@color/bb_white"
         app:itemIconTint="@animator/tab_items_color"
         app:itemTextColor="@animator/tab_items_color"
+        app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/home_tabs" />
