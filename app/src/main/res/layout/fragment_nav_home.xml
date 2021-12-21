@@ -22,7 +22,7 @@
         android:background="@color/bb_white"
         app:itemIconTint="@animator/tab_items_color"
         app:itemTextColor="@animator/tab_items_color"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/home_tabs" />
 

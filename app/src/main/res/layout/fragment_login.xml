@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bb_grey"
 
     tools:context=".ui.login.LoginFragment">
 
@@ -14,13 +15,22 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="50dp"
+        android:src="@drawable/ic___logo__a" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
         android:src="@drawable/ic_baadbanklogo" />
+
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="login" />
 
@@ -33,6 +43,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:text="Register" />
+
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
