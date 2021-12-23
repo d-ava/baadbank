@@ -11,8 +11,12 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
     }
 
     private fun setListeners(){
-        binding.btnSignout.setOnClickListener {
+        binding.btnSignOut.setOnClickListener {
             findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
+        }
+
+        binding.btnEdit.setOnClickListener {
+            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToEditProfileFragment())
         }
     }
 }

@@ -1,23 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
+
     tools:context=".ui.currency.CurrencyFragment">
 
-    <TextView
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Info fragment"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="32dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:layout_marginTop="100dp"
-        android:textSize="30sp"/>
+        android:text="User Information"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic__logo_a_green"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/tvUserInfo" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivUserIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sign out"
-        android:id="@+id/btnSignout"/>
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_person_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivUser" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameLastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="Name LastName" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhoneIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_phone_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivUserIcon" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhone"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivPhoneIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="+995 593 123 456" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEmailIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_email_icon"
+
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivPhoneIcon" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivEmailIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="mail@email.com" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivKeyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_key_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivEmailIcon" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="********" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="edit"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        android:background="@drawable/button_shape_line"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivKeyIcon" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="16dp"
+        android:id="@+id/btnSignOut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shape_line"
+        android:text="sign out"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/btnEdit" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
