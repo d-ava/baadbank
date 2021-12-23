@@ -27,10 +27,11 @@
         android:id="@+id/tvUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="User Information"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,11 +39,25 @@
         android:id="@+id/ivUser"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="64dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic__logo_a_green"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toBottomOf="@id/tvUserInfo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivUser"
+        app:layout_constraintStart_toEndOf="@id/ivUser"
+        android:text="Upload Image" />
+
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivUserIcon"
@@ -59,12 +74,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivUserIcon"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         tools:text="Name LastName" />
 
     <androidx.appcompat.widget.AppCompatImageView
+
         android:id="@+id/ivPhoneIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,11 +92,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPhone"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivPhoneIcon"
         app:layout_constraintStart_toStartOf="@id/gdStart"
@@ -101,6 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivEmailIcon"
         app:layout_constraintStart_toStartOf="@id/gdStart"
@@ -121,6 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon"
         app:layout_constraintStart_toStartOf="@id/gdStart"
@@ -132,20 +151,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="edit"
-        app:layout_constraintEnd_toEndOf="@id/gdEnd"
         android:background="@drawable/button_shape_line"
+        android:text="edit"
+android:textSize="16sp"
+        android:fontFamily="@font/ubuntu_bold"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toBottomOf="@id/ivKeyIcon" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="16dp"
         android:id="@+id/btnSignOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_shape_line"
-        android:text="sign out"
         android:fontFamily="@font/ubuntu_bold"
+        android:text="sign out"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/gdStart"

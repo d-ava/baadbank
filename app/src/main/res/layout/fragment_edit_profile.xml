@@ -1,31 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:orientation="vertical"
+
     tools:context=".ui.currency.CurrencyFragment">
 
-    <TextView
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="edit user information"
-        android:textSize="30sp" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
 
-    <Button
-        android:id="@+id/btnSignOut"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdEnd"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="32dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Edit User Information"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/gdEnd"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic__logo_a_green"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/tvUserInfo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/etUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Upload Image"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivUser"
+        app:layout_constraintStart_toEndOf="@id/ivUser" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivUserIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_person_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivUser" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNameLastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:imeOptions="actionDone"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="Name LastName" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+
+        android:id="@+id/ivPhoneIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_phone_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivUserIcon" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:imeOptions="actionDone"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivPhoneIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="+995 593 123 456" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEmailIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_email_icon"
+
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivPhoneIcon" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:imeOptions="actionDone"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivEmailIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        tools:text="mail@email.com" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivKeyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_key_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivEmailIcon" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:hint="enter new password"
+        android:imeOptions="actionDone"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon"
+        app:layout_constraintStart_toStartOf="@id/gdStart" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivKeyIcon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_key_icon"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivKeyIcon" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etRepeatNewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:hint="enter new password"
+        android:imeOptions="actionDone"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon2"
+        app:layout_constraintStart_toStartOf="@id/gdStart" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="sign out" />
+        android:background="@drawable/button_shape_line"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Save Information"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/ivKeyIcon2" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignOut"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="save" />
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_shape_line"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="sign out"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
+        app:layout_constraintTop_toBottomOf="@id/btnSave" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

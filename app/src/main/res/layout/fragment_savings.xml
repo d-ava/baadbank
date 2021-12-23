@@ -7,16 +7,16 @@
     android:orientation="vertical"
     tools:context=".ui.savings.SavingsFragment">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="Savings"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/bb_black"
 
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +26,99 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="32dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Welcome John Smith"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/gdTop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAccountBallance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Account Ballance"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBallance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="0.00₾"
+        android:textColor="@color/bb_black"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountBallance" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:background="@drawable/button_shape_line"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="ADD"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBallance" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="0.00"
+        android:textColor="@color/bb_green_01"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@id/btnAdd"
+        app:layout_constraintStart_toEndOf="@id/btnAdd"
+        app:layout_constraintTop_toTopOf="@id/btnAdd" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTake"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_shape_line"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="TAKE"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAdd" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etTake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="0.00"
+        android:textColor="@color/bb_grey"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@id/btnTake"
+        app:layout_constraintStart_toEndOf="@id/btnAdd"
+        app:layout_constraintTop_toTopOf="@id/btnTake" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
