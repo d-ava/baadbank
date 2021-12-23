@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.currency.CurrencyFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CURRENCY fragment"
+        android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:layout_marginTop="100dp"
-        android:textSize="30sp"/>
+        android:text="Currency"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/gdTop"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/bb_black"
 
-</FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="32dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

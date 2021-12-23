@@ -3,9 +3,10 @@ package com.example.baadbank.ui
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
-import com.example.baadbank.databinding.FragmentNavHomeBinding
 
-class NavHomeFragment: BaseFragment<FragmentNavHomeBinding>(FragmentNavHomeBinding::inflate) {
+import com.example.baadbank.databinding.FragmentNavHomeGuestBinding
+
+class NavHomeFragmentGuest : BaseFragment<FragmentNavHomeGuestBinding>(FragmentNavHomeGuestBinding::inflate) {
 
     override fun start() {
 
@@ -16,16 +17,10 @@ class NavHomeFragment: BaseFragment<FragmentNavHomeBinding>(FragmentNavHomeBindi
     private fun setListeners(){
 
 
-binding.ivUser.setOnClickListener {
-    findNavController().navigate(NavHomeFragmentDirections.actionNavHomeFragmentToInfoFragment())
-}
 
         binding.homeNavTab.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.savingsScreen -> {
-                    binding.homeNavContainer.findNavController().navigate(R.id.toSavingsScreen)
-                   true
-                }
+
                 R.id.calculatorScreen -> {
                     binding.homeNavContainer.findNavController().navigate(R.id.toCalculatorScreen)
                     true

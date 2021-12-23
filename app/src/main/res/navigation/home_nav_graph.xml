@@ -28,21 +28,25 @@
     <action
         android:id="@+id/toSavingsScreen"
         app:destination="@+id/savingsFragment"
+        app:enterAnim="@android:anim/slide_in_left"
         app:popUpTo="@id/home_nav_graph" />
 
     <action
         android:id="@+id/toCalculatorScreen"
         app:destination="@+id/calculatorFragment"
+        app:enterAnim="@android:anim/slide_in_left"
         app:popUpTo="@id/home_nav_graph" />
 
     <action
         android:id="@+id/toCryptoScreen"
         app:destination="@+id/cryptoFragment"
+        app:enterAnim="@android:anim/slide_in_left"
         app:popUpTo="@id/home_nav_graph" />
 
     <action
         android:id="@+id/toCurrencyScreen"
         app:destination="@+id/currencyFragment"
+        app:enterAnim="@android:anim/slide_in_left"
         app:popUpTo="@id/home_nav_graph" />
 
 </navigation>

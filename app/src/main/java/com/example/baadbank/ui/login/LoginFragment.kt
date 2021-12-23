@@ -24,6 +24,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.tvRegister.setOnClickListener{
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
+
+        binding.tvGuest.setOnClickListener{
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragmentGuest())
+        }
     }
 
 }
