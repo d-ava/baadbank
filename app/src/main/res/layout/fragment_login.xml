@@ -15,7 +15,6 @@
         android:src="@drawable/main_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -42,12 +41,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_login_email"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="104dp"
-        android:layout_marginEnd="32dp"
         app:startIconDrawable="@drawable/ic_login_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +61,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_login_password"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_login_key"
@@ -99,6 +94,7 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_resetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
