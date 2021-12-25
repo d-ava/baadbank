@@ -17,9 +17,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun setListeners(){
 
-        binding.btnLogin.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+        binding.apply {
+            btnLogin.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+            }
         }
+
+//        binding.btnLogin.setOnClickListener {
+//            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+//        }
 
         binding.tvRegister.setOnClickListener{
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())

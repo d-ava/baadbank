@@ -17,6 +17,9 @@ class NavHomeFragmentGuest : BaseFragment<FragmentNavHomeGuestBinding>(FragmentN
     private fun setListeners(){
 
 
+        binding.tvGuest.setOnClickListener {
+            findNavController().navigate(NavHomeFragmentGuestDirections.actionNavHomeFragmentGuestToLoginFragment())
+        }
 
         binding.homeNavTab.setOnItemSelectedListener {
             when(it.itemId){
