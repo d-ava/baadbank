@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_loginFragment_to_navHomeFragmentGuest"
             app:destination="@id/navHomeFragmentGuest" />
+        <action
+            android:id="@+id/action_loginFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -59,4 +62,9 @@
             android:id="@+id/action_editProfileFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.baadbank.ui.resetPassword.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" />
 </navigation>
