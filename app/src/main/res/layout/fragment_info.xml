@@ -8,6 +8,14 @@
 
     tools:context=".ui.currency.CurrencyFragment">
 
+<androidx.appcompat.widget.AppCompatImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="@id/gdEnd"
+
+    android:src="@drawable/ic_close"
+    android:id="@+id/ivClose"
+    app:layout_constraintBottom_toBottomOf="@id/tvUserInfo"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdStart"

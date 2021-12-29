@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.login
 
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentLoginBinding
@@ -25,7 +26,30 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
-    private fun loginUser() {
+    private fun loginUserNoCoroutines() {
+        binding.progressBar.visibility= View.VISIBLE
+
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    binding.progressBar.visibility= View.INVISIBLE
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+                }
+
+            }.addOnFailureListener { exception ->
+                view?.makeSnackbar(exception.localizedMessage)
+                binding.progressBar.visibility= View.INVISIBLE
+            }
+        } else {
+            view?.makeSnackbar("fill password and email fields")
+            binding.progressBar.visibility= View.INVISIBLE
+
+        }
+    }
+
+    private fun loginUserWithCoroutines() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         if (email.isNotEmpty() && password.isNotEmpty()) {
@@ -33,6 +57,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.signInWithEmailAndPassword(email, password).await()
+
                     withContext(Dispatchers.Main) {
                         checkLoggedInstance()
                     }
@@ -40,13 +65,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         binding.tvLoogedInfoTest.text = e.message
-                        e.message?.let { view?.makeSnackbar(it)
+                        e.message?.let {
+                            view?.makeSnackbar(it)
 
                         }
                     }
                 }
             }
-        }else{
+        } else {
             view?.makeSnackbar("fill password and email fields")
         }
     }
@@ -55,8 +81,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         if (auth.currentUser == null) {
             binding.tvLoogedInfoTest.text = "you r not logged in "
         } else {
+            view?.makeSnackbar("u r logged in ")
             binding.tvLoogedInfoTest.text = "you r logged in "
         }
+
+
     }
 
 
@@ -64,28 +93,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
         binding.apply {
             btnLogin.setOnClickListener {
-                loginUser()
-                //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+                loginUserNoCoroutines()
+
             }
 
+
+            tvRegister.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+            }
+            tvGuest.setOnClickListener {
+                checkLoggedInstance()
+                //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragmentGuest())
+            }
+
+            tvResetPassword.setOnClickListener {
+                auth.signOut()
+//            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
+            }
+
+
         }
 
-//        binding.btnLogin.setOnClickListener {
-//            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
-//        }
-
-        binding.tvRegister.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-        }
-
-        binding.tvGuest.setOnClickListener {
-            checkLoggedInstance()
-            //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragmentGuest())
-        }
-
-        binding.tvResetPassword.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
-        }
 
     }
 

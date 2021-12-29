@@ -28,6 +28,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         setListeners()
         auth = FirebaseAuth.getInstance()
 
+
     }
 
 
@@ -41,6 +42,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             CoroutineScope(IO).launch {
                 try {
                     auth.createUserWithEmailAndPassword(email, password).await()
+
                     withContext(Dispatchers.Main) {
                         checkLoggedInstance()
                     }
