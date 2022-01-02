@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049942223904",
+    "project_id": "baadbank-63b20",
+    "storage_bucket": "baadbank-63b20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049942223904:android:387d97dc86504a66df2045",
+        "android_client_info": {
+          "package_name": "com.example.baadbank.ui.register"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049942223904-gl2kero7ff4t8suvaiikt8us9n8241n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvKycbGSCZJQG9OurTyK604T5swbA_KwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049942223904-gl2kero7ff4t8suvaiikt8us9n8241n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

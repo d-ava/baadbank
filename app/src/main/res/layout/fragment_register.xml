@@ -138,7 +138,10 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/login_password_hint" />
