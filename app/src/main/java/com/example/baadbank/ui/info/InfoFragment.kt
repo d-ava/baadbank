@@ -3,15 +3,54 @@ package com.example.baadbank.ui.info
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentInfoBinding
 import com.example.baadbank.ui.BaseFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::inflate) {
 
+    lateinit var auth: FirebaseAuth
+
+    lateinit var databaseReference: DatabaseReference
+    lateinit var database: FirebaseDatabase
+
     override fun start() {
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.reference.child("profile")
+
+
+        loadUserInfo()
+
         setListeners()
     }
 
-    private fun setListeners(){
+    private fun loadUserInfo(){
+        val user = auth.currentUser
+        val userReference = databaseReference.child(user?.uid!!)
+
+        userReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val fullName =  snapshot.child("fullName").value.toString()
+                val phoneNumber = snapshot.child("phoneNumber").value.toString()
+                val email = user.email.toString()
+
+
+                binding.tvEmail.text = email
+                binding.tvNameLastname.text=fullName
+                binding.tvPhone.text = phoneNumber
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
+    }
+
+    private fun setListeners() {
         binding.btnSignOut.setOnClickListener {
+            auth.signOut()
             findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
         }
 
