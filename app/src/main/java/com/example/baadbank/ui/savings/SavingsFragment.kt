@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.savings
 
 import com.example.baadbank.databinding.FragmentSavingsBinding
+import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -21,7 +22,8 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
         loadUserInfo()
 
-        addAmount()
+        addTakeAmount()
+
 
     }
 
@@ -37,7 +39,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 //                val savings = snapshot.child("savings").value.toString()
 
                 binding.tvWelcome.text = "welcome $fullName"
-                binding.tvBallance.text = savingsTest
+                binding.tvBallance.text = "$savingsTest ₾" //need to set digits limit
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -49,10 +51,12 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     }
 
 
-    private fun addAmount(){
+    private fun addTakeAmount(){
 
         val currentUser = auth.currentUser
         val currentUserDb = databaseReference.child(currentUser?.uid!!)
+
+
 
         binding.btnAdd.setOnClickListener {
             val amount = binding.etAdd.text.toString().toDouble()
@@ -62,7 +66,23 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
         }
 
+        binding.btnTake.setOnClickListener {
+            val requiredAmount = binding.etTake.text.toString().toDouble()
+            var newAmount = savingsTest!!.toDouble()
+
+            if (requiredAmount<=newAmount){
+                newAmount-=requiredAmount
+                currentUserDb.child("savings").setValue(newAmount)
+            }else{
+                view?.makeSnackbar("not enough money")
+            }
+
+
+        }
+
 
     }
+
+
 
 }

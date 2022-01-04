@@ -20,8 +20,8 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
 
         loadUserInfo()
-
         setListeners()
+
     }
 
     private fun loadUserInfo(){
