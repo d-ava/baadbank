@@ -88,5 +88,9 @@
         android:id="@+id/passwordChangeDialogFragment"
         android:name="com.example.baadbank.ui.dialogs.PasswordChangeDialogFragment"
         android:label="fragment_password_change_dialog"
-        tools:layout="@layout/fragment_password_change_dialog" />
+        tools:layout="@layout/fragment_password_change_dialog" >
+        <action
+            android:id="@+id/action_passwordChangeDialogFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </dialog>
 </navigation>

@@ -43,7 +43,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+               view?.makeSnackbar("oncancelled")
             }
         })
 
