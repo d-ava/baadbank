@@ -12,7 +12,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     lateinit var databaseReference: DatabaseReference
     lateinit var database: FirebaseDatabase
 
-    var savingsTest:String? = null
+    var savingsTest:String = ""
 
     override fun start() {
 
@@ -36,7 +36,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
             override fun onDataChange(snapshot: DataSnapshot) {
                 val fullName =  snapshot.child("fullName").value.toString()
                 savingsTest = snapshot.child("savings").value.toString()
-//                val savings = snapshot.child("savings").value.toString()
+                val savings = snapshot.child("savings").value.toString()
 
                 binding.tvWelcome.text = "welcome $fullName"
                 binding.tvBallance.text = "$savingsTest ₾" //need to set digits limit
