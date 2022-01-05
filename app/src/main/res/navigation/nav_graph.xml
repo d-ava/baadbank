@@ -58,6 +58,12 @@
         <action
             android:id="@+id/action_infoFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_navHomeFragment"
+            app:destination="@id/navHomeFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_passwordChangeDialogFragment"
+            app:destination="@id/passwordChangeDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -69,10 +75,18 @@
         <action
             android:id="@+id/action_editProfileFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
+        <argument
+            android:name="userInformation"
+            app:argType="com.example.baadbank.data.User" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.baadbank.ui.resetPassword.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" />
+    <dialog
+        android:id="@+id/passwordChangeDialogFragment"
+        android:name="com.example.baadbank.ui.dialogs.PasswordChangeDialogFragment"
+        android:label="fragment_password_change_dialog"
+        tools:layout="@layout/fragment_password_change_dialog" />
 </navigation>

@@ -1,7 +1,13 @@
 package com.example.baadbank.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
+@Parcelize
 data class User(
-    val name: String,
+    val fullName: String,
     val email: String,
-    val savings: Long = 0L
-)
+    val phone: String
+
+):Parcelable

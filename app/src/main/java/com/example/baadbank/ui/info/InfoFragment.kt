@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.info
 
 import androidx.navigation.fragment.findNavController
+import com.example.baadbank.data.User
 import com.example.baadbank.databinding.FragmentInfoBinding
 import com.example.baadbank.ui.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +36,8 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
                 val email = user.email.toString()
 
 
+
+
                 binding.tvEmail.text = email
                 binding.tvNameLastname.text=fullName
                 binding.tvPhone.text = phoneNumber
@@ -49,13 +52,32 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
     }
 
     private fun setListeners() {
+
+        binding.apply {
+            tvChangePassword.setOnClickListener {
+                findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToPasswordChangeDialogFragment())
+            }
+        }
+
+        binding.btnClose.setOnClickListener {
+           findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToNavHomeFragment())
+        }
+
+
         binding.btnSignOut.setOnClickListener {
             auth.signOut()
             findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
         }
 
         binding.btnEdit.setOnClickListener {
-            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToEditProfileFragment())
+
+            val fullName = binding.tvNameLastname.text.toString()
+            val phone = binding.tvPhone.text.toString()
+            val email = binding.tvEmail.text.toString()
+
+            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToEditProfileFragment(
+                User(fullName, email, phone)
+            ))
         }
     }
 }

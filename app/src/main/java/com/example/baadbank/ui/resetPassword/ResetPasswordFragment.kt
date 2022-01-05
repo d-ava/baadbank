@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.databinding.FragmentResetPasswordBinding
@@ -15,7 +16,17 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
 
     override fun start() {
 
+        setListeners()
+
     }
 
+
+    private fun setListeners(){
+        binding.apply {
+            ivResetPasswordBackArrow.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+    }
 
 }

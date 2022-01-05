@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph_guest"
+    app:startDestination="@id/currencyFragment">
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.example.baadbank.ui.calculator.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" />
+    <fragment
+        android:id="@+id/cryptoFragment"
+        android:name="com.example.baadbank.ui.crypto.CryptoFragment"
+        android:label="fragment_crypto"
+        tools:layout="@layout/fragment_crypto" />
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.example.baadbank.ui.currency.CurrencyFragment"
+        android:label="fragment_currency"
+        tools:layout="@layout/fragment_currency" />
+
+    <action
+        android:id="@+id/toCalculatorScreen"
+        app:destination="@+id/calculatorFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:popUpTo="@id/home_nav_graph" />
+
+    <action
+        android:id="@+id/toCryptoScreen"
+        app:destination="@+id/cryptoFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:popUpTo="@id/home_nav_graph" />
+
+    <action
+        android:id="@+id/toCurrencyScreen"
+        app:destination="@+id/currencyFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:popUpTo="@id/home_nav_graph" />
+
+</navigation>

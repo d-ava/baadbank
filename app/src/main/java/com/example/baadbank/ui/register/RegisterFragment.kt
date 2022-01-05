@@ -23,6 +23,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
 
         registerUser()
+        setListeners()
 
     }
 
@@ -48,6 +49,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 }
 
             }
+        }
+    }
+
+    private fun setListeners(){
+        binding.ivRegisterBackArrow.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

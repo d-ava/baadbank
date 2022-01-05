@@ -8,6 +8,14 @@
 
     tools:context=".ui.currency.CurrencyFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdStart"
@@ -51,12 +59,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/ubuntu_bold"
+        android:text="Upload Image"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivUser"
-        app:layout_constraintStart_toEndOf="@id/ivUser"
-        android:text="Upload Image" />
-
+        app:layout_constraintStart_toEndOf="@id/ivUser" />
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -134,16 +141,16 @@
         app:layout_constraintTop_toBottomOf="@id/ivEmailIcon" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPassword"
+        android:id="@+id/tvChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:fontFamily="@font/ubuntu_light"
+        android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon"
         app:layout_constraintStart_toStartOf="@id/gdStart"
-        tools:text="********" />
+        android:text="CHANGE PASSWORD" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -152,9 +159,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@drawable/button_shape_line"
-        android:text="edit"
-android:textSize="16sp"
         android:fontFamily="@font/ubuntu_bold"
+        android:text="edit"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toBottomOf="@id/ivKeyIcon" />
