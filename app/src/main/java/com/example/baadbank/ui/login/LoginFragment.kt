@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentLoginBinding
+
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.google.firebase.auth.FirebaseAuth

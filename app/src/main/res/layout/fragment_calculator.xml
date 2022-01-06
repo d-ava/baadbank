@@ -47,36 +47,55 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:maxLines="1"
         android:id="@+id/etAmount"
-        android:hint="enter amount"
-                android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
 
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
+
+        android:textAlignment="center"
         android:textColor="@color/bb_black"
 
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/tvValue"
-        app:layout_constraintStart_toStartOf="parent"
+
+       app:layout_constraintEnd_toStartOf="@id/ivArrowForward"
 
         app:layout_constraintTop_toBottomOf="@id/spinnerLeft" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivArrowForward"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf="@id/etAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/etAmount" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:maxLines="1"
+
+        android:layout_marginEnd="32dp"
+
+        android:background="@drawable/login_register_button_background"
 
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Value"
+        android:gravity="center"
+        tools:text="Value"
 
         android:textColor="@color/bb_black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/etAmount"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivArrowForward"
 
-        app:layout_constraintStart_toEndOf="@+id/etAmount"
+
         app:layout_constraintTop_toTopOf="@+id/etAmount" />
 
 
@@ -84,12 +103,13 @@
         android:id="@+id/btnConvert"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+
         android:layout_marginTop="128dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="Convert"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAmount" />
 

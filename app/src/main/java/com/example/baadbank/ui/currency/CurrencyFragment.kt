@@ -32,9 +32,18 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
 
                             for (item in body) {
                                 if (item.currency == "USD") {
-                                    binding.tvCurrency.text = item.currency
-                                    binding.tvValue.text = item.value.toString()
+                                    binding.tvUSDCurrency.text = item.currency
+                                    binding.tvUSDValue.text = item.value.toString()
                                 }
+                                if (item.currency == "EUR") {
+                                    binding.tvEURCurrency.text = item.currency
+                                    binding.tvEURValue.text = item.value.toString()
+                                }
+                                if (item.currency == "GBP") {
+                                    binding.tvGBPCurrency.text = item.currency
+                                    binding.tvGBPValue.text = item.value.toString()
+                                }
+
                             }
                             adapter.setData(body)
                             for (c in body) {

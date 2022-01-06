@@ -28,13 +28,15 @@ class CalculatorFragment :
         setSpinners()
         setListeners()
 
+
+
     }
 
 
     private fun setListeners() {
         binding.btnConvert.setOnClickListener {
             amount = binding.etAmount.text.toString()
-
+binding.etAmount.text?.clear()
             currencyConverter()
         }
     }
@@ -73,6 +75,8 @@ class CalculatorFragment :
             )
 
         val spinnerFrom = binding.spinnerLeft
+
+
         spinnerFrom.adapter = arrAdapter
         spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
