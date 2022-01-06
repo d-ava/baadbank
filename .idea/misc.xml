@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/.gradle/caches/transforms-3/7237f57d4215f83849e820b7b19f536a/transformed/appcompat-1.4.0/res/layout/support_simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/button_shape_line.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic___logo__a.xml" value="0.3828125" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic_user.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/main_background.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/bb_spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_calculator.xml" value="0.3555253623188406" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_crypto.xml" value="0.3555253623188406" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_currency.xml" value="0.3555253623188406" />
@@ -32,6 +34,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_savings.xml" value="0.3555253623188406" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_user_info_change_dialog.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/item_currency.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/menu/home_tabs.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/menu/home_tabs_guest.xml" value="0.36666666666666664" />
       </map>

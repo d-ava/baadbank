@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 
+var currencyList: MutableList<String> = mutableListOf()
 
 class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyBinding::inflate) {
 
@@ -36,7 +37,9 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
                                 }
                             }
                             adapter.setData(body)
-//                            binding.tvAll.text = body.toString()
+                            for (c in body) {
+                                currencyList.add(c.currency)
+                            }
                         }
                     }
                 } else {

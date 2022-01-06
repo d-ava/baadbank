@@ -16,6 +16,11 @@ object NetworkClient {
         addInterceptor(CurrencyInterceptor())
     }.build()
 
+
+    private val clientConvert = OkHttpClient.Builder().apply {
+        addInterceptor(ConvertInterceptor())
+    }.build()
+
     private fun loggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
@@ -38,7 +43,7 @@ object NetworkClient {
             .build()
     }
 
-    val retrofit by lazy {
+    val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -47,8 +52,21 @@ object NetworkClient {
             .build()
     }
 
+    val retrofitConvert: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(clientConvert)
+//            .client(okHttpClient(loggingInterceptor()))
+            .addConverterFactory(MoshiConverterFactory.create(moshi()))
+            .build()
+    }
+
     val api: CurrencyApi by lazy {
         retrofit.create(CurrencyApi::class.java)
+    }
+
+    val apiConvert: ConvertApi by lazy {
+        retrofitConvert.create(ConvertApi::class.java)
     }
 
 }
