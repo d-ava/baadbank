@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.calculator.CalculatorFragment">
 
@@ -13,10 +13,10 @@
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="Calculator"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/bb_black"
 
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,5 +26,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="32dp" />
+
+    <Spinner
+        android:id="@+id/spinnerLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerRight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spinnerLeft"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

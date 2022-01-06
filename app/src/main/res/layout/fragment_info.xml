@@ -146,11 +146,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/ubuntu_bold"
+        android:text="CHANGE PASSWORD"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivKeyIcon"
-        app:layout_constraintStart_toStartOf="@id/gdStart"
-        android:text="CHANGE PASSWORD" />
+        app:layout_constraintStart_toStartOf="@id/gdStart" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -178,6 +178,8 @@
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toBottomOf="@id/btnEdit" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,7 +58,7 @@ class EditProfileFragment :
             }
 
             btnSave.setOnClickListener {
-//                saveUserInformation()
+                saveUserInformation()
 //                view?.makeSnackbar("information changed")
                 findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToInfoFragment())
             }

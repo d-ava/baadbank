@@ -1,8 +1,12 @@
 package com.example.baadbank.ui.login
 
 
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
@@ -30,9 +34,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
 
+
+
+
         setListeners()
 
     }
+
+
 
     private fun loginUser() {
 

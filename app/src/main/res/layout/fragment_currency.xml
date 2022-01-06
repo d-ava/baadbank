@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.currency.CurrencyFragment">
 
@@ -13,10 +13,10 @@
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="Currency"
+        android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/bb_black"
 
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +27,55 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="32dp" />
 
+    <TextView
+        android:id="@+id/tvCurrency"
+        android:layout_width="wrap_content"
 
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Currency"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/tvValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gdTop"
+
+        />
+
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Value"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvCurrency"
+        app:layout_constraintTop_toBottomOf="@id/gdTop"
+
+        />
+
+
+    <TextView
+        android:id="@+id/tvAll"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+android:layout_marginTop="32dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="All"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textColor="@color/bb_black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrency"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

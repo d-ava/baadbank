@@ -25,13 +25,14 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
     }
 
-    private fun loadUserInfo(){
+
+    private fun loadUserInfo() {
         val user = auth.currentUser
         val userReference = databaseReference.child(user?.uid!!)
 
         userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val fullName =  snapshot.child("fullName").value.toString()
+                val fullName = snapshot.child("fullName").value.toString()
                 val phoneNumber = snapshot.child("phoneNumber").value.toString()
                 val email = user.email.toString()
 
@@ -39,7 +40,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
 
                 binding.tvEmail.text = email
-                binding.tvNameLastname.text=fullName
+                binding.tvNameLastname.text = fullName
                 binding.tvPhone.text = phoneNumber
             }
 
@@ -60,24 +61,28 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
         }
 
         binding.btnClose.setOnClickListener {
-           findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToNavHomeFragment())
+            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToNavHomeFragment())
         }
 
 
         binding.btnSignOut.setOnClickListener {
+//            loadUserInfo()
             auth.signOut()
             findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
         }
 
         binding.btnEdit.setOnClickListener {
 
+            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToUserInfoChangeDialogFragment())
             val fullName = binding.tvNameLastname.text.toString()
             val phone = binding.tvPhone.text.toString()
             val email = binding.tvEmail.text.toString()
 
-            findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToEditProfileFragment(
-                User(fullName, email, phone)
-            ))
+//            findNavController().navigate(
+//                InfoFragmentDirections.actionInfoFragmentToEditProfileFragment(
+//                    User(fullName, email, phone)
+//                )
+//            )
         }
     }
 }

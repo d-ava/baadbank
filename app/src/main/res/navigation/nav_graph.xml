@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_infoFragment_to_passwordChangeDialogFragment"
             app:destination="@id/passwordChangeDialogFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_userInfoChangeDialogFragment"
+            app:destination="@id/userInfoChangeDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -93,4 +96,9 @@
             android:id="@+id/action_passwordChangeDialogFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </dialog>
+    <dialog
+        android:id="@+id/userInfoChangeDialogFragment"
+        android:name="com.example.baadbank.ui.dialogs.UserInfoChangeDialogFragment"
+        android:label="fragment_user_info_change_dialog"
+        tools:layout="@layout/fragment_user_info_change_dialog" />
 </navigation>
