@@ -7,10 +7,16 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 
 object NetworkClient {
 
     private const val BASE_URL = "https://test-api.tbcbank.ge/v1/"
+    private const val BASE_URL_COIN = "https://api.coinpaprika.com/v1/"
+    private const val BASE_URL_COINBB = "https://rest.coinapi.io/v1/"
+    private const val BASE_URL_COINCR = "https://www.cryptingup.com/api/"
+    private const val BASE_URL_COIN_GECKO = "https://api.coingecko.com/api/v3/"
+
 
     private val client = OkHttpClient.Builder().apply {
         addInterceptor(CurrencyInterceptor())
@@ -61,12 +67,42 @@ object NetworkClient {
             .build()
     }
 
+    val retrofitCoin: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL_COIN)
+            .addConverterFactory(MoshiConverterFactory.create(moshi()))
+            .build()
+
+    }
+
+
+
+
+
+    private val retrofitCoinGecko: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL_COIN_GECKO)
+            .client(okHttpClient(loggingInterceptor()))
+            .addConverterFactory(MoshiConverterFactory.create(moshi()))
+            .build()
+    }
+
+
     val api: CurrencyApi by lazy {
         retrofit.create(CurrencyApi::class.java)
     }
 
     val apiConvert: ConvertApi by lazy {
         retrofitConvert.create(ConvertApi::class.java)
+    }
+
+    val apiCoin: CoinsPaprikaApi by lazy {
+        retrofitCoin.create(CoinsPaprikaApi::class.java)
+    }
+
+
+    val apiCoinGecko: CoinGeckoApi by lazy {
+        retrofitCoinGecko.create(CoinGeckoApi::class.java)
     }
 
 }

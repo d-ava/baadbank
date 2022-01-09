@@ -7,6 +7,8 @@ import com.example.baadbank.CurrencyItemsAdapter
 import com.example.baadbank.databinding.FragmentCurrencyBinding
 import com.example.baadbank.network.NetworkClient
 import com.example.baadbank.ui.BaseFragment
+
+import com.example.baadbank.ui.login.currencyBody
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
@@ -20,7 +22,34 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
     override fun start() {
 
         setRecycler()
+//        getCurrency()
 
+
+        for (item in currencyBody) {
+            if (item.currency == "USD") {
+                binding.tvUSDCurrency.text = item.currency
+                binding.tvUSDValue.text = item.value.toString()
+            }
+            if (item.currency == "EUR") {
+                binding.tvEURCurrency.text = item.currency
+                binding.tvEURValue.text = item.value.toString()
+            }
+            if (item.currency == "GBP") {
+                binding.tvGBPCurrency.text = item.currency
+                binding.tvGBPValue.text = item.value.toString()
+            }
+
+        }
+        adapter.setData(currencyBody)
+        for (c in currencyBody) {
+            currencyList.add(c.currency)
+        }
+
+
+
+    }
+
+    private fun getCurrency(){
         lifecycleScope.launchWhenStarted {
             withContext(IO) {
                 val response = NetworkClient.api.getCurrency()
@@ -57,7 +86,6 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
                 }
             }
         }
-
 
     }
 
