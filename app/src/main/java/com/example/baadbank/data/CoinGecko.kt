@@ -16,8 +16,8 @@ data class CoinGecko(
     val image: String,
     @Json(name = "current_price")
     val currentPrice: Double,
-//    @Json(name = "market_cap")
-//    val marketCap: Long,
+    @Json(name = "market_cap")
+    val marketCap: Any,
 //    @Json(name = "market_cap_rank")
 //    val marketCapRank: Int,
 //    @Json(name = "fully_diluted_valuation")
@@ -28,8 +28,8 @@ data class CoinGecko(
 //    val high24h: Int,
 //    @Json(name = "low_24h")
 //    val low24h: Int,
-    @Json(name = "price_change_24h")
-    val priceChange24h: Double,
+//    @Json(name = "price_change_24h")
+//    val priceChange24h: Double,
 //    @Json(name = "price_change_percentage_24h")
 //    val priceChangePercentage24h: Double,
 //    @Json(name = "market_cap_change_24h")

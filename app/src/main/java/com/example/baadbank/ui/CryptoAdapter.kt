@@ -46,13 +46,15 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var model: CoinGecko
 
+        @SuppressLint("SetTextI18n")
         fun onBind() {
             model = list[adapterPosition]
             binding.ivCoin.glideExtension(model.image)
             binding.apply {
-                tvCurrentPrice.text = model.currentPrice.toString()
+                tvCurrentPrice.text ="$ " + model.currentPrice.toString()
                 tvName.text = model.name
                 tvSymbol.text = model.symbol
+                tvMarketCap.text = "$ " + model.marketCap.toString()
             }
 
         }

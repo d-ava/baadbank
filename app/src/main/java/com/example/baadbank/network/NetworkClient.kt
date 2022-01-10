@@ -13,8 +13,7 @@ object NetworkClient {
 
     private const val BASE_URL = "https://test-api.tbcbank.ge/v1/"
     private const val BASE_URL_COIN = "https://api.coinpaprika.com/v1/"
-    private const val BASE_URL_COINBB = "https://rest.coinapi.io/v1/"
-    private const val BASE_URL_COINCR = "https://www.cryptingup.com/api/"
+
     private const val BASE_URL_COIN_GECKO = "https://api.coingecko.com/api/v3/"
 
 
