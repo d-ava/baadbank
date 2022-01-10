@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.baadbank.data.CoinGecko
 import com.example.baadbank.databinding.ItemCryptoBinding
 import com.example.baadbank.extensions.glideExtension
+import java.math.BigDecimal
 
 class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
 
@@ -54,7 +55,9 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
                 tvCurrentPrice.text ="$ " + model.currentPrice.toString()
                 tvName.text = model.name
                 tvSymbol.text = model.symbol
-                tvMarketCap.text = "$ " + model.marketCap.toString()
+                val number:Double = model.marketCap.toString().toDouble()
+                tvMarketCap.text = "$ "+BigDecimal(number).toPlainString().toString()
+//                tvMarketCap.text = "$ " + model.marketCap.toString()
             }
 
         }
