@@ -47,6 +47,7 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var model: CoinGecko
 
+
         @SuppressLint("SetTextI18n")
         fun onBind() {
             model = list[adapterPosition]

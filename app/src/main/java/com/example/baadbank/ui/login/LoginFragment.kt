@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
 import com.example.baadbank.data.CoinGecko
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 var currencyBody : List<CurrencyItem> = listOf()
@@ -49,7 +52,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
         setListeners()
-//        getCurrency()
+        getCurrency()
         getCoinsGecko()
 
     }
@@ -73,9 +76,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
+
     private fun getCurrency(){
-        lifecycleScope.launchWhenStarted {
-            withContext(Dispatchers.IO) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val response = NetworkClient.api.getCurrency()
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
@@ -89,6 +93,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
 
     }
+
+//    private fun getCurrency(){
+//        lifecycleScope.launchWhenStarted {
+//            withContext(Dispatchers.IO) {
+//                val response = NetworkClient.api.getCurrency()
+//                val body = response.body()
+//                if (response.isSuccessful && body != null) {
+//                    Log.d("---", "$body")
+//                    currencyBody = body
+//                } else {
+//                    Log.d("---", "${response.code()}")
+//
+//                }
+//            }
+//        }
+//
+//    }
 
 
 

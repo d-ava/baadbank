@@ -12,8 +12,6 @@ import retrofit2.create
 object NetworkClient {
 
     private const val BASE_URL = "https://test-api.tbcbank.ge/v1/"
-    private const val BASE_URL_COIN = "https://api.coinpaprika.com/v1/"
-
     private const val BASE_URL_COIN_GECKO = "https://api.coingecko.com/api/v3/"
 
 
@@ -66,17 +64,6 @@ object NetworkClient {
             .build()
     }
 
-    val retrofitCoin: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL_COIN)
-            .addConverterFactory(MoshiConverterFactory.create(moshi()))
-            .build()
-
-    }
-
-
-
-
 
     private val retrofitCoinGecko: Retrofit by lazy {
         Retrofit.Builder()
@@ -93,10 +80,6 @@ object NetworkClient {
 
     val apiConvert: ConvertApi by lazy {
         retrofitConvert.create(ConvertApi::class.java)
-    }
-
-    val apiCoin: CoinsPaprikaApi by lazy {
-        retrofitCoin.create(CoinsPaprikaApi::class.java)
     }
 
 

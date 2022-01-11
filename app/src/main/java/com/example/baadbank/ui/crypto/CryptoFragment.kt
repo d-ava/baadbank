@@ -24,7 +24,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
 
     override fun start() {
 
-//        getCoins()
+
 
         setRecycler()
         adapterCrypto.setData(cryptoBody)
@@ -61,23 +61,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
 
     }
 
-    private fun getCoins() {
-        lifecycleScope.launchWhenStarted {
-            withContext(Dispatchers.IO) {
-                val response = NetworkClient.apiCoin.getCoins()
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    Log.d("---", "$body")
 
-                } else {
-                    Log.d("---", "${response.code()}")
-
-                }
-            }
-        }
-
-
-    }
 
 
 
