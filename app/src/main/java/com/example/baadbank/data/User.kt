@@ -8,6 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class User(
     val fullName: String,
     val email: String,
-    val phone: String
+    val phone: String,
+    val savings:Double
 
 ):Parcelable
