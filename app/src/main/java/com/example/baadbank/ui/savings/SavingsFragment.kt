@@ -17,6 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+
+
 @AndroidEntryPoint
 class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBinding::inflate) {
 
@@ -35,7 +37,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         databaseReference = database.reference.child("profile")
 
 
-//        addTakeAmount()
+//       addTakeAmount()
         setListeners()
         loadUserInfo01()
 
@@ -43,7 +45,11 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
-            addTake()
+            addTake(false)
+        }
+
+        binding.btnTake.setOnClickListener {
+            addTake(true)
         }
     }
 
@@ -89,10 +95,12 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 //
 //    }
 
-    private fun addTake() {
-
-        viewModel.addTake(binding.etAdd.text.toString().toDouble())
-
+    private fun addTake(negative:Boolean) {
+        if (negative){
+            viewModel.addTake(binding.etAdd.text.toString().toDouble()*-1)
+        }else{
+            viewModel.addTake(binding.etAdd.text.toString().toDouble())
+        }
     }
 
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.data.User1
 import com.example.baadbank.repository.SavingsRepositoryImpl
+import com.example.baadbank.util.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -29,10 +30,10 @@ class SavingsViewModel @Inject constructor(private val repository: SavingsReposi
 
 
     fun addTake(amount:Double){
+        val totalAmount =  Utils.savingsBalance.toDouble() +amount
         viewModelScope.launch {
 
-//          val number =  _addTake.emit(amount)
-            repository.addTake(amount)
+            repository.addTake(totalAmount)
 
         }
 
