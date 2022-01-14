@@ -38,7 +38,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 //        binding.progressbar.isVisible = true
 
         auth = FirebaseAuth.getInstance()
-//        auth.signOut() //droebit
+        auth.signOut() //droebit
 //        loginUser()
 
 //        val userTest = Firebase.auth.currentUser
