@@ -5,28 +5,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentUserInfoChangeDialogBinding
+import com.example.baadbank.util.Utils.auth
+import com.example.baadbank.util.Utils.databaseReference
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
+
+    private val viewModel: InfoChangeViewModel by activityViewModels()
 
     private var _binding: FragmentUserInfoChangeDialogBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var auth: FirebaseAuth
-    lateinit var databaseReference: DatabaseReference
-    lateinit var database: FirebaseDatabase
+    private val args: UserInfoChangeDialogFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentUserInfoChangeDialogBinding.inflate(inflater,container, false)
+        _binding = FragmentUserInfoChangeDialogBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -34,36 +43,48 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database.reference.child("profile")
+
 
         setListeners()
-
+        loadUserInfo()
 
 
     }
 
+    private fun saveUserInfo(){
+        val name = binding.etFullName.text.toString()
+        val phone = binding.etPhoneNumber.text.toString()
 
-    private fun setListeners(){
+        viewModel.saveUserInfo(name, phone)
+
+    }
+
+    private fun loadUserInfo() {
+        binding.apply {
+            etFullName.setText(args.userInformation.fullName)
+            etPhoneNumber.setText(args.userInformation.phone)
+        }
+    }
+
+
+    private fun setListeners() {
         binding.btnSave.setOnClickListener {
 
-            saveUserInformation()
+
+            saveUserInfo()
+            findNavController().popBackStack()
 
         }
-
-
-
     }
 
-    private fun saveUserInformation() {
-        val user = auth.currentUser
-        val userReference = databaseReference.child(user?.uid!!)
-
-        userReference.child("fullName").setValue(binding.etFullName.text.toString())
-        userReference.child("phoneNumber").setValue(binding.etPhoneNumber.text.toString())
-
-    }
+//    private fun saveUserInformation() {
+//        val user = auth.currentUser
+//        val userReference = databaseReference.child(user?.uid!!)
+//
+//        userReference.child("fullName").setValue(binding.etFullName.text.toString())
+//        userReference.child("phoneNumber").setValue(binding.etPhoneNumber.text.toString())
+//
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

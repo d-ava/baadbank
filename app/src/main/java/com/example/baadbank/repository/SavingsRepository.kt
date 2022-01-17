@@ -1,11 +1,12 @@
 package com.example.baadbank.repository
 
-import com.example.baadbank.data.User1
+import com.example.baadbank.data.User
+
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 interface SavingsRepository {
 
-   suspend fun loadUserInfo(flow: MutableSharedFlow<User1>)
+   suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>)
 
 
 

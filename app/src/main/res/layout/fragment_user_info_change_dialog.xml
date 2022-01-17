@@ -29,6 +29,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
+            android:inputType="none"
+            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
@@ -50,6 +52,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhoneNumber"
+            android:inputType="number"
+            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"

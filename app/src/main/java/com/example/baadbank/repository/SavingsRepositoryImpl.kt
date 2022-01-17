@@ -1,11 +1,11 @@
 package com.example.baadbank.repository
 
-import com.example.baadbank.data.User1
-import com.example.baadbank.util.Utils
-import com.google.firebase.auth.FirebaseAuth
+import com.example.baadbank.data.User
+import com.example.baadbank.util.Utils.auth
+import com.example.baadbank.util.Utils.databaseReference
+import com.example.baadbank.util.Utils.savingsBalance
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -17,14 +17,8 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
 
-    private val auth = FirebaseAuth.getInstance()
-    private val database = FirebaseDatabase.getInstance()
-    private val databaseReference = database.reference.child("profile")
 
-
-    private val user = auth.currentUser
-
-    private val userReference = databaseReference.child(user?.uid!!)
+    private val userReference = databaseReference.child(auth.currentUser?.uid!!)
 
 
     fun addTake(newAmount: Double){
@@ -32,16 +26,24 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
     }
 
+    fun saveUserInfo(name:String, phone:String ){
+        userReference.child("phone").setValue(phone)
+        userReference.child("fullName").setValue(name)
+    }
 
-    override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User1>) {
+
+    override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
         userReference
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val userInfo = User1(
-                        snapshot.child("fullName").value.toString(),
-                        snapshot.child("savings").value.toString()
+                    val userInfo = User(
+                        fullName = snapshot.child("fullName").value.toString(),
+                        savings = snapshot.child("savings").value.toString().toDouble(),
+                        phone = snapshot.child("phone").value.toString(),
+                        email = auth.currentUser?.email.toString()
+
                     )
-                    Utils.savingsBalance = snapshot.child("savings").value.toString()
+                    savingsBalance = snapshot.child("savings").value.toString()
                     CoroutineScope(IO).launch {
                         userFlow.emit(userInfo)
 

@@ -61,6 +61,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +70,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
+            android:imeOptions="actionDone"
+
+            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
@@ -91,6 +95,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
+            android:inputType="number"
+            android:imeOptions="actionDone"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/phone_number" />
@@ -113,6 +119,8 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionDone"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/login_emil_hint" />
 
@@ -133,6 +141,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"

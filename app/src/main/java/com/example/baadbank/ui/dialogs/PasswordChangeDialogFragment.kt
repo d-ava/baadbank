@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentPasswordChangeDialogBinding
@@ -20,8 +21,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
+
     private var _binding: FragmentPasswordChangeDialogBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: PasswordChangeViewModel by activityViewModels()
 
     lateinit var auth: FirebaseAuth
 
@@ -53,11 +57,19 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
     private fun setListeners() {
         binding.btnSaveChanges.setOnClickListener {
             passwordChange()
+            findNavController().popBackStack()
         }
     }
 
+    private fun passwordChange(){
+        val password = binding.etCurrentPassword.toString()
+        val newPassword = binding.etNewPassword.toString()
+        viewModel.passwordChange(password, newPassword)
+    }
 
-    private fun passwordChange() {
+
+
+    private fun passwordChangeOld() {
         if (binding.etCurrentPassword.text!!.isNotEmpty() &&
             binding.etNewPassword.text!!.isNotEmpty() &&
             binding.etRepeatPassword.text!!.isNotEmpty()

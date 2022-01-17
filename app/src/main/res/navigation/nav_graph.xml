@@ -100,5 +100,9 @@
         android:id="@+id/userInfoChangeDialogFragment"
         android:name="com.example.baadbank.ui.dialogs.UserInfoChangeDialogFragment"
         android:label="fragment_user_info_change_dialog"
-        tools:layout="@layout/fragment_user_info_change_dialog" />
+        tools:layout="@layout/fragment_user_info_change_dialog" >
+        <argument
+            android:name="userInformation"
+            app:argType="com.example.baadbank.data.User" />
+    </dialog>
 </navigation>

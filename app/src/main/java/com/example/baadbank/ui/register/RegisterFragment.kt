@@ -9,11 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentRegisterBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
-import com.example.baadbank.ui.login.LoginFragmentDirections
 import com.example.baadbank.util.Resource
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -40,39 +36,16 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     }
 
-//    private fun registerUser() {
-//        binding.btnRegister.setOnClickListener {
-//            val email = binding.etEmail.text.toString()
-//            val password = binding.etPassword.text.toString()
-//
-//            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    val currentUser = auth.currentUser
-//                    val currentUserDb = databaseReference.child(currentUser?.uid!!)
-//                    currentUserDb.child("fullName").setValue(binding.etFullName.text.toString())
-//                    currentUserDb.child("phoneNumber")
-//                        .setValue(binding.etPhoneNumber.text.toString())
-//                    currentUserDb.child("savings").setValue(0.0)
-//
-//                    view?.makeSnackbar("registration successful")
-//                    auth.signOut()
-//                  findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
-//                } else {
-//                    view?.makeSnackbar("registration fail")
-//                }
-//
-//            }
-//        }
-//    }
+
 
 
     private fun registerUser() {
-        val fullname = binding.etFullName.text.toString()
+        val fullName = binding.etFullName.text.toString()
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         val phoneNumber = binding.etPhoneNumber.text.toString()
 
-        viewModel.registerUser(email = email, fullName = fullname, password = password, phoneNumber = phoneNumber)
+        viewModel.registerUser(email = email, fullName = fullName, password = password, phoneNumber = phoneNumber)
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

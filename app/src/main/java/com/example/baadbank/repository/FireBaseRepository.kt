@@ -3,8 +3,11 @@ package com.example.baadbank.repository
 
 import com.example.baadbank.data.User
 import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils.auth
+import com.example.baadbank.util.Utils.databaseReference
 import com.example.baadbank.util.safeCall
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import dagger.Provides
@@ -24,14 +27,24 @@ import javax.inject.Singleton
 
 class FireBaseRepository @Inject constructor() {
 
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private var database = FirebaseDatabase.getInstance()
-    private var databaseReference = database.reference.child("profile")
+    private val user = auth.currentUser
 
+   suspend fun changePassword(password:String, newPassword:String){
+        val credential = EmailAuthProvider.getCredential(user!!.email!!, password)
 
+        withContext(IO){
+            user.reauthenticate(credential).await()
+            user.updatePassword(newPassword).await()
+            auth.signOut()
+        }
 
+        user.reauthenticate(credential).addOnCompleteListener { task ->
+            user.updatePassword(newPassword).addOnCompleteListener {
+                auth.signOut()
+            }
 
-
+        }
+    }
 
 
     suspend fun loginUser(email: String, password: String): Resource<AuthResult> {
@@ -52,7 +65,7 @@ class FireBaseRepository @Inject constructor() {
         phoneNumber:String,
         userPassword:String
     ) : Resource<AuthResult>{
-        return withContext(Dispatchers.IO) {
+        return withContext(IO) {
             safeCall {
                 val registrationResult = auth.createUserWithEmailAndPassword(userEmail, userPassword).await()
 
