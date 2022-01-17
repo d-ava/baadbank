@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.baadbank.data.User
 import com.example.baadbank.databinding.FragmentInfoBinding
 import com.example.baadbank.ui.BaseFragment
@@ -74,6 +75,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
                         tvEmail.text = it.email
                         tvNameLastname.text = it.fullName
                         tvPhone.text = it.phone
+
                     }
 
                 }
@@ -81,6 +83,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
             }
         }
     }
+
 
     private fun setListeners() {
 
@@ -117,6 +120,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 //                )
 //            )
             }
+
 
         }
 

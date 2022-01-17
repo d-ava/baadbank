@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.dialogs
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.repository.SavingsRepositoryImpl
@@ -13,9 +14,9 @@ class InfoChangeViewModel @Inject constructor(private val repository: SavingsRep
 
 
 
-    fun saveUserInfo(name:String, phone:String){
+    fun saveUserInfo(name:String, phone:String,profilePic:Uri){
         viewModelScope.launch {
-            repository.saveUserInfo(name, phone)
+            repository.saveUserInfo(name, phone,profilePic)
         }
 
     }

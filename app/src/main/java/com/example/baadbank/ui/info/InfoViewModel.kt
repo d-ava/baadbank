@@ -2,6 +2,7 @@ package com.example.baadbank.ui.info
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.example.baadbank.data.User
 import com.example.baadbank.repository.SavingsRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,9 +23,6 @@ class InfoViewModel @Inject constructor(private val repository: SavingsRepositor
             repository.loadUserInfo(_loadUserInfo)
         }
     }
-
-
-
 
 
 }

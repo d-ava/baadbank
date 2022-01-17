@@ -1,10 +1,12 @@
 package com.example.baadbank.ui.dialogs
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,6 +31,7 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
     private val args: UserInfoChangeDialogFragmentArgs by navArgs()
 
+    private lateinit var profilePictureImageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,11 +54,20 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
     }
 
+
+    //get image from gallery
+    private val getImage = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) {
+        binding.ivUser.setImageURI(it)
+        profilePictureImageUri = it
+    }
+
     private fun saveUserInfo(){
         val name = binding.etFullName.text.toString()
         val phone = binding.etPhoneNumber.text.toString()
 
-        viewModel.saveUserInfo(name, phone)
+        viewModel.saveUserInfo(name, phone,profilePictureImageUri)
 
     }
 
@@ -75,6 +87,11 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
             findNavController().popBackStack()
 
         }
+
+        binding.tvUploadUserImage.setOnClickListener {
+            //all type pictures
+            getImage.launch("image/*")
+        }
     }
 
 //    private fun saveUserInformation() {
@@ -85,6 +102,8 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 //        userReference.child("phoneNumber").setValue(binding.etPhoneNumber.text.toString())
 //
 //    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

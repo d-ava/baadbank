@@ -67,6 +67,8 @@ class EditProfileFragment :
                 findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToLoginFragment())
             }
 
+
+
         }
 
 
