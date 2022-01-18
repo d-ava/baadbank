@@ -89,7 +89,7 @@
         tools:layout="@layout/fragment_reset_password" />
     <dialog
         android:id="@+id/passwordChangeDialogFragment"
-        android:name="com.example.baadbank.ui.dialogs.PasswordChangeDialogFragment"
+        android:name="com.example.baadbank.ui.dialogs.passwordChange.PasswordChangeDialogFragment"
         android:label="fragment_password_change_dialog"
         tools:layout="@layout/fragment_password_change_dialog" >
         <action
@@ -98,7 +98,7 @@
     </dialog>
     <dialog
         android:id="@+id/userInfoChangeDialogFragment"
-        android:name="com.example.baadbank.ui.dialogs.UserInfoChangeDialogFragment"
+        android:name="com.example.baadbank.ui.dialogs.infoChange.UserInfoChangeDialogFragment"
         android:label="fragment_user_info_change_dialog"
         tools:layout="@layout/fragment_user_info_change_dialog" >
         <argument

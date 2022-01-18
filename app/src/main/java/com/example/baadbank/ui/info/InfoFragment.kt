@@ -8,10 +8,14 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.baadbank.data.User
 import com.example.baadbank.databinding.FragmentInfoBinding
+
+import com.example.baadbank.extensions.glideExtension
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Utils.auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -20,50 +24,34 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::inflate) {
 
-//    lateinit var auth: FirebaseAuth
-//
-//    lateinit var databaseReference: DatabaseReference
-//    lateinit var database: FirebaseDatabase
+
 
     private val viewModel: InfoViewModel by activityViewModels()
 
     override fun start() {
-//        auth = FirebaseAuth.getInstance()
-//        database = FirebaseDatabase.getInstance()
-//        databaseReference = database.reference.child("profile")
+
 
 
         loadUserInfo()
         setListeners()
 
+//        showImage2()
+
     }
 
+    private fun showImage2() {
+        viewModel.showImage()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.showImage.collect {
+                    binding.ivUser.glideExtension(it)
+                }
 
-//    private fun loadUserInfo() {
-//        val user = auth.currentUser
-//        val userReference = databaseReference.child(user?.uid!!)
-//
-//        userReference.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val fullName = snapshot.child("fullName").value.toString()
-//                val phoneNumber = snapshot.child("phoneNumber").value.toString()
-//                val email = user.email.toString()
-//
-//
-//
-//
-//                binding.tvEmail.text = email
-//                binding.tvNameLastname.text = fullName
-//                binding.tvPhone.text = phoneNumber
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//        })
-//
-//
-//    }
+            }
+        }
+
+    }
+
 
     private fun loadUserInfo() {
         viewModel.loadUserInfo()
@@ -75,7 +63,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
                         tvEmail.text = it.email
                         tvNameLastname.text = it.fullName
                         tvPhone.text = it.phone
-
+                        ivUser.glideExtension(it.imageUri)
                     }
 
                 }
@@ -109,16 +97,11 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
                 findNavController().navigate(
                     InfoFragmentDirections.actionInfoFragmentToUserInfoChangeDialogFragment(
-                        User(fullName=fullName,phone= phone)
+                        User(fullName = fullName, phone = phone)
                     )
                 )
 
 
-//            findNavController().navigate(
-//                InfoFragmentDirections.actionInfoFragmentToEditProfileFragment(
-//                    User(fullName, email, phone)
-//                )
-//            )
             }
 
 

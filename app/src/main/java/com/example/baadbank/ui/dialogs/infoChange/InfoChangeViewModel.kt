@@ -1,4 +1,4 @@
-package com.example.baadbank.ui.dialogs
+package com.example.baadbank.ui.dialogs.infoChange
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel

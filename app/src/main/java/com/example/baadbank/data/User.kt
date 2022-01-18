@@ -10,6 +10,7 @@ data class User(
     val fullName: String = "",
     val email: String = "",
     val phone: String = "",
-    val savings: Double = 0.0
+    val savings: Double = 0.0,
+    val imageUri:String = ""
 
 ) : Parcelable

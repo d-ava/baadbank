@@ -1,4 +1,4 @@
-package com.example.baadbank.ui.dialogs
+package com.example.baadbank.ui.dialogs.passwordChange
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

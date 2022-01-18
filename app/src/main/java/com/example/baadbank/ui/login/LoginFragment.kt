@@ -35,7 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun start() {
 
-//        binding.progressbar.isVisible = true
+progressBar(true)
 
         auth = FirebaseAuth.getInstance()
         auth.signOut() //droebit
@@ -51,7 +51,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             binding.btnLogin.text = userTest.email
         }
 
-//        loginUserMVVM()
+
         setListeners()
 //        getCurrency()
 //        getCoinsGecko()
@@ -73,7 +73,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         }
                         is Resource.Success -> {
                             progressBar(false)
-                            view?.makeSnackbar("hurrraaay")
+//                            view?.makeSnackbar("hurrraaay")
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
 
                         }
@@ -89,86 +89,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
     }
 
-//    private fun loginUserFlow() {
-//        val email = binding.etEmail.text.toString()
-//        val password = binding.etPassword.text.toString()
-//        viewModel.logInFlow(email, password)
-//
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.userLogInStatusFlow.collect() {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            progressBar(true)
-//                        }
-//                        is Resource.Success -> {
-//                            progressBar(false)
-//                            view?.makeSnackbar("yeeeeah")
-//
-//                        }
-//                        is Resource.Error -> {
-//                            progressBar(false)
-//                            view?.makeSnackbar("${it.message}")
-//
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-
-    private fun loginUserLiveData() {
-
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
-        viewModel.logInLiveData(email, password)
-        viewModel.userLogInStatus.observe(this, Observer {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progressbar.isVisible = true
-                }
-                is Resource.Success -> {
-                    binding.progressbar.isVisible = false
-                    view?.makeSnackbar("hurraaayyy")
-//                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
-
-                }
-                is Resource.Error -> {
-                    binding.progressbar.isVisible = false
-                    view?.makeSnackbar("${it.message}")
-                }
-            }
-        })
-    }
-
-//    private fun loginUserMVVM() {
-//        val email = binding.etEmail.text.toString()
-//        val password = binding.etPassword.text.toString()
-//        viewModel.logInLiveData(email, password)
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.userLogInStatusFlow. {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            binding.progressbar.isVisible = true
-//                        }
-//                        is Resource.Success -> {
-//                            binding.progressbar.isVisible = false
-//                            view?.makeSnackbar("hurraaayyy")
-//
-//                        }
-//                        is Resource.Error -> {
-//                            binding.progressbar.isVisible = false
-//                            view?.makeSnackbar("${ it.message }")
-//                        }
-//
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
 
 
     private fun getCoinsGecko() {
@@ -208,42 +128,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
-//    private fun getCurrency(){
-//        lifecycleScope.launchWhenStarted {
-//            withContext(Dispatchers.IO) {
-//                val response = NetworkClient.api.getCurrency()
-//                val body = response.body()
-//                if (response.isSuccessful && body != null) {
-//                    Log.d("---", "$body")
-//                    currencyBody = body
-//                } else {
-//                    Log.d("---", "${response.code()}")
-//
-//                }
-//            }
-//        }
-//
-//    }
 
 
-//    private fun loginUser() {
-//
-//        binding.btnLogin.setOnClickListener {
-//            val email = binding.etEmail.text.toString()
-//            val password = binding.etPassword.text.toString()
-//            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//
-//                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
-//                } else {
-//                    view?.makeSnackbar("failed to login")
-//                }
-//            }
-//
-//        }
-//
-//
-//    }
+
+
 
     private fun progressBar(visible: Boolean) {
         binding.progressbar.isVisible = visible

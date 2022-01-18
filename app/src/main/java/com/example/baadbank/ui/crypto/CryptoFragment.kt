@@ -15,9 +15,11 @@ import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.ui.CryptoAdapter
 import com.example.baadbank.ui.login.cryptoBody
 import com.example.baadbank.ui.login.currencyBody
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding::inflate) {
 
     private lateinit var adapterCrypto: CryptoAdapter

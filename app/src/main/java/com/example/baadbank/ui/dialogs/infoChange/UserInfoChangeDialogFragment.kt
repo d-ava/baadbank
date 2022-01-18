@@ -1,8 +1,7 @@
-package com.example.baadbank.ui.dialogs
+package com.example.baadbank.ui.dialogs.infoChange
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentUserInfoChangeDialogBinding
-import com.example.baadbank.util.Utils.auth
-import com.example.baadbank.util.Utils.databaseReference
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

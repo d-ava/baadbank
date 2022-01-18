@@ -18,7 +18,8 @@ class CurrencyInterceptor: Interceptor {
             .addHeader("apikey", "7tmMH0B4OEqJqfspTiPFL89JafPKrt6g")
             .build()
 
-        return client.newCall(request).execute()
+//        return client.newCall(request).execute()
+        return OkHttpClient().newCall(request).execute()
 
     }
 }
