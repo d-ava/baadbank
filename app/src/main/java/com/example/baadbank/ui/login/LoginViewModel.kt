@@ -9,6 +9,7 @@ import com.example.baadbank.util.Resource
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -73,6 +74,7 @@ class LoginViewModel @Inject constructor(
            if (email.isEmpty() || password.isEmpty()){
                _userLogInStatus03.emit(Resource.Error("empty spaces"))
            }else{
+               delay(500)
                _userLogInStatus03.emit(Resource.Loading())
                val loginResult = repo.loginUser(email, password)
                _userLogInStatus03.emit(loginResult)

@@ -14,9 +14,9 @@ class InfoChangeViewModel @Inject constructor(private val repository: SavingsRep
 
 
 
-    fun saveUserInfo(name:String, phone:String,profilePic:Uri){
+    fun saveUserInfo(name:String, phone:String){
         viewModelScope.launch {
-            repository.saveUserInfo(name, phone,profilePic)
+            repository.saveUserInfo(name, phone)
         }
 
     }

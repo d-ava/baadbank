@@ -1,6 +1,7 @@
 package com.example.baadbank.repository
 
 
+import android.util.Log
 import com.example.baadbank.data.User
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
@@ -27,23 +28,37 @@ import javax.inject.Singleton
 
 class FireBaseRepository @Inject constructor() {
 
+
+
     private val user = auth.currentUser
 
+
+
    suspend fun changePassword(password:String, newPassword:String){
-        val credential = EmailAuthProvider.getCredential(user!!.email!!, password)
+        val credential = EmailAuthProvider.getCredential(user?.email!!, password)
+//       val credentialTest = EmailAuthProvider.getCredential("neo@gmail.com", "test123")
 
-        withContext(IO){
-            user.reauthenticate(credential).await()
-            user.updatePassword(newPassword).await()
-            auth.signOut()
-        }
+       CoroutineScope(IO).launch {
 
-        user.reauthenticate(credential).addOnCompleteListener { task ->
-            user.updatePassword(newPassword).addOnCompleteListener {
-                auth.signOut()
-            }
+           user.reauthenticate(credential).await()
 
-        }
+           user.updatePassword(newPassword).await()
+
+           auth.signOut()
+
+       }
+//        withContext(IO){
+//            user.reauthenticate(credential).await()
+//            user.updatePassword(newPassword).await()
+//            auth.signOut()
+//        }
+
+//        user.reauthenticate(credential).addOnCompleteListener { task ->
+//            user.updatePassword(newPassword).addOnCompleteListener {
+//                auth.signOut()
+//            }
+//
+//        }
     }
 
 

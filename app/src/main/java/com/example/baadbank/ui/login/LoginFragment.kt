@@ -35,7 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun start() {
 
-progressBar(true)
+
 
         auth = FirebaseAuth.getInstance()
         auth.signOut() //droebit

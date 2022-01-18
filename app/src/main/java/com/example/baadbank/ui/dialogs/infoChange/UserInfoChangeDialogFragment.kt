@@ -24,7 +24,7 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
     private val args: UserInfoChangeDialogFragmentArgs by navArgs()
 
-    private lateinit var profilePictureImageUri: Uri
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,19 +48,13 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
     }
 
 
-    //get image from gallery
-    private val getImage = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) {
-        binding.ivUser.setImageURI(it)
-        profilePictureImageUri = it
-    }
+
 
     private fun saveUserInfo(){
         val name = binding.etFullName.text.toString()
         val phone = binding.etPhoneNumber.text.toString()
 
-        viewModel.saveUserInfo(name, phone,profilePictureImageUri)
+        viewModel.saveUserInfo(name, phone)
 
     }
 
@@ -81,10 +75,7 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
         }
 
-        binding.tvUploadUserImage.setOnClickListener {
-            //all type pictures
-            getImage.launch("image/*")
-        }
+
     }
 
 //    private fun saveUserInformation() {

@@ -21,28 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivUser"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic__logo_a_green"
-        app:layout_constraintStart_toStartOf="@+id/tvUserInfo"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserInfo" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvUploadUserImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="Change profile picture"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/ivUser"
-        app:layout_constraintStart_toEndOf="@+id/ivUser" />
+
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -53,12 +35,13 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivUser"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserInfo"
         app:startIconDrawable="@drawable/ic_person_icon">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/register_full_name_hint"

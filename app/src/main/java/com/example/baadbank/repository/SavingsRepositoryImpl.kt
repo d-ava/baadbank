@@ -21,15 +21,14 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
     private val userReference = databaseReference.child(auth.currentUser?.uid!!)
-    private val storageReference: StorageReference =
-        FirebaseStorage.getInstance().getReference("Users/" + auth.currentUser?.uid!!)
+
 
     fun addTake(newAmount: Double) {
         userReference.child("savings").setValue(newAmount)
 
     }
 
-    fun saveUserInfo(name: String, phone: String, profilePicture: Uri) {
+    fun saveUserInfo(name: String, phone: String) {
         CoroutineScope(IO).launch {
             userReference.child("phone").setValue(phone)
             userReference.child("fullName").setValue(name)
@@ -37,15 +36,11 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
         }
 
 
-        storageReference.putFile(profilePicture)
+
 
     }
 
-    suspend fun showImage():String{
 
-      val imageUri= storageReference.downloadUrl.await()
-        return imageUri.toString()
-    }
 
     override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
         userReference

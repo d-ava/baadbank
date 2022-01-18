@@ -28,18 +28,7 @@ class InfoViewModel @Inject constructor(private val repository: SavingsRepositor
     private val _showImage: MutableSharedFlow<String> = MutableSharedFlow()
     val showImage: SharedFlow<String> = _showImage
 
-    fun showImage(){
-        viewModelScope.launch {
 
-
-           val image= repository.showImage()
-
-            _showImage.emit(image)
-        }
-
-
-
-    }
 
 
 }

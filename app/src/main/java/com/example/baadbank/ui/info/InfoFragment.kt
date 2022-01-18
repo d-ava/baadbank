@@ -39,18 +39,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
     }
 
-    private fun showImage2() {
-        viewModel.showImage()
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.showImage.collect {
-                    binding.ivUser.glideExtension(it)
-                }
 
-            }
-        }
-
-    }
 
 
     private fun loadUserInfo() {

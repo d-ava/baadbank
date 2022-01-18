@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentPasswordChangeDialogBinding
 import com.example.baadbank.extensions.makeSnackbar
@@ -13,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 
 class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
@@ -57,12 +61,19 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun passwordChange(){
-        val password = binding.etCurrentPassword.toString()
-        val newPassword = binding.etNewPassword.toString()
-        viewModel.passwordChange(password, newPassword)
-    }
+    private fun passwordChange() {
+        val currentPassword = binding.etCurrentPassword.text.toString()
+        val newPassword = binding.etNewPassword.text.toString()
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.passwordChange(currentPassword, newPassword)
+            }
+        }
+
+
+
+    }
 
 
     private fun passwordChangeOld() {
