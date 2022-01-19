@@ -91,24 +91,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
 
-    private fun getCoinsGecko() {
-
-        lifecycleScope.launchWhenStarted {
-            withContext(Dispatchers.IO) {
-                val response = NetworkClient.apiCoinGecko.getCoinGecko()
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    Log.d("---", "$body")
-                    cryptoBody = body
-
-                } else {
-                    Log.d("---", "${response.code()}")
-
-                }
-            }
-        }
-
-    }
+//    private fun getCoinsGecko() {
+//
+//        lifecycleScope.launchWhenStarted {
+//            withContext(Dispatchers.IO) {
+//                val response = NetworkClient.apiCoinGecko.getCoinGecko()
+//                val body = response.body()
+//                if (response.isSuccessful && body != null) {
+//                    Log.d("---", "$body")
+//                    cryptoBody = body
+//
+//                } else {
+//                    Log.d("---", "${response.code()}")
+//
+//                }
+//            }
+//        }
+//
+//    }
 
 
     private fun getCurrency() {

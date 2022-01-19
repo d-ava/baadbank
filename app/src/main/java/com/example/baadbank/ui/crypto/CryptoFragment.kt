@@ -39,7 +39,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
         setRecycler()
 //        adapterCrypto.setData(cryptoBody)
 
-        getCoins()
+//        getCoins()
 //        getCoinsGecko()
 
     }
@@ -53,59 +53,41 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
         }
     }
 
-//    private fun getCoinsGecko() {
-//
-//        lifecycleScope.launchWhenStarted {
-//            withContext(Dispatchers.IO) {
-//                val response = NetworkClient.apiCoinGecko.getCoinGecko()
-//                val body = response.body()
-//                if (response.isSuccessful && body != null) {
-//                    Log.d("---", "$body")
-////                    adapterCrypto.setData(body)
-//
-//                } else {
-//                    Log.d("---", "${response.code()}")
-//
-//                }
-//            }
-//        }
-//
-//    }
 
     private fun progressBar(visible: Boolean) {
         binding.progressbar.isVisible = visible
     }
 
 
-    private fun getCoins() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadCoins03.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                            progressBar(true)
-
-                        }
-                        is Resource.Success -> {
-                            progressBar(false)
-                            adapterCrypto.setData(it.data!!)
-
-                        }
-                        is Resource.Error -> {
-                            progressBar(false)
-                            view?.makeSnackbar("${it.message}")
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
+//    private fun getCoins() {
+//
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.loadCoins03.collect {
+//                    when (it) {
+//                        is Resource.Loading -> {
+//                            progressBar(true)
+//
+//                        }
+//                        is Resource.Success -> {
+//                            progressBar(false)
+//                            adapterCrypto.setData(it.data!!)
+//
+//                        }
+//                        is Resource.Error -> {
+//                            progressBar(false)
+//                            view?.makeSnackbar("${it.message}")
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//    }
 
 }
 

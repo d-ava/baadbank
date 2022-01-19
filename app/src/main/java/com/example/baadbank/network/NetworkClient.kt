@@ -83,8 +83,8 @@ object NetworkClient {
     }
 
 
-    val apiCoinGecko: CoinGeckoApi by lazy {
-        retrofitCoinGecko.create(CoinGeckoApi::class.java)
-    }
+//    val apiCoinGecko: CoinGeckoApi by lazy {
+//        retrofitCoinGecko.create(CoinGeckoApi::class.java)
+//    }
 
 }
