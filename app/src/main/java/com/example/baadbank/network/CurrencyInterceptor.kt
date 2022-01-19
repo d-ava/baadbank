@@ -1,5 +1,6 @@
 package com.example.baadbank.network
 
+import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -7,6 +8,7 @@ import okhttp3.Response
 
 
 var client = OkHttpClient()
+
 
 class CurrencyInterceptor: Interceptor {
 

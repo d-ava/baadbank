@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,10 +13,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentPasswordChangeDialogBinding
 import com.example.baadbank.extensions.makeSnackbar
+import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils.auth
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -27,7 +30,7 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
     private val viewModel: PasswordChangeViewModel by activityViewModels()
 
-    lateinit var auth: FirebaseAuth
+//    lateinit var auth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -43,7 +46,7 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        auth = FirebaseAuth.getInstance()
+//        auth = FirebaseAuth.getInstance()
 
         setListeners()
 
@@ -56,23 +59,63 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
     private fun setListeners() {
         binding.btnSaveChanges.setOnClickListener {
-            passwordChange()
-            findNavController().popBackStack()
+            passwordChange00()
+
+
         }
     }
 
     private fun passwordChange() {
         val currentPassword = binding.etCurrentPassword.text.toString()
         val newPassword = binding.etNewPassword.text.toString()
+        val repeatNewPassword = binding.etRepeatPassword.text.toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.passwordChange(currentPassword, newPassword)
+                viewModel.passwordChange(currentPassword, newPassword, repeatNewPassword)
             }
         }
 
 
+    }
 
+
+    private fun passwordChange00() {
+
+        val currentPassword = binding.etCurrentPassword.text.toString()
+        val newPassword = binding.etNewPassword.text.toString()
+        val repeatNewPassword = binding.etRepeatPassword.text.toString()
+        viewModel.passwordChange(currentPassword, newPassword, repeatNewPassword)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.passwordChange.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            progressBar(true)
+                        }
+                        is Resource.Success -> {
+                            progressBar(false)
+                            view?.makeSnackbar("password changed")
+                            findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
+                        }
+                        is Resource.Error -> {
+                            progressBar(false)
+                            binding.btnSaveChanges.text = "${it.message}"
+
+                        }
+
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private fun progressBar(visible: Boolean) {
+        binding.progressbar.isVisible = visible
     }
 
 

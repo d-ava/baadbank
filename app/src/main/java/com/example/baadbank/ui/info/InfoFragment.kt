@@ -52,7 +52,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
                         tvEmail.text = it.email
                         tvNameLastname.text = it.fullName
                         tvPhone.text = it.phone
-                        ivUser.glideExtension(it.imageUri)
+
                     }
 
                 }
