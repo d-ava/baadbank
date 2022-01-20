@@ -20,22 +20,16 @@ class FireBaseRepository @Inject constructor() {
     private val user = auth.currentUser
 
 
-    suspend fun changePassword(currentPassword: String, newPassword: String) {
-        val credential = EmailAuthProvider.getCredential(user?.email!!, currentPassword)
+    suspend fun resetPassword(email:String):Resource<String>
+    {
+        return withContext(IO)
+        {
+            auth.sendPasswordResetEmail(email).await()
 
-
-//       CoroutineScope(IO).launch {
-//           user.reauthenticate(credential).await()
-//           user.updatePassword(newPassword).await()
-//           auth.signOut()
-//       }
-
-        withContext(IO) {
-            user.reauthenticate(credential).await()
-            user.updatePassword(newPassword).await()
-            auth.signOut()
+            Resource.Success()
         }
     }
+
 
     suspend fun changePassword00(currentPassword: String, newPassword: String): Resource<String> {
 
