@@ -15,6 +15,7 @@ import com.example.baadbank.ui.BaseFragment
 
 import com.example.baadbank.ui.login.currencyBody
 import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils.currencyList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,7 +23,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-var currencyList: MutableList<String> = mutableListOf()
+
 
 @AndroidEntryPoint
 class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyBinding::inflate) {
@@ -37,25 +38,25 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
         getCurrency00()
 
 
-        for (item in currencyBody) {
-            if (item.currency == "USD") {
-                binding.tvUSDCurrency.text = item.currency
-                binding.tvUSDValue.text = item.value.toString()
-            }
-            if (item.currency == "EUR") {
-                binding.tvEURCurrency.text = item.currency
-                binding.tvEURValue.text = item.value.toString()
-            }
-            if (item.currency == "GBP") {
-                binding.tvGBPCurrency.text = item.currency
-                binding.tvGBPValue.text = item.value.toString()
-            }
-
-        }
-        adapter.setData(currencyBody)
-        for (c in currencyBody) {
-            currencyList.add(c.currency)
-        }
+//        for (item in currencyBody) {
+//            if (item.currency == "USD") {
+//                binding.tvUSDCurrency.text = item.currency
+//                binding.tvUSDValue.text = item.value.toString()
+//            }
+//            if (item.currency == "EUR") {
+//                binding.tvEURCurrency.text = item.currency
+//                binding.tvEURValue.text = item.value.toString()
+//            }
+//            if (item.currency == "GBP") {
+//                binding.tvGBPCurrency.text = item.currency
+//                binding.tvGBPValue.text = item.value.toString()
+//            }
+//
+//        }
+//        adapter.setData(currencyBody)
+//        for (c in currencyBody) {
+//            currencyList.add(c.currency)
+//        }
 
 
     }
@@ -70,7 +71,29 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
                         }
                         is Resource.Success -> {
                            progressBar(false)
-                           adapter.setData(it.data!!)
+                            for (item in it.data!!){
+                                if (item.currency == "USD") {
+                                    binding.tvUSDCurrency.text = item.currency
+                                    binding.tvUSDValue.text = item.value.toString()
+                                }
+                                if (item.currency == "EUR") {
+                                    binding.tvEURCurrency.text = item.currency
+                                    binding.tvEURValue.text = item.value.toString()
+                                }
+                                if (item.currency == "GBP") {
+                                    binding.tvGBPCurrency.text = item.currency
+                                    binding.tvGBPValue.text = item.value.toString()
+                                }
+
+
+                            }
+
+                           adapter.setData(it.data)
+                            for (c in it.data) {
+                                currencyList.add(c.currency)
+                            }
+
+
                         }
                         is Resource.Error -> {
                             view?.makeSnackbar("${it.message}")

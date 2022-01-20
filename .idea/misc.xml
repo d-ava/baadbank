@@ -10,6 +10,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/button_shape_line.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic___logo__a.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic__logo_a_green.xml" value="0.26458333333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic__logo_splash.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic_baadbanklogo.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic_bitcoin.xml" value="0.3828125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/drawable/ic_calculator.xml" value="0.22135416666666666" />
@@ -36,8 +37,10 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_savings.xml" value="0.3555253623188406" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/fragment_user_info_change_dialog.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/item_crypto.xml" value="0.5" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/layout/item_currency.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/menu/home_tabs.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/menu/home_tabs_guest.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/baadbank/app/src/main/res/xml/progress.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -22,4 +22,5 @@
     <string name="symbol">Symbol</string>
     <string name="name">Name</string>
     <string name="market_cap">Market Cap.</string>
+    <string name="gel">₾</string>
 </resources>

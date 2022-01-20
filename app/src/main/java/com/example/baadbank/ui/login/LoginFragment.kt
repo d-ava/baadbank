@@ -16,6 +16,7 @@ import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.network.NetworkClient
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils.auth
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,7 @@ var cryptoBody: List<CoinGecko> = listOf()
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-    private lateinit var auth: FirebaseAuth
+
     private val viewModel: LoginViewModel by activityViewModels()
 
 
@@ -37,11 +38,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
 
-        auth = FirebaseAuth.getInstance()
         auth.signOut() //droebit
-//        loginUser()
 
-//        val userTest = Firebase.auth.currentUser
 
 
         val userTest = auth.currentUser
@@ -73,7 +71,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         }
                         is Resource.Success -> {
                             progressBar(false)
-//                            view?.makeSnackbar("hurrraaay")
+
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
 
                         }
@@ -90,49 +88,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
 
-
-//    private fun getCoinsGecko() {
-//
-//        lifecycleScope.launchWhenStarted {
-//            withContext(Dispatchers.IO) {
-//                val response = NetworkClient.apiCoinGecko.getCoinGecko()
-//                val body = response.body()
-//                if (response.isSuccessful && body != null) {
-//                    Log.d("---", "$body")
-//                    cryptoBody = body
-//
-//                } else {
-//                    Log.d("---", "${response.code()}")
-//
-//                }
-//            }
-//        }
-//
-//    }
-
-
-    private fun getCurrency() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                val response = NetworkClient.api.getCurrency()
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    Log.d("---", "$body")
-                    currencyBody = body
-                } else {
-                    Log.d("---", "${response.code()}")
-
-                }
-            }
-        }
-
-    }
-
-
-
-
-
-
     private fun progressBar(visible: Boolean) {
         binding.progressbar.isVisible = visible
     }
@@ -141,25 +96,25 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun setListeners() {
 
 
-        binding.btnLogin.setOnClickListener {
-            loginUser03()
-//            loginUserFlow()
-//            loginUserLiveData()
-//            loginUserMVVM()
-//            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+        binding.apply {
+
+            btnLogin.setOnClickListener {
+                loginUser03()
+            }
+            tvRegister.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+            }
+            tvGuest.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragmentGuest())
+            }
+
+            tvResetPassword.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
+            }
+
+
         }
 
-        binding.tvRegister.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-        }
-
-        binding.tvGuest.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragmentGuest())
-        }
-
-        binding.tvResetPassword.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
-        }
 
     }
 

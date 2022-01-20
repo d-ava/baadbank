@@ -7,10 +7,9 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentCalculatorBinding
-import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.network.NetworkClient
 import com.example.baadbank.ui.BaseFragment
-import com.example.baadbank.ui.currency.currencyList
+import com.example.baadbank.util.Utils.currencyList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
@@ -29,14 +28,13 @@ class CalculatorFragment :
         setListeners()
 
 
-
     }
 
 
     private fun setListeners() {
         binding.btnConvert.setOnClickListener {
             amount = binding.etAmount.text.toString()
-binding.etAmount.text?.clear()
+            binding.etAmount.text?.clear()
             currencyConverter()
         }
     }

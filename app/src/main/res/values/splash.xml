@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic__logo_a_green</item>
-        <item name="windowSplashScreenAnimationDuration">3000</item>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/bb_black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic__logo_splash</item>
+       <!-- <item name="windowSplashScreenAnimationDuration">3000</item>-->
         <item name="postSplashScreenTheme">@style/Theme.Baadbank</item>
     </style>
 

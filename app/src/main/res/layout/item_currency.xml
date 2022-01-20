@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCurrency"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -23,22 +23,22 @@
 
         tools:text="Currency" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_marginEnd="100dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bb_green_01"
         android:textSize="20sp"
-        tools:text="Value"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-
-
-
+        tools:text="Value"
         />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
