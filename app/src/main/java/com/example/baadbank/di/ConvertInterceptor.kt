@@ -1,16 +1,20 @@
-package com.example.baadbank.network
+package com.example.baadbank.di
 
 import com.example.baadbank.ui.calculator.amount
 import com.example.baadbank.ui.calculator.fromCurrency
 import com.example.baadbank.ui.calculator.toCurrency
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 
 
-var clientConvert = OkHttpClient()
 
+@Module
+@InstallIn(SingletonComponent::class)
 class ConvertInterceptor: Interceptor {
 
 
@@ -22,7 +26,7 @@ class ConvertInterceptor: Interceptor {
             .addHeader("apikey", "7tmMH0B4OEqJqfspTiPFL89JafPKrt6g")
             .build()
 
-        return clientConvert.newCall(request).execute()
+        return OkHttpClient().newCall(request).execute()
 
     }
 }
