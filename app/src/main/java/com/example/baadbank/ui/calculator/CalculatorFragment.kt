@@ -32,7 +32,7 @@ var amount = ""
 class CalculatorFragment :
     BaseFragment<FragmentCalculatorBinding>(FragmentCalculatorBinding::inflate) {
 
-    private val viewModel:CalculatorViewModel by activityViewModels()
+    private val viewModel: CalculatorViewModel by activityViewModels()
 
     override fun start() {
 
@@ -56,7 +56,7 @@ class CalculatorFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadConverter.collect {
-                    when(it){
+                    when (it) {
                         is Resource.Loading -> {
                             progressBar(true)
                         }
@@ -68,9 +68,9 @@ class CalculatorFragment :
                             progressBar(false)
                             view?.makeSnackbar("${it.message}")
                         }
+
                     }
                 }
-
 
 
             }
@@ -78,8 +78,6 @@ class CalculatorFragment :
 
 
     }
-
-
 
 
     private fun setSpinners() {

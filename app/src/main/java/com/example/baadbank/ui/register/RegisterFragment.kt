@@ -17,18 +17,14 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
-//    lateinit var auth: FirebaseAuth
-//    lateinit var databaseReference: DatabaseReference
-//    lateinit var database: FirebaseDatabase
+
 
     private val viewModel: RegisterViewModel by activityViewModels()
 
 
     override fun start() {
 
-//        auth = FirebaseAuth.getInstance()
-//        database = FirebaseDatabase.getInstance()
-//        databaseReference = database.reference.child("profile")
+
 
 
 

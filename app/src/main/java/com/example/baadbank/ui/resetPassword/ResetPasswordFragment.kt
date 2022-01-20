@@ -63,6 +63,8 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
                         }
                         is Resource.Success -> {
                             progressBar(false)
+                            view?.makeSnackbar("please check your email")
+                            findNavController().popBackStack()
                         }
                         is Resource.Error -> {
                             progressBar(false)
