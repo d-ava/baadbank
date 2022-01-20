@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context=".ui.calculator.CalculatorFragment">
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+
+        android:elevation="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +63,8 @@
         android:id="@+id/etAmount"
         android:layout_width="150dp"
         android:layout_height="40dp"
+        android:inputType="number"
+        android:imeOptions="actionDone"
 
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
@@ -107,7 +121,7 @@
         android:layout_marginTop="128dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Convert"
+        android:text="@string/convert"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,14 +4,23 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentCalculatorBinding
-import com.example.baadbank.network.NetworkClient
+import com.example.baadbank.extensions.makeSnackbar
+
 import com.example.baadbank.ui.BaseFragment
+import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.currencyList
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
@@ -19,8 +28,11 @@ var fromCurrency = ""
 var toCurrency = ""
 var amount = ""
 
+@AndroidEntryPoint
 class CalculatorFragment :
     BaseFragment<FragmentCalculatorBinding>(FragmentCalculatorBinding::inflate) {
+
+    private val viewModel:CalculatorViewModel by activityViewModels()
 
     override fun start() {
 
@@ -35,32 +47,39 @@ class CalculatorFragment :
         binding.btnConvert.setOnClickListener {
             amount = binding.etAmount.text.toString()
             binding.etAmount.text?.clear()
-            currencyConverter()
+            currencyConverter00()
         }
     }
 
-    private fun currencyConverter() {
+    private fun currencyConverter00() {
 
-        lifecycleScope.launchWhenStarted {
-            withContext(IO) {
-                val response = NetworkClient.apiConvert.convertCurrency()
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    Log.d("---", body.value.toString())
-                    lifecycleScope.launchWhenCreated {
-                        withContext(Dispatchers.Main) {
-                            binding.tvValue.text = body.value.toString()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loadConverter.collect {
+                    when(it){
+                        is Resource.Loading -> {
+                            progressBar(true)
+                        }
+                        is Resource.Success -> {
+                            progressBar(false)
+                            binding.tvValue.text = it.data!!.value.toString()
+                        }
+                        is Resource.Error -> {
+                            progressBar(false)
+                            view?.makeSnackbar("${it.message}")
                         }
                     }
-
-                } else {
-                    Log.d("---", response.message())
                 }
+
+
+
             }
         }
 
 
     }
+
+
 
 
     private fun setSpinners() {
@@ -85,7 +104,7 @@ class CalculatorFragment :
             ) {
 
                 fromCurrency = adapterView?.getItemAtPosition(position).toString()
-//                view?.makeSnackbar(adapterView?.getItemAtPosition(position).toString())
+
 
             }
 
@@ -93,8 +112,6 @@ class CalculatorFragment :
 
             }
         }
-
-
         val spinnerTo = binding.spinnerRight
         spinnerTo.adapter = arrAdapter
         spinnerTo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -115,6 +132,11 @@ class CalculatorFragment :
         }
 
 
+    }
+
+
+    private fun progressBar(visible: Boolean) {
+        binding.progressbar.isVisible = visible
     }
 
 

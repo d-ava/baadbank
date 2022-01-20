@@ -1,11 +1,9 @@
 package com.example.baadbank.ui.login
 
 
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -13,16 +11,12 @@ import com.example.baadbank.data.CoinGecko
 import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.extensions.makeSnackbar
-import com.example.baadbank.network.NetworkClient
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 var currencyBody: List<CurrencyItem> = listOf()
 var cryptoBody: List<CoinGecko> = listOf()

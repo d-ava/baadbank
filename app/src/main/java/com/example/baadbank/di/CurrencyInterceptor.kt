@@ -1,15 +1,19 @@
-package com.example.baadbank.network
+package com.example.baadbank.di
 
+import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 
 
-var client = OkHttpClient()
 
 
+@Module
+@InstallIn(SingletonComponent::class)
 class CurrencyInterceptor: Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -20,7 +24,7 @@ class CurrencyInterceptor: Interceptor {
             .addHeader("apikey", "7tmMH0B4OEqJqfspTiPFL89JafPKrt6g")
             .build()
 
-//        return client.newCall(request).execute()
+
         return OkHttpClient().newCall(request).execute()
 
     }

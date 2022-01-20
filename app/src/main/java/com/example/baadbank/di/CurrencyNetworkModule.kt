@@ -3,6 +3,7 @@ package com.example.baadbank.di
 //import com.example.baadbank.network.CoinGeckoApi
 import com.example.baadbank.BuildConfig
 import com.example.baadbank.network.CoinGeckoApi
+import com.example.baadbank.network.ConvertApi
 import com.example.baadbank.network.CurrencyApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -27,16 +28,23 @@ object CurrencyNetworkModule {
     private const val BASE_URL_COIN_GECKO = "https://api.coingecko.com/api/v3/"
 
 
-//    private val client = OkHttpClient.Builder().apply {
-//        addInterceptor(CurrencyInterceptor00())
-//    }.build()
-
     @Singleton
     @Provides
     @Named("OkHttpCurrency")
     fun client00(): OkHttpClient {
         return OkHttpClient.Builder().apply {
-            addInterceptor(CurrencyInterceptor00())
+            addInterceptor(CurrencyInterceptor())
+        }.build()
+    }
+
+
+    //new
+    @Singleton
+    @Provides
+    @Named("OkHttpConvert")
+    fun provideClientConvert(): OkHttpClient {
+        return OkHttpClient.Builder().apply {
+            addInterceptor(ConvertInterceptor())
         }.build()
     }
 
@@ -71,7 +79,10 @@ object CurrencyNetworkModule {
     @Singleton
     @Provides
     @Named("Currency")
-    fun provideCurrencyRetrofit(moshi: Moshi, @Named("OkHttpCurrency") client: OkHttpClient): Retrofit.Builder {
+    fun provideCurrencyRetrofit(
+        moshi: Moshi,
+        @Named("OkHttpCurrency") client: OkHttpClient
+    ): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -92,7 +103,10 @@ object CurrencyNetworkModule {
     @Singleton
     @Provides
     @Named("Coin")
-    fun provideRetrofit(moshi: Moshi, @Named("OkHttpCoin") okHttpClient: OkHttpClient): Retrofit.Builder {
+    fun provideRetrofit(
+        moshi: Moshi,
+        @Named("OkHttpCoin") okHttpClient: OkHttpClient
+    ): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_COIN_GECKO)
             .client(okHttpClient)
@@ -103,10 +117,31 @@ object CurrencyNetworkModule {
 
     @Singleton
     @Provides
-
-
     fun apiCoinGecko(@Named("Coin") retrofit: Retrofit.Builder): CoinGeckoApi {
         return retrofit.build().create(CoinGeckoApi::class.java)
+
+
+    }
+
+    @Singleton
+    @Provides
+    @Named("Convert")
+    fun provideConvertRetrofit(
+        moshi: Moshi,
+        @Named("OkHttpConvert") client: OkHttpClient
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(
+                MoshiConverterFactory.create(moshi)
+            )
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiCoinGecko(@Named("Convert") retrofit: Retrofit.Builder): ConvertApi {
+        return retrofit.build().create(ConvertApi::class.java)
 
 
     }
