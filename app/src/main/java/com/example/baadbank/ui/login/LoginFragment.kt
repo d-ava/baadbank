@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.baadbank.data.CoinGecko
 import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.FragmentLoginBinding
+
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
@@ -31,27 +32,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun start() {
 
 
-
         auth.signOut() //droebit
 
 
-
-        val userTest = auth.currentUser
-
-//
-        userTest?.let {
-            binding.btnLogin.text = userTest.email
+        val userLogged = auth.currentUser
+        userLogged?.let {
+            binding.btnLogin.text = userLogged.email
         }
 
 
         setListeners()
-//        getCurrency()
-//        getCoinsGecko()
+
 
 
     }
 
-    private fun loginUser03() {
+    private fun loginUser() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         viewModel.logIn03(email, password)
@@ -61,16 +57,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 viewModel.userLogInStatus03.collect() {
                     when (it) {
                         is Resource.Loading -> {
-                            progressBar(true)
+                            showLoading()
                         }
                         is Resource.Success -> {
-                            progressBar(false)
+                            hideLoading()
 
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
 
                         }
                         is Resource.Error -> {
-                            progressBar(false)
+                            hideLoading()
                             view?.makeSnackbar("${it.message}")
 
                         }
@@ -87,13 +83,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
 
+
+
     private fun setListeners() {
 
 
         binding.apply {
 
             btnLogin.setOnClickListener {
-                loginUser03()
+                loginUser()
             }
             tvRegister.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
@@ -105,6 +103,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             tvResetPassword.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
             }
+
+            ivNameLogo.setOnClickListener {
+                showLoading()
+            }
+
+
 
 
         }

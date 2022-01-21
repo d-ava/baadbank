@@ -37,16 +37,7 @@ class CryptoRepository @Inject constructor(private val coinApi: CoinGeckoApi) {
 
 
 
-    fun getCoins02(): Flow<List<CoinGecko>>{
-        return flow{
-            val response = coinApi.getCoinGecko()
-            val body = response.body()
-            if (response.isSuccessful && body != null){
-                emit(body)
-            }
-        }.flowOn(IO)
 
-    }
 
 
 }

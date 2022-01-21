@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.ItemCurrencyBinding
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class CurrencyItemsAdapter : RecyclerView.Adapter<CurrencyItemsAdapter.CurrencyItemViewHolder>() {
 
@@ -50,8 +52,13 @@ class CurrencyItemsAdapter : RecyclerView.Adapter<CurrencyItemsAdapter.CurrencyI
         fun onBind() {
             model = list[adapterPosition]
             binding.apply {
-                tvCurrency.text = model.currency.toString()
-                tvValue.text = model.value.toString()
+                tvCurrency.text = model.currency
+//                val value = model.value
+                tvValue.text =
+                    BigDecimal(model.value).setScale(2, RoundingMode.HALF_EVEN).toPlainString()
+                        .toString()
+
+//                tvValue.text = model.value.toString()
             }
         }
 

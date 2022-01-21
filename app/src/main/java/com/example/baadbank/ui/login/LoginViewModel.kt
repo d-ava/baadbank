@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repo: FireBaseRepository
+    private val repository: FireBaseRepository
 ) : ViewModel() {
 
 
@@ -39,7 +39,7 @@ class LoginViewModel @Inject constructor(
            }else{
                delay(500)
                _userLogInStatus03.emit(Resource.Loading())
-               val loginResult = repo.loginUser(email, password)
+               val loginResult = repository.loginUser(email, password)
                _userLogInStatus03.emit(loginResult)
            }
        }

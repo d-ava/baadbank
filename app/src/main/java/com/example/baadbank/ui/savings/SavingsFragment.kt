@@ -16,6 +16,8 @@ import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.text.Typography.dagger
 
 
@@ -29,7 +31,6 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     lateinit var database: FirebaseDatabase
 
 
-
     override fun start() {
 
         auth = FirebaseAuth.getInstance()
@@ -37,7 +38,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         databaseReference = database.reference.child("profile")
 
 
-//       addTakeAmount()
+
         setListeners()
         loadUserInfo()
 
@@ -45,11 +46,13 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
-            addTake(false)
+            addTake00(false)
+//            binding.etAdd.text?.clear()
         }
 
         binding.btnTake.setOnClickListener {
-            addTake(true)
+            addTake00(true)
+//            binding.etTake.text?.clear()
         }
     }
 
@@ -60,7 +63,9 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadUserInfo.collect {
                     binding.tvWelcome.text = it.fullName
-                    binding.tvBallance.text = it.savings.toString()
+                    binding.tvBallance.text =
+                        BigDecimal(it.savings).setScale(2, RoundingMode.HALF_EVEN).toPlainString()
+                            .toString()
 
                 }
 
@@ -68,23 +73,68 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         }
     }
 
+    private fun addTake00(negative: Boolean) {
+        if (negative) {
+
+            viewModel.addTake00(binding.etAdd.text.toString().toDouble() * -1)
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.addTake.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                            is Resource.Success -> {
+                                hideLoading()
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                view?.makeSnackbar("${it.message}")
+                            }
+
+                        }
+                    }
+                }
+            }
 
 
+        } else {
+            viewModel.addTake00(binding.etAdd.text.toString().toDouble())
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.addTake.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                            is Resource.Success -> {
+                                hideLoading()
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                view?.makeSnackbar("${it.message}")
+                            }
 
+                        }
+                    }
+                }
+            }
 
-
-
-    private fun addTake(negative:Boolean) {
-        if (negative){
-            viewModel.addTake(binding.etAdd.text.toString().toDouble()*-1)
-        }else{
-            viewModel.addTake(binding.etAdd.text.toString().toDouble())
         }
     }
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
+
+//    private fun addTake(negative: Boolean) {
+//        if (negative) {
+//            viewModel.addTake(binding.etAdd.text.toString().toDouble() * -1)
+//        } else {
+//            viewModel.addTake(binding.etAdd.text.toString().toDouble())
+//        }
+//    }
+
+//    private fun progressBar(visible: Boolean) {
+//        binding.progressbar.isVisible = visible
+//    }
 
 
 }

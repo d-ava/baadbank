@@ -15,6 +15,8 @@ import com.example.baadbank.util.Utils.currencyList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 @AndroidEntryPoint
@@ -30,39 +32,47 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
         getCurrency00()
 
 
-
-
-
     }
 
     private fun getCurrency00() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadCurrency.collect {
-                    when (it){
+                    when (it) {
                         is Resource.Loading -> {
-                            progressBar(true)
+                            showLoading()
+//                            progressBar(true)
                         }
                         is Resource.Success -> {
-                           progressBar(false)
-                            for (item in it.data!!){
+                            hideLoading()
+//                            progressBar(false)
+                            for (item in it.data!!) {
                                 if (item.currency == "USD") {
                                     binding.tvUSDCurrency.text = item.currency
-                                    binding.tvUSDValue.text = item.value.toString()
+                                    binding.tvUSDValue.text =
+                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
+                                            .toPlainString()
+                                            .toString()
                                 }
                                 if (item.currency == "EUR") {
                                     binding.tvEURCurrency.text = item.currency
-                                    binding.tvEURValue.text = item.value.toString()
+                                    binding.tvEURValue.text =
+                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
+                                            .toPlainString()
+                                            .toString()
                                 }
                                 if (item.currency == "GBP") {
                                     binding.tvGBPCurrency.text = item.currency
-                                    binding.tvGBPValue.text = item.value.toString()
+                                    binding.tvGBPValue.text =
+                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
+                                            .toPlainString()
+                                            .toString()
                                 }
 
 
                             }
 
-                           adapter.setData(it.data)
+                            adapter.setData(it.data)
                             for (c in it.data) {
                                 currencyList.add(c.currency)
                             }

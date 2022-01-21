@@ -2,6 +2,7 @@ package com.example.baadbank.repository
 
 import android.net.Uri
 import com.example.baadbank.data.User
+import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
 import com.example.baadbank.util.Utils.databaseReference
 import com.example.baadbank.util.Utils.savingsBalance
@@ -28,6 +29,11 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
     }
 
+    fun addTake00(newAmount: Double): Resource<Double> {
+        userReference.child("savings").setValue(newAmount)
+        return Resource.Success()
+    }
+
     fun saveUserInfo(name: String, phone: String) {
         CoroutineScope(IO).launch {
             userReference.child("phone").setValue(phone)
@@ -36,10 +42,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
         }
 
 
-
-
     }
-
 
 
     override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
@@ -53,7 +56,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
                         email = auth.currentUser?.email.toString(),
 
 
-                    )
+                        )
                     savingsBalance = snapshot.child("savings").value.toString()
 
 

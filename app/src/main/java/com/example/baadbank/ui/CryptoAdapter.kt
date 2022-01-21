@@ -58,7 +58,7 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
                 tvSymbol.text = model.symbol
                 val number:Double = model.marketCap.toString().toDouble()
                 tvMarketCap.text = "$ "+BigDecimal(number).toPlainString().toString()
-//                tvMarketCap.text = "$ " + model.marketCap.toString()
+
             }
 
         }

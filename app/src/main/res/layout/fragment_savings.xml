@@ -9,9 +9,9 @@
 
     <ProgressBar
         android:id="@+id/progressbar"
-        android:elevation="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,31 +86,34 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="ADD"
-        android:layout_marginEnd="32dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
         app:layout_constraintTop_toBottomOf="@id/tvBallance" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etAdd"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_line"
+        android:textCursorDrawable="@color/bb_green_01"
+
         android:fontFamily="@font/ubuntu_bold"
         android:imeOptions="actionDone"
         android:inputType="number"
-        android:text="100"
         android:textAlignment="center"
         android:textColor="@color/bb_green_01"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/btnAdd"
+        app:layout_constraintBottom_toBottomOf="@id/btnTake"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/gdCenterVertical"
-        app:layout_constraintTop_toTopOf="@id/btnAdd" />
+        app:layout_constraintTop_toTopOf="@id/btnAdd"
+        tools:text="100" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnTake"
@@ -118,40 +121,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="TAKE"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
-        android:layout_marginEnd="32dp"
         app:layout_constraintTop_toBottomOf="@id/btnAdd" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTake"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
 
-        android:background="@drawable/button_shape_line"
-        android:fontFamily="@font/ubuntu_bold"
-        android:imeOptions="actionDone"
-        android:inputType="number"
-        android:text="100"
-        android:layout_marginStart="32dp"
-
-        android:textAlignment="center"
-        android:textColor="@color/bb_grey"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/btnTake"
-        app:layout_constraintStart_toEndOf="@id/gdCenterVertical"
-        app:layout_constraintTop_toTopOf="@id/btnTake" />
 
     <androidx.constraintlayout.widget.Guideline
-        app:layout_constraintGuide_percent="0.5"
         android:id="@+id/gdCenterVertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
+        app:layout_constraintGuide_percent="0.5"
 
 
         app:layout_constraintStart_toStartOf="parent" />
