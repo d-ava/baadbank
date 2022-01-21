@@ -1,15 +1,15 @@
 package com.example.baadbank
 
 //progress bar - დათო
-//Todo cursor color - დათო
+//Todo cursor color - დათო <- better change edittext to material edit text
 //Todo status bar color
 //Todo string to resources - ანა
 //Todo dimensions
 //Todo Language change
 //Todo Remember me - ანა
 //arithmetic notations - დათო
-//Todo savings minus value - დათო
-//Todo register sucess loading - დათო
+//savings minus value - დათო
+//Todo register success loading - დათო
 //Todo continue as guest looking cool - დათო
 //Todo currency fragment UI
 //Todo convert fragment make it easy
