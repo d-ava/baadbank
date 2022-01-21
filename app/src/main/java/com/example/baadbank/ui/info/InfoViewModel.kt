@@ -20,7 +20,7 @@ class InfoViewModel @Inject constructor(private val repository: SavingsRepositor
 
     fun loadUserInfo() {
         viewModelScope.launch {
-            repository.loadUserInfo(_loadUserInfo)
+            repository.loadUserInfo00(_loadUserInfo)
         }
     }
 

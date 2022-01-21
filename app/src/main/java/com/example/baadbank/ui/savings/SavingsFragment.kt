@@ -11,6 +11,8 @@ import com.example.baadbank.extensions.makeSnackbar
 
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils
+import com.example.baadbank.util.Utils.savingsBalance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,6 +57,53 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 //            binding.etTake.text?.clear()
         }
     }
+
+    private fun loadUserInfoFFF(){
+        val user = auth.currentUser
+        val userReference = databaseReference.child(user?.uid!!)
+
+        userReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val fullName =  snapshot.child("fullName").value.toString()
+                savingsBalance = snapshot.child("savings").value.toString()
+                val savings = snapshot.child("savings").value.toString()
+
+                binding.tvWelcome.text = "welcome $fullName"
+                binding.tvBallance.text = "$savingsBalance ₾" //need to set digits limit
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                view?.makeSnackbar("oncancelled")
+            }
+        })
+
+
+    }
+
+
+
+//    private fun loadUserInfo00(){
+//        viewModel.loadUserInfo00()
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED){
+//                viewModel.loadUserInfo00.collect {
+//                    when (it){
+//                        is Resource.Loading -> {}
+//                        is Resource.Success -> {
+//                            binding.tvWelcome.text = it.data?.fullName
+//                            binding.tvBallance.text =
+//                                BigDecimal(it.data!!.savings).setScale(2, RoundingMode.HALF_EVEN).toPlainString()
+//                                    .toString()
+//
+//                        }
+//                        is Resource.Error -> {}
+//
+//                    }                    }
+//                }
+//            }
+//
+//
+//    }
 
     private fun loadUserInfo() {
         viewModel.loadUserInfo()

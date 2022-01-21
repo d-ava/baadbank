@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 
 interface SavingsRepository {
 
-   suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>)
+
 
 
 

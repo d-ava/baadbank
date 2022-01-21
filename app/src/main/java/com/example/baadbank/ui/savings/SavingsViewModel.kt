@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.savings
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.data.User
@@ -25,9 +26,27 @@ class SavingsViewModel @Inject constructor(private val repository: SavingsReposi
 
     fun loadUserInfo() {
         viewModelScope.launch {
-            repository.loadUserInfo(_loadUserInfo)
+            repository.loadUserInfo00(_loadUserInfo)
         }
     }
+
+
+//    private val _loadUserInfo00: MutableSharedFlow<User> = MutableSharedFlow()
+//    val loadUserInfo00: SharedFlow<User> = _loadUserInfo00
+
+//    fun loadUserInfo00(){
+//
+//        viewModelScope.launch {
+//
+//            repository.loadUserInfo00(_loadUserInfo)
+////            _loadUserInfo00.emit(Resource.Loading())
+////
+////            _loadUserInfo00.emit(repository.loadUserInfo00())
+//
+//        }
+//
+//
+//    }
 
 
 
