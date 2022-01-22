@@ -10,11 +10,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.baadbank.R
+import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.FragmentCalculatorBinding
 import com.example.baadbank.extensions.makeSnackbar
 
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
+import com.example.baadbank.util.Utils.convertedList
 import com.example.baadbank.util.Utils.currencyList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +29,7 @@ import kotlinx.coroutines.withContext
 var fromCurrency = ""
 var toCurrency = ""
 var amount = ""
+var result = ""
 
 @AndroidEntryPoint
 class CalculatorFragment :
@@ -46,38 +49,111 @@ class CalculatorFragment :
     private fun setListeners() {
         binding.btnConvert.setOnClickListener {
             amount = binding.etAmount.text.toString()
+//            Log.d("---", "from - $fromCurrency, to - $toCurrency, value - $amount")
             binding.etAmount.text?.clear()
-            currencyConverter00()
+            currencyConverter03()
+//            currencyConverter00000001()
         }
     }
 
-    private fun currencyConverter00() {
+    private fun currencyConverter00000001() {
+        viewModel.calculateValue011111111111()
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadConverter.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                            progressBar(true)
-                        }
-                        is Resource.Success -> {
-                            progressBar(false)
-                            binding.tvValue.text = it.data!!.value.toString()
-                        }
-                        is Resource.Error -> {
-                            progressBar(false)
-                            view?.makeSnackbar("${it.message}")
-                        }
-
-                    }
+                viewModel.loadCalculatedValue0001111.collect {
+                    Log.d("---", "fragment value $it")
+                    binding.tvValue.text=it.toString()
                 }
-
-
             }
         }
 
-
     }
+
+    private fun currencyConverter03(){
+        viewModel.calculateValue03()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.loadCalculatedValue03.collect {
+                    when(it){
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
+                        is Resource.Success -> {
+                            hideLoading()
+                            binding.tvValue.text=it.data.toString()
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                            view?.makeSnackbar("${it.message}")
+                        }
+
+                    }                    }
+                }
+            }
+    }
+
+//    private fun currencyConverter01() {
+//        viewModel.loadCalculatedValue()
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//
+//                viewModel.loadCalculatedValue.collect {
+//                    Log.d("---", "result is $it")
+//                    convertedList.add(
+//                        Converted(
+//                            fromCurrency,
+//                            toCurrency,
+//                            amount = amount,
+//                            it.toString()
+//                        )
+//                    )
+//                    Log.d("---", "list =  $convertedList")
+//                }
+//
+//
+//            }
+//        }
+//    }
+
+
+//    private fun currencyConverter00() {
+//
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.loadConverter.collect {
+//                    when (it) {
+//                        is Resource.Loading -> {
+//                            progressBar(true)
+//                        }
+//                        is Resource.Success -> {
+//                            progressBar(false)
+//                            binding.tvValue.text = it.data!!.value.toString()
+//
+//                            convertedList.add(
+//                                Converted(
+//                                    fromCurrency,
+//                                    toCurrency,
+//                                    amount = amount,
+//                                    it.data.value.toString()
+//                                )
+//                            )
+//                            Log.d("---", "list =  $convertedList")
+//                        }
+//                        is Resource.Error -> {
+//                            progressBar(false)
+//                            view?.makeSnackbar("${it.message}")
+//                        }
+//
+//                    }
+//                }
+//
+//
+//            }
+//        }
+//
+//
+//    }
 
 
     private fun setSpinners() {
