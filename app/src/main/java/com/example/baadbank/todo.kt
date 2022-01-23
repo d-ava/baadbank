@@ -3,6 +3,7 @@ package com.example.baadbank
 //progress bar - დათო
 //Todo cursor color - დათო <- better change edittext to material edit text
 //Todo status bar color
+//calculator input type დათო
 //Todo string to resources - ანა
 //Todo dimensions
 //Todo Language change
@@ -21,4 +22,5 @@ package com.example.baadbank
 //turn off orientation change - დათო
 //Todo unit test
 //Todo dark mode - დათო
+//Todo back press   error. stack problems with navigation
 

@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.core.graphics.drawable.toDrawable
 import com.example.baadbank.R
 import com.example.baadbank.data.Converted
+import com.example.baadbank.data.CurrencyItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -20,6 +21,7 @@ object Utils {
 
 
     var savingsBalance: String = ""
+    var currencyListForAdapter: List<CurrencyItem> = listOf()
     var currencyList: MutableList<String> = mutableListOf()
     var convertedList: MutableList<Converted> = mutableListOf()
 

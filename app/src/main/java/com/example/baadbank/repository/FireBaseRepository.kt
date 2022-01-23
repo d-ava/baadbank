@@ -9,6 +9,7 @@ import com.example.baadbank.util.safeCall
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -56,13 +57,30 @@ class FireBaseRepository @Inject constructor() {
 
     }
 
+    suspend fun loginUser01(email: String, password: String): Flow<Resource<AuthResult>>{
+        return flow {
+            try {
+                emit(Resource.Loading())
+                val result =
+                    auth.signInWithEmailAndPassword(email, password).await()
+                emit(Resource.Success(result))
+            }catch (e:Exception){
+                emit(Resource.Error(e.message ?: "uknown error"))
+
+            }
+        }.flowOn(IO)
+
+    }
+
+
 
     suspend fun loginUser(email: String, password: String): Resource<AuthResult> {
+        var auth00: FirebaseAuth = FirebaseAuth.getInstance()
         return withContext(IO) {
             safeCall {
 
                 val result =
-                    auth.signInWithEmailAndPassword(email, password).await()
+                    auth00.signInWithEmailAndPassword(email, password).await()
                 Resource.Success(result)
 
             }

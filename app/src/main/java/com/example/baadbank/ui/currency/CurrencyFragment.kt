@@ -12,6 +12,7 @@ import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.currencyList
+import com.example.baadbank.util.Utils.currencyListForAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -28,9 +29,9 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
     override fun start() {
 
         setRecycler()
-//        getCurrency()
-        getCurrency00()
 
+        getCurrency00()
+//        adapter.setData(currencyListForAdapter)
 
     }
 

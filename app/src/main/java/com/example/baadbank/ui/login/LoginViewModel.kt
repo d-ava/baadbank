@@ -37,12 +37,29 @@ class LoginViewModel @Inject constructor(
            if (email.isEmpty() || password.isEmpty()){
                _userLogInStatus03.emit(Resource.Error("empty spaces"))
            }else{
-               delay(500)
+
                _userLogInStatus03.emit(Resource.Loading())
                val loginResult = repository.loginUser(email, password)
                _userLogInStatus03.emit(loginResult)
            }
        }
+    }
+
+
+    fun logIn04(email: String, password: String){
+        viewModelScope.launch {
+            if (email.isEmpty() || password.isEmpty()){
+                _userLogInStatus03.emit(Resource.Error("empty spaces"))
+            }else{
+
+                _userLogInStatus03.emit(Resource.Loading())
+                repository.loginUser01(email, password).collect {
+                    _userLogInStatus03.emit(it)
+                }
+
+
+            }
+        }
     }
 
 

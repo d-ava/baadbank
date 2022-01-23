@@ -14,19 +14,15 @@ import com.example.baadbank.R
 import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.FragmentCalculatorBinding
 import com.example.baadbank.extensions.makeSnackbar
-
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.ui.CalculatorAdapter
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.convertedList
-
 import com.example.baadbank.util.Utils.currencyList
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -56,6 +52,10 @@ class CalculatorFragment :
 
     private fun setListeners() {
         binding.btnConvert.setOnClickListener {
+
+
+
+//            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
             amount = binding.etAmount.text.toString()
 
             binding.etAmount.text?.clear()
@@ -64,20 +64,7 @@ class CalculatorFragment :
         }
     }
 
-//    private fun currencyConverter00000001() {
-//        viewModel.
-//        calculateValue011111111111()
-//
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.loadCalculatedValue0001111.collect {
-//                    Log.d("---", "fragment value $it")
-//                    binding.tvValue.text = it.toString()
-//                }
-//            }
-//        }
-//
-//    }
+
 
     private fun currencyConverter03() {
         viewModel.calculateValue03()
@@ -86,14 +73,16 @@ class CalculatorFragment :
                 viewModel.loadCalculatedValue03.collect {
                     when (it) {
                         is Resource.Loading -> {
+
                             showLoading()
                         }
                         is Resource.Success -> {
                             hideLoading()
+                            Log.d("---", "fragment data before ${it.data}")
                             val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
                                 .toPlainString().toString()
                             binding.tvValue.text = value
-                            Log.d("---", "fargment result $value")
+
                             result = value
 
 
@@ -115,67 +104,7 @@ class CalculatorFragment :
         }
     }
 
-//    private fun currencyConverter01() {
-//        viewModel.loadCalculatedValue()
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//
-//                viewModel.loadCalculatedValue.collect {
-//                    Log.d("---", "result is $it")
-//                    convertedList.add(
-//                        Converted(
-//                            fromCurrency,
-//                            toCurrency,
-//                            amount = amount,
-//                            it.toString()
-//                        )
-//                    )
-//                    Log.d("---", "list =  $convertedList")
-//                }
-//
-//
-//            }
-//        }
-//    }
 
-
-//    private fun currencyConverter00() {
-//
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.loadConverter.collect {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            progressBar(true)
-//                        }
-//                        is Resource.Success -> {
-//                            progressBar(false)
-//                            binding.tvValue.text = it.data!!.value.toString()
-//
-//                            convertedList.add(
-//                                Converted(
-//                                    fromCurrency,
-//                                    toCurrency,
-//                                    amount = amount,
-//                                    it.data.value.toString()
-//                                )
-//                            )
-//                            Log.d("---", "list =  $convertedList")
-//                        }
-//                        is Resource.Error -> {
-//                            progressBar(false)
-//                            view?.makeSnackbar("${it.message}")
-//                        }
-//
-//                    }
-//                }
-//
-//
-//            }
-//        }
-//
-//
-//    }
 
     private fun setRecycler() {
         calculatorAdapter = CalculatorAdapter()
