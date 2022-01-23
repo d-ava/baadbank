@@ -59,15 +59,15 @@ class FireBaseRepository @Inject constructor() {
 
     suspend fun loginUser01(email: String, password: String): Flow<Resource<AuthResult>>{
         return flow {
-            try {
-                emit(Resource.Loading())
-                val result =
-                    auth.signInWithEmailAndPassword(email, password).await()
-                emit(Resource.Success(result))
-            }catch (e:Exception){
-                emit(Resource.Error(e.message ?: "uknown error"))
+               try {
+                   emit(Resource.Loading())
+                   val result =
+                       auth.signInWithEmailAndPassword(email, password).await()
+                   emit(Resource.Success(result))
+               }catch (e:Exception) {
+                   emit(Resource.Error(e.message ?: "uknown error"))
 
-            }
+               }
         }.flowOn(IO)
 
     }

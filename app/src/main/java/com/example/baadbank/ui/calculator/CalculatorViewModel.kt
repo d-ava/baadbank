@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.calculator
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.data.ConvertValue
@@ -27,7 +28,6 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
     fun calculateValue03(){
 
 
-
         viewModelScope.launch {
 
                 repository.getCurrencyConverter03().collect {
@@ -36,8 +36,6 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
                     _loadCalculatedValue03.emit(it)
 
                 }
-
-
 
         }
     }

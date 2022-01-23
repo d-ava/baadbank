@@ -48,21 +48,9 @@ class LoginViewModel @Inject constructor(
 
     fun logIn04(email: String, password: String){
         viewModelScope.launch {
-            if (email.isEmpty() || password.isEmpty()){
-                _userLogInStatus03.emit(Resource.Error("empty spaces"))
-            }else{
-
-                _userLogInStatus03.emit(Resource.Loading())
                 repository.loginUser01(email, password).collect {
                     _userLogInStatus03.emit(it)
                 }
-
-
-            }
         }
-    }
-
-
-
-
+        }
 }

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Savings"
+        android:text="@string/savings"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Account Ballance"
+        android:text="@string/account_ballance"
         android:textColor="@color/bb_black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,15 +84,15 @@
         android:id="@+id/btnAdd"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="ADD"
+        android:text="@string/add"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvBallance" />
+        app:layout_constraintTop_toBottomOf="@id/tvBallance"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etAdd"
@@ -119,15 +119,15 @@
         android:id="@+id/btnTake"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="TAKE"
+        android:text="@string/take"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
-        app:layout_constraintTop_toBottomOf="@id/btnAdd" />
+        app:layout_constraintTop_toBottomOf="@id/btnAdd"
+        tools:ignore="TextContrastCheck" />
 
 
 

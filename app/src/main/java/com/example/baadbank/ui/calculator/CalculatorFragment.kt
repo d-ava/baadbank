@@ -71,6 +71,7 @@ class CalculatorFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadCalculatedValue03.collect {
+                    Log.d("---", "fragment data before ${it.data}")
                     when (it) {
                         is Resource.Loading -> {
 

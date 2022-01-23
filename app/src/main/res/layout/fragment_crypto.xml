@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Crypto Currency"
+        android:text="@string/crypto_currency"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"

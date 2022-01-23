@@ -15,7 +15,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Edit User Information"
+        android:text="@string/edit_user_information"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,12 +41,13 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/register_full_name_hint"
             android:imeOptions="actionDone"
-            android:inputType="none" />
+            android:inputType="none"
+            android:minHeight="48dp"
+            tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,12 +65,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhoneNumber"
-            android:inputType="number"
-            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
-            android:hint="@string/phone_number" />
+            android:hint="@string/phone_number"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,12 +87,13 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Save Information"
+        android:text="@string/save_information"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegisterPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterPhoneNumber"
+        tools:ignore="TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="Currency"
+        android:text="@string/currency"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"

@@ -26,49 +26,53 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSymbol"
             android:layout_width="wrap_content"
-            android:textColor="@color/bb_green_02"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:fontFamily="@font/ubuntu_light"
+            android:textColor="@color/bb_green_02"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck"
             tools:text="btc" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_grey"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/ubuntu_light"
+            android:text="@string/symbol"
+            android:textColor="@color/bb_grey"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/symbol" />
+            tools:ignore="TextContrastCheck" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_green_02"
-
             android:layout_marginStart="100dp"
+
             android:fontFamily="@font/ubuntu_bold"
+            android:textColor="@color/bb_green_02"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toBottomOf="@id/tvSymbol"
+            tools:ignore="TextContrastCheck"
             tools:text="Bitcoin" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_grey"
-
             android:layout_marginStart="10dp"
+
             android:fontFamily="@font/ubuntu_light"
+            android:text="@string/name"
+            android:textColor="@color/bb_grey"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toBottomOf="@id/tvSymbol"
-            android:text="@string/name" />
+            tools:ignore="TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCurrentPrice"
@@ -86,25 +90,27 @@
             android:id="@+id/tvMarketCap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_green_02"
             android:layout_marginStart="100dp"
             android:fontFamily="@font/ubuntu_bold"
+            android:textColor="@color/bb_green_02"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toBottomOf="@id/tvCurrentPrice"
+            tools:ignore="TextContrastCheck"
             tools:text="12548345345356.25" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_grey"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/ubuntu_light"
+            android:text="@string/market_cap"
+            android:textColor="@color/bb_grey"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toBottomOf="@id/tvCurrentPrice"
-            android:text="@string/market_cap" />
+            tools:ignore="TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
@@ -112,11 +118,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/ubuntu_light"
+            android:text="@string/price"
             android:textColor="@color/bb_grey"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:text="Price" />
+            tools:ignore="TextContrastCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

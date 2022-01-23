@@ -4,10 +4,11 @@ package com.example.baadbank
 //Todo cursor color - დათო <- better change edittext to material edit text
 //Todo status bar color
 //calculator input type დათო
-//Todo string to resources - ანა
+//string to resources - ანა
 //Todo dimensions
 //Todo Language change
 //Todo Remember me - ანა
+//TOdo change app's launch logo - ანა
 //arithmetic notations - დათო
 //savings minus value - დათო
 //register success loading - დათო

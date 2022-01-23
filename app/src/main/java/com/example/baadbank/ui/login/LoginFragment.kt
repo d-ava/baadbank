@@ -31,7 +31,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun start() {
 
-
         auth.signOut() //droebit
 
 
@@ -91,7 +90,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         }
                         is Resource.Success -> {
                             hideLoading()
-
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
 
                         }
