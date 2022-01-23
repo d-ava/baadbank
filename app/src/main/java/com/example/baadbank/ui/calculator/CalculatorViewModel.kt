@@ -35,27 +35,30 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
 //    }
 
 
-    private val _loadCalculatedValue0001111: MutableSharedFlow<Double> = MutableSharedFlow()
-    val loadCalculatedValue0001111: SharedFlow<Double> = _loadCalculatedValue0001111
-
-    fun calculateValue011111111111(){
-        viewModelScope.launch {
-           repository.getCurrencyConverter0222222222().collect {
-               _loadCalculatedValue0001111.emit(it)
-               Log.d("---", "vm ${it}")
-           }
-
-        }
-    }
+//    private val _loadCalculatedValue0001111: MutableSharedFlow<Double> = MutableSharedFlow()
+//    val loadCalculatedValue0001111: SharedFlow<Double> = _loadCalculatedValue0001111
+//
+//    fun calculateValue011111111111(){
+//        viewModelScope.launch {
+//           repository.getCurrencyConverter0222222222().collect {
+//               _loadCalculatedValue0001111.emit(it)
+//               Log.d("---", "vm ${it}")
+//           }
+//
+//        }
+//    }
 
 
     private val _loadCalculatedValue03: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
     val loadCalculatedValue03: SharedFlow<Resource<Double>> = _loadCalculatedValue03
 
     fun calculateValue03(){
+
+        //todo check for value, must be int.
+
         viewModelScope.launch {
             repository.getCurrencyConverter03().collect {
-                Log.d("---", "vm ${it}")
+
                 _loadCalculatedValue03.emit(it)
 
             }

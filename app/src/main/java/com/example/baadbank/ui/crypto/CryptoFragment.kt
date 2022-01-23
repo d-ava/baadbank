@@ -42,9 +42,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
     }
 
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
+
 
 
     private fun getCoins() {
@@ -54,16 +52,16 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
                 viewModel.loadCoins03.collect {
                     when (it) {
                         is Resource.Loading -> {
-                            progressBar(true)
+                            showLoading()
 
                         }
                         is Resource.Success -> {
-                            progressBar(false)
+                            hideLoading()
                             adapterCrypto.setData(it.data!!)
 
                         }
                         is Resource.Error -> {
-                            progressBar(false)
+                           hideLoading()
                             view?.makeSnackbar("${it.message}")
                         }
 

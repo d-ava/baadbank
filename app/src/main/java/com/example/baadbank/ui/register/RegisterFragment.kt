@@ -32,7 +32,40 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     }
 
+    private fun registerUser01() {
+        val fullName = binding.etFullName.text.toString()
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+        val phoneNumber = binding.etPhoneNumber.text.toString()
 
+        viewModel.registerUser01(email = email, fullName = fullName, password = password, phoneNumber = phoneNumber)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userRegisterStatus01.collect() {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
+                        is Resource.Success -> {
+                            hideLoading()
+                            view?.makeSnackbar("register hurrraaay")
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                            view?.makeSnackbar("${it.message}")
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+    }
 
 
     private fun registerUser() {
@@ -48,16 +81,16 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 viewModel.userRegisterStatus.collect() {
                     when (it) {
                         is Resource.Loading -> {
-                            progressBar(true)
+                            showLoading()
                         }
                         is Resource.Success -> {
-                            progressBar(false)
+                            hideLoading()
                             view?.makeSnackbar("register hurrraaay")
                             findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
 
                         }
                         is Resource.Error -> {
-                            progressBar(false)
+                            hideLoading()
                             view?.makeSnackbar("${it.message}")
 
                         }
@@ -76,7 +109,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     private fun setListeners() {
         binding.btnRegister.setOnClickListener {
-            registerUser()
+            registerUser01()
         }
 
         binding.ivRegisterBackArrow.setOnClickListener {

@@ -9,7 +9,7 @@ package com.example.baadbank
 //Todo Remember me - ანა
 //arithmetic notations - დათო
 //savings minus value - დათო
-//Todo register success loading - დათო
+//register success loading - დათო
 //Todo continue as guest looking cool - დათო
 //Todo currency fragment UI
 //Todo convert fragment make it easy

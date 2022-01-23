@@ -9,14 +9,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.baadbank.R
 import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.FragmentCalculatorBinding
 import com.example.baadbank.extensions.makeSnackbar
 
 import com.example.baadbank.ui.BaseFragment
+import com.example.baadbank.ui.CalculatorAdapter
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.convertedList
+
 import com.example.baadbank.util.Utils.currencyList
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +27,8 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 var fromCurrency = ""
@@ -37,10 +42,13 @@ class CalculatorFragment :
 
     private val viewModel: CalculatorViewModel by activityViewModels()
 
+    private lateinit var calculatorAdapter: CalculatorAdapter
+
     override fun start() {
 
         setSpinners()
         setListeners()
+        setRecycler()
 
 
     }
@@ -49,48 +57,62 @@ class CalculatorFragment :
     private fun setListeners() {
         binding.btnConvert.setOnClickListener {
             amount = binding.etAmount.text.toString()
-//            Log.d("---", "from - $fromCurrency, to - $toCurrency, value - $amount")
+
             binding.etAmount.text?.clear()
             currencyConverter03()
-//            currencyConverter00000001()
+
         }
     }
 
-    private fun currencyConverter00000001() {
-        viewModel.calculateValue011111111111()
+//    private fun currencyConverter00000001() {
+//        viewModel.
+//        calculateValue011111111111()
+//
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.loadCalculatedValue0001111.collect {
+//                    Log.d("---", "fragment value $it")
+//                    binding.tvValue.text = it.toString()
+//                }
+//            }
+//        }
+//
+//    }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadCalculatedValue0001111.collect {
-                    Log.d("---", "fragment value $it")
-                    binding.tvValue.text=it.toString()
-                }
-            }
-        }
-
-    }
-
-    private fun currencyConverter03(){
+    private fun currencyConverter03() {
         viewModel.calculateValue03()
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadCalculatedValue03.collect {
-                    when(it){
+                    when (it) {
                         is Resource.Loading -> {
                             showLoading()
                         }
                         is Resource.Success -> {
                             hideLoading()
-                            binding.tvValue.text=it.data.toString()
+                            val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
+                                .toPlainString().toString()
+                            binding.tvValue.text = value
+                            Log.d("---", "fargment result $value")
+                            result = value
+
+
+
+                            convertedList.add(Converted(fromCurrency,toCurrency,amount,result))
+
+                            calculatorAdapter.setData(convertedList)
+
+
                         }
                         is Resource.Error -> {
                             hideLoading()
                             view?.makeSnackbar("${it.message}")
                         }
 
-                    }                    }
+                    }
                 }
             }
+        }
     }
 
 //    private fun currencyConverter01() {
@@ -154,6 +176,16 @@ class CalculatorFragment :
 //
 //
 //    }
+
+    private fun setRecycler() {
+        calculatorAdapter = CalculatorAdapter()
+        binding.recycler.apply {
+            adapter = calculatorAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+
+    }
 
 
     private fun setSpinners() {

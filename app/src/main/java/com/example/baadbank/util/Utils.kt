@@ -23,6 +23,7 @@ object Utils {
     var currencyList: MutableList<String> = mutableListOf()
     var convertedList: MutableList<Converted> = mutableListOf()
 
+
     fun showLoadingDialog(context: Context): Dialog {
         val progressDialog = Dialog(context)
 

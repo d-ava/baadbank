@@ -45,19 +45,19 @@ class CurrencyRepository @Inject constructor(
 
     }
 
-    suspend fun getCurrencyConverter0222222222(): Flow<Double> {
-
-        return flow {
-            val response = convertApi.convertCurrency()
-            val body = response.body()
-            if (response.isSuccessful && body != null) {
-                Log.d("---", "repo ${body.value}")
-                emit(body.value)
-            }
-
-        }.flowOn(IO)
-
-    }
+//    suspend fun getCurrencyConverter0222222222(): Flow<Double> {
+//
+//        return flow {
+//            val response = convertApi.convertCurrency()
+//            val body = response.body()
+//            if (response.isSuccessful && body != null) {
+//                Log.d("---", "repo ${body.value}")
+//                emit(body.value)
+//            }
+//
+//        }.flowOn(IO)
+//
+//    }
 
 
     suspend fun getCurrencyConverter03(): Flow<Resource<Double>>{
@@ -67,7 +67,7 @@ class CurrencyRepository @Inject constructor(
                 val response = convertApi.convertCurrency()
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
-                    Log.d("---", "repo ${body.value}")
+
                     emit(Resource.Success(body.value))
                 }else{
                     emit(Resource.Error(response.message()))
