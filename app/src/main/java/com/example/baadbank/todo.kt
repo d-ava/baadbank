@@ -28,4 +28,5 @@ package com.example.baadbank
 //Todo back press   error. stack problems with navigation - ანა
 //Todo load during splash screen - დათო
 //Todo App Logo დათო
+//
 
