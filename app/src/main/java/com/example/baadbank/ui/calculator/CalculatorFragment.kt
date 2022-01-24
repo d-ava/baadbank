@@ -68,8 +68,12 @@ class CalculatorFragment :
 
     private fun currencyConverter03() {
         viewModel.calculateValue03()
+//        lifecycleScope.launchWhenCreated {
+//
+//        }
+
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.loadCalculatedValue03.collect {
                     Log.d("---", "fragment data before ${it.data}")
                     when (it) {

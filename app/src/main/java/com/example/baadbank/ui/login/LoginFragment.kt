@@ -1,7 +1,6 @@
 package com.example.baadbank.ui.login
 
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.baadbank.data.CoinGecko
 import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.FragmentLoginBinding
-
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
@@ -25,6 +23,9 @@ var cryptoBody: List<CoinGecko> = listOf()
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
+    private var rememberCredential: Boolean = false
+    lateinit var password: String
+    lateinit var email: String
 
     private val viewModel: LoginViewModel by activityViewModels()
 
@@ -32,8 +33,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun start() {
 
         auth.signOut() //droebit
-
-
         val userLogged = auth.currentUser
         userLogged?.let {
             binding.btnLogin.text = userLogged.email
@@ -41,40 +40,40 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
         setListeners()
-
-
+        observer()
+        setLoginCredentials()
 
     }
 
-    private fun loginUser() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
-        viewModel.logIn03(email, password)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.userLogInStatus03.collect() {
-                    when (it) {
-                        is Resource.Loading -> {
-                            showLoading()
-                        }
-                        is Resource.Success -> {
-                            hideLoading()
-
-                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
-
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                            view?.makeSnackbar("${it.message}")
-
-                        }
-                    }
-
-                }
-            }
-        }
-    }
+//    private fun loginUser() {
+//        val email = binding.etEmail.text.toString()
+//        val password = binding.etPassword.text.toString()
+//        viewModel.logIn03(email, password)
+//
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.userLogInStatus03.collect() {
+//                    when (it) {
+//                        is Resource.Loading -> {
+//                            showLoading()
+//                        }
+//                        is Resource.Success -> {
+//                            hideLoading()
+//
+//                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+//
+//                        }
+//                        is Resource.Error -> {
+//                            hideLoading()
+//                            view?.makeSnackbar("${it.message}")
+//
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
 
     private fun loginUser01() {
         val email = binding.etEmail.text.toString()
@@ -90,6 +89,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         }
                         is Resource.Success -> {
                             hideLoading()
+                            saveToUserDatastore()
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
 
                         }
@@ -106,10 +106,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
-
 
 
 
@@ -120,6 +116,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
             btnLogin.setOnClickListener {
                 loginUser01()
+
             }
             tvRegister.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
@@ -137,11 +134,47 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             }
 
 
-
-
         }
 
 
     }
 
+    private fun observer() {
+
+        viewModel.userPreferences.observe(viewLifecycleOwner, {
+            rememberCredential = it.rememberCredentials
+            email = it.password
+            password = it.password
+        })
+    }
+
+    private fun saveToUserDatastore() {
+
+        if (binding.cbRememberMe.isChecked) {
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            viewModel.saveUserPreferences(email, password, true)
+        }
+
+    }
+
+    private fun setLoginCredentials(){
+
+        viewModel.userPreferences.observe(viewLifecycleOwner, { userPreferences ->
+            val email = userPreferences.email
+            val password = userPreferences.password
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                binding.etEmail.setText(email)
+                binding.etPassword.setText(password)
+            }
+        })
+
+
+    }
+
 }
+
+
+
+
+
