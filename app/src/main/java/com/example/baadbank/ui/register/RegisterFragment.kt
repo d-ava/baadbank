@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.register
 
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -18,18 +19,26 @@ import kotlinx.coroutines.launch
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
 
-
     private val viewModel: RegisterViewModel by activityViewModels()
 
 
     override fun start() {
 
 
-
-
+        onBackPress()
 
         setListeners()
 
+    }
+
+
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        })
     }
 
     private fun registerUser01() {
@@ -38,7 +47,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         val password = binding.etPassword.text.toString()
         val phoneNumber = binding.etPhoneNumber.text.toString()
 
-        viewModel.registerUser01(email = email, fullName = fullName, password = password, phoneNumber = phoneNumber)
+        viewModel.registerUser01(
+            email = email,
+            fullName = fullName,
+            password = password,
+            phoneNumber = phoneNumber
+        )
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -74,7 +88,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         val password = binding.etPassword.text.toString()
         val phoneNumber = binding.etPhoneNumber.text.toString()
 
-        viewModel.registerUser(email = email, fullName = fullName, password = password, phoneNumber = phoneNumber)
+        viewModel.registerUser(
+            email = email,
+            fullName = fullName,
+            password = password,
+            phoneNumber = phoneNumber
+        )
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

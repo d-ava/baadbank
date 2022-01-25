@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -49,7 +50,16 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 //        auth = FirebaseAuth.getInstance()
 
         setListeners()
+        onBackPress()
+    }
 
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        })
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

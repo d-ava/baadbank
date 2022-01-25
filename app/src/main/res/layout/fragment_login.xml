@@ -142,7 +142,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/log_in"
         android:textAllCaps="false"
-        android:textColor="@color/btn_text"
+        android:textColor="@color/bb_white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

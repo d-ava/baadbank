@@ -14,7 +14,7 @@ package com.example.baadbank
 //register success loading - დათო
 //Todo continue as guest looking cool - დათო
 //Todo Welcome screen - ანა
-//Todo currency fragment UI - დათო.  ყიდვა გაყიდვა. API
+//currency fragment UI - დათო.  ყიდვა გაყიდვა. API
 //convert fragment make it easy
 //Todo crypto item chain - დათო
 //savings ballance 322.77  <--
@@ -25,7 +25,7 @@ package com.example.baadbank
 
 //Todo unit test
 
-//Todo back press   error. stack problems with navigation - ანა
+//back press   error. stack problems with navigation - ანა
 //Todo load during splash screen - დათო
 //Todo App Logo დათო
 //

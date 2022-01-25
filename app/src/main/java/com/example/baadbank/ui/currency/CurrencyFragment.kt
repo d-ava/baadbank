@@ -96,24 +96,18 @@ private fun convertRates(rate: Double): String{
                             for (item in it.data!!) {
                                 if (item.currency == "USD") {
                                     binding.tvUSDCurrency.text = item.currency
-                                    binding.tvUSDValue.text =
-                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-                                            .toPlainString()
-                                            .toString()
+                                    binding.tvUSDValue.text = convertRates(item.value)
+
                                 }
                                 if (item.currency == "EUR") {
                                     binding.tvEURCurrency.text = item.currency
-                                    binding.tvEURValue.text =
-                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-                                            .toPlainString()
-                                            .toString()
+                                    binding.tvEURValue.text = convertRates(item.value)
+
                                 }
                                 if (item.currency == "GBP") {
                                     binding.tvGBPCurrency.text = item.currency
-                                    binding.tvGBPValue.text =
-                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-                                            .toPlainString()
-                                            .toString()
+                                    binding.tvGBPValue.text = convertRates(item.value)
+
                                 }
 
 

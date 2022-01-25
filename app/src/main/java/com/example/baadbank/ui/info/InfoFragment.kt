@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.info
 
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -31,15 +32,21 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
     override fun start() {
 
 
-
         loadUserInfo()
         setListeners()
-
+        onBackPress()
 //        showImage2()
 
     }
 
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
 
+            }
+        })
+    }
 
 
     private fun loadUserInfo() {

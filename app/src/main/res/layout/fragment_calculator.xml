@@ -42,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:minHeight="48dp"
         android:contentDescription="@string/currency_tobe_converted"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/spinnerRight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +58,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/spinnerLeft"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAmountLayout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toTopOf="@+id/spinnerLeft"
+
+        app:layout_constraintEnd_toStartOf="@+id/ivArrowForward"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAmountMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu_light"
+            android:hint="enter amount"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:minHeight="48dp"
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etAmount"

@@ -22,8 +22,6 @@
         <item name="hintTextColor">@color/bb_grey</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusBottomEnd">16dp</item>
-
-
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
         <item name="android:layout_marginStart">32dp</item>
