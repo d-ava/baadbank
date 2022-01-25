@@ -2,8 +2,10 @@ package com.example.baadbank.repository
 
 import android.util.Log
 import com.example.baadbank.data.CoinGecko
+import com.example.baadbank.data.CommercialRates
 import com.example.baadbank.data.ConvertValue
 import com.example.baadbank.data.CurrencyItem
+import com.example.baadbank.network.CommercialApi
 import com.example.baadbank.network.ConvertApi
 import com.example.baadbank.network.CurrencyApi
 import com.example.baadbank.ui.calculator.amount
@@ -22,7 +24,8 @@ import kotlin.coroutines.coroutineContext
 
 class CurrencyRepository @Inject constructor(
     private val currencyApi: CurrencyApi,
-    private val convertApi: ConvertApi
+    private val convertApi: ConvertApi,
+    private val commercialApi: CommercialApi
 ) {
 
     fun getCurrency(): Flow<Resource<List<CurrencyItem>>> {
@@ -43,6 +46,33 @@ class CurrencyRepository @Inject constructor(
             }
 
         }.flowOn(Dispatchers.IO)
+
+    }
+
+    fun getCommercialRates(): Flow<Resource<CommercialRates>>{
+        return flow {
+            try {
+//                Log.d("---", "from repo loading")
+                emit(Resource.Loading())
+                val response = commercialApi.getCommercialRates()
+                val body = response.body()
+                if (response.isSuccessful && body !=null){
+//                    Log.d("---", "yeah")
+//                    Log.d("---", "repo success $body")
+                    emit(Resource.Success(body))
+                }else{
+//                    Log.d("---", "error from repo message ${response.message()} code is ${response.code()} ")
+                    emit(Resource.Error("error message from repo ///// "))
+
+                }
+            }catch (e:IOException){
+//                Log.d("---", "from repo ${e.message}")
+                emit(Resource.Error(e.message ?: "uknown error message /////"))
+            }
+
+
+        }.flowOn(IO)
+
 
     }
 

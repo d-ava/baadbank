@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.currency
 
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -31,8 +32,53 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
         setRecycler()
 
         getCurrency00()
+        getCommercialRates()
 //        adapter.setData(currencyListForAdapter)
 
+//        setCommercialRates()
+
+    }
+
+
+private fun convertRates(rate: Double): String{
+    return BigDecimal(rate).setScale(2,RoundingMode.HALF_EVEN).toPlainString().toString()
+
+}
+
+
+    private fun getCommercialRates(){
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.loadCommercialRates.collect {
+                    when(it){
+                        is Resource.Loading -> {
+
+                        }
+                        is Resource.Success -> {
+//                            Log.d("---", "commercial rates fragment ${it.data!!}")
+                            for (item in it.data!!.commercialRatesList){
+                                if (item.currency == "USD"){
+                                    binding.tvUsdBuyValue.text = convertRates(item.buy)
+                                    binding.tvUsdSellValue.text = convertRates(item.sell)
+                                }
+                                if (item.currency == "EUR"){
+                                    binding.tvEurBuyValue.text = convertRates(item.buy)
+                                    binding.tvEurSellValue.text = convertRates(item.sell)
+                                }
+                                if (item.currency == "GBP"){
+                                    binding.tvGbpBuyValue.text = convertRates(item.buy)
+                                    binding.tvGbpSellValue.text = convertRates(item.sell)
+                                }
+
+
+                            }
+                        }
+                        is Resource.Error -> {}
+                    }
+                }
+            }
+        }
     }
 
     private fun getCurrency00() {
@@ -91,9 +137,7 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
         }
     }
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
+
 
 
     private fun setRecycler() {

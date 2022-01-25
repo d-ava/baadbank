@@ -54,4 +54,8 @@
     <string name="edit_user_information">Edit User Information</string>
     <string name="converted">converted</string>
     <string name="price">Price</string>
+    <string name="official_rates">official rates</string>
+    <string name="commercial_rates">commercial rates</string>
+    <string name="sell">sell</string>
+    <string name="buy">buy</string>
 </resources>

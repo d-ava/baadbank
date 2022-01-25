@@ -11,23 +11,23 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: CurrencyRepository): ViewModel() {
+class MainViewModel @Inject constructor(/*private val repository: CurrencyRepository*/): ViewModel() {
 
-    private val _isLoading = MutableStateFlow(true)
-    val isLoading = _isLoading.asStateFlow()
-
-    private val _getCurrency: MutableSharedFlow<Resource<List<CurrencyItem>>> = MutableSharedFlow()
-    val getCurrency: SharedFlow<Resource<List<CurrencyItem>>> = _getCurrency
-
-    init {
-        viewModelScope.launch {
-            repository.getCurrency().collect {
-                _getCurrency.emit(it)
-            }
-
-           _isLoading.value = false
-        }
-    }
+//    private val _isLoading = MutableStateFlow(true)
+//    val isLoading = _isLoading.asStateFlow()
+//
+//    private val _getCurrency: MutableSharedFlow<Resource<List<CurrencyItem>>> = MutableSharedFlow()
+//    val getCurrency: SharedFlow<Resource<List<CurrencyItem>>> = _getCurrency
+//
+//    init {
+//        viewModelScope.launch {
+//            repository.getCurrency().collect {
+//                _getCurrency.emit(it)
+//            }
+//
+//           _isLoading.value = false
+//        }
+//    }
 
 
 

@@ -36,26 +36,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getCurrency() {
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getCurrency.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                        }
-                        is Resource.Success -> {
-                            Utils.currencyListForAdapter = it.data!!
-                        }
-                        is Resource.Error -> {
-                        }
-
-                    }
-                }
-            }
-        }
-
-    }
+//    private fun getCurrency() {
+//
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.getCurrency.collect {
+//                    when (it) {
+//                        is Resource.Loading -> {
+//                        }
+//                        is Resource.Success -> {
+//                            Utils.currencyListForAdapter = it.data!!
+//                        }
+//                        is Resource.Error -> {
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
 
 //    private fun getCurrency00() {
 //        viewLifecycleOwner.lifecycleScope.launch {
