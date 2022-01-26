@@ -4,11 +4,10 @@
     android:layout_width="80dp"
     android:textAlignment="center"
     android:gravity="center"
-    android:layout_height="30dp"
+    android:layout_height="@dimen/default_30dp"
     android:fontFamily="@font/ubuntu_bold"
-
     android:singleLine="true"
-    android:textSize="20sp"
+    android:textSize="@dimen/secondary_text_size"
     tools:text="EUR" />
 
 

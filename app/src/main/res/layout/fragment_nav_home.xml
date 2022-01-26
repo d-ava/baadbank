@@ -12,7 +12,7 @@
         android:background="@color/bb_green_01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/default_32dp"
         app:layout_constraintTop_toTopOf="parent"
 
         />
@@ -64,11 +64,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavTab"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/default_60dp"
         android:background="@color/bb_white"
         app:itemIconTint="@animator/tab_items_color"
         app:itemTextColor="@animator/tab_items_color"
-        app:itemIconSize="30dp"
+        app:itemIconSize="@dimen/default_30dp"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/home_tabs" />

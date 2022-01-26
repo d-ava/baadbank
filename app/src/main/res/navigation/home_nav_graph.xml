@@ -13,7 +13,11 @@
         android:id="@+id/calculatorFragment"
         android:name="com.example.baadbank.ui.calculator.CalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" />
+        tools:layout="@layout/fragment_calculator" >
+        <action
+            android:id="@+id/action_calculatorFragment_to_savingsFragment"
+            app:destination="@id/savingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cryptoFragment"
         android:name="com.example.baadbank.ui.crypto.CryptoFragment"

@@ -10,7 +10,7 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="20dp"
+        android:elevation="@dimen/progress_bar_elevation"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,8 +35,8 @@
         android:id="@+id/ivRegisterBackArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/default_28"
+        android:layout_marginTop="@dimen/default_28"
         android:contentDescription="@string/go_back"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/create_account"
         android:textColor="@color/bb_black"
-        android:textSize="20sp"
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/default_50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount"
@@ -76,7 +76,7 @@
             android:hint="@string/register_full_name_hint"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/default_48dp"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +87,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegisterUsername"
@@ -101,7 +101,7 @@
             android:hint="@string/phone_number"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/default_48dp"
             tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +112,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegisterPhoneNumber"
@@ -126,7 +126,7 @@
             android:hint="@string/login_emil_hint"
             android:imeOptions="actionDone"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/default_48dp"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -136,7 +136,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_16dp"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/login_password_hint"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/default_48dp"
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
 
@@ -161,7 +161,7 @@
         style="@style/TextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_16dp"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +176,7 @@
             android:hint="@string/repeat_password"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/default_48dp"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -185,15 +185,15 @@
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="@dimen/default_32dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/login_register_button_background"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/register_lower"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegistrationRepeatPassword"

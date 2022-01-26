@@ -11,7 +11,7 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="20dp"
+        android:elevation="@dimen/default_20"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,14 +21,13 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="@dimen/heading_margin_start"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/savings"
         android:textColor="@color/bb_black"
-        android:textSize="14sp"
+        android:textSize="@dimen/default_text_size"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -36,21 +35,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="32dp" />
+        app:layout_constraintGuide_begin="@dimen/default_32dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-
+        android:layout_marginTop="@dimen/default_32dp"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bb_black"
-        android:textSize="20sp"
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gdTop"
-
         tools:text="Welcome John Smith" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -61,7 +58,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/account_ballance"
         android:textColor="@color/bb_black"
-        android:textSize="20sp"
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
@@ -70,7 +67,7 @@
         android:id="@+id/tvBallance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_16dp"
         android:fontFamily="@font/ubuntu_bold"
         android:maxLines="1"
         android:textColor="@color/bb_black"
@@ -82,14 +79,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdd"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/default_100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/add"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
         app:layout_constraintTop_toBottomOf="@id/tvBallance"
         tools:ignore="TextContrastCheck" />
@@ -99,7 +96,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/button_shape_line"
         android:textCursorDrawable="@color/bb_green_01"
 
@@ -117,14 +114,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnTake"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/default_100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/take"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
         app:layout_constraintTop_toBottomOf="@id/btnAdd"
         tools:ignore="TextContrastCheck" />
@@ -137,8 +134,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"
-
-
         app:layout_constraintStart_toStartOf="parent" />
 
 

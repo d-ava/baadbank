@@ -5,7 +5,7 @@ package com.example.baadbank
 //status bar color
 //calculator input type დათო
 //string to resources - ანა
-//Todo dimensions - ანა
+//dimensions - ანა
 
 //Remember me - ანა
 
@@ -13,7 +13,7 @@ package com.example.baadbank
 //savings minus value - დათო
 //register success loading - დათო
 //Todo continue as guest looking cool - დათო
-//Todo Welcome screen - ანა
+//Welcome screen - ანა
 //Todo currency fragment UI - დათო.  ყიდვა გაყიდვა. API
 //convert fragment make it easy
 //Todo crypto item chain - დათო

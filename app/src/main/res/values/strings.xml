@@ -54,4 +54,7 @@
     <string name="edit_user_information">Edit User Information</string>
     <string name="converted">converted</string>
     <string name="price">Price</string>
+
+    <string name="welcome_to_user">Hello, %1$s!</string>
+    <string name="dialog_box_message">Are you sure you want to sign out?</string>
 </resources>

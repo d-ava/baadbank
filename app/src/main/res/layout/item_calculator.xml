@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp">
+        android:layout_margin="@dimen/default_16dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAmount"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
             android:fontFamily="@font/ubuntu_bold"
-            android:textSize="14sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvFromCurrency"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_marginEnd="7dp"
 
             android:fontFamily="@font/ubuntu_bold"
-            android:textSize="14sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvConverted"
             app:layout_constraintStart_toEndOf="@id/tvAmount"
@@ -45,10 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
-
             android:fontFamily="@font/ubuntu_light"
             android:text="@string/converted"
-            android:textSize="14sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvConvertedValue"
             app:layout_constraintStart_toEndOf="@id/tvFromCurrency"
@@ -59,9 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
-
             android:fontFamily="@font/ubuntu_bold"
-            android:textSize="14sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvToCurrency"
             app:layout_constraintStart_toEndOf="@id/tvConverted"
@@ -73,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_bold"
-            android:textSize="14sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvConvertedValue"

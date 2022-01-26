@@ -11,16 +11,13 @@
         android:id="@+id/tvCurrency"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/default_100dp"
+        android:layout_marginTop="@dimen/default_8dp"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bb_green_02"
-        android:textSize="20sp"
-
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         tools:ignore="TextContrastCheck"
         tools:text="Currency" />
 
@@ -28,11 +25,11 @@
         android:id="@+id/tvValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="@dimen/default_8dp"
+        android:layout_marginEnd="@dimen/default_100dp"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="@color/bb_green_01"
-        android:textSize="20sp"
+        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Value"
