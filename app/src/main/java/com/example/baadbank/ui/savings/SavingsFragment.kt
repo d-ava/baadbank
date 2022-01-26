@@ -1,17 +1,13 @@
 package com.example.baadbank.ui.savings
 
-import android.annotation.SuppressLint
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.baadbank.databinding.FragmentSavingsBinding
 import com.example.baadbank.extensions.makeSnackbar
-
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
-import com.example.baadbank.util.Utils
 import com.example.baadbank.util.Utils.savingsBalance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -20,7 +16,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.text.Typography.dagger
 
 
 @AndroidEntryPoint

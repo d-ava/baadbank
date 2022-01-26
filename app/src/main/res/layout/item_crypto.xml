@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
@@ -27,9 +27,10 @@
             android:id="@+id/tvSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="120dp"
             android:fontFamily="@font/ubuntu_light"
             android:textColor="@color/bb_green_02"
+            app:layout_constraintBottom_toTopOf="@+id/tvName"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextContrastCheck"
@@ -37,12 +38,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
 
+            android:id="@+id/appCompatTextView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/ubuntu_light"
             android:text="@string/symbol"
             android:textColor="@color/bb_grey"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView5"
             app:layout_constraintStart_toEndOf="@id/ivCoin"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextContrastCheck" />
@@ -52,77 +55,80 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
 
             android:fontFamily="@font/ubuntu_bold"
             android:textColor="@color/bb_green_02"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvSymbol"
+            app:layout_constraintBottom_toTopOf="@+id/tvCurrentPrice"
+            app:layout_constraintStart_toStartOf="@+id/tvSymbol"
+            app:layout_constraintTop_toBottomOf="@+id/tvSymbol"
             tools:ignore="TextContrastCheck"
             tools:text="Bitcoin" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
+            android:id="@+id/appCompatTextView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
 
             android:fontFamily="@font/ubuntu_light"
             android:text="@string/name"
             android:textColor="@color/bb_grey"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvSymbol"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView7"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6"
             tools:ignore="TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCurrentPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bb_green_01"
-            android:layout_marginStart="100dp"
             android:fontFamily="@font/ubuntu_bold"
+            android:textColor="@color/bb_green_01"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintBottom_toTopOf="@+id/tvMarketCap"
+            app:layout_constraintStart_toStartOf="@+id/tvSymbol"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="1254856.25" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMarketCap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textColor="@color/bb_green_02"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvCurrentPrice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvSymbol"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentPrice"
             tools:ignore="TextContrastCheck"
             tools:text="12548345345356.25" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
+            android:id="@+id/appCompatTextView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:fontFamily="@font/ubuntu_light"
             android:text="@string/market_cap"
             android:textColor="@color/bb_grey"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvCurrentPrice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7"
             tools:ignore="TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
 
+            android:id="@+id/appCompatTextView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:fontFamily="@font/ubuntu_light"
             android:text="@string/price"
             android:textColor="@color/bb_grey"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/ivCoin"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView8"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView5"
             tools:ignore="TextContrastCheck" />
 
 

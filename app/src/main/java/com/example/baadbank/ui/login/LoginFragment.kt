@@ -45,35 +45,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
-//    private fun loginUser() {
-//        val email = binding.etEmail.text.toString()
-//        val password = binding.etPassword.text.toString()
-//        viewModel.logIn03(email, password)
-//
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.userLogInStatus03.collect() {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            showLoading()
-//                        }
-//                        is Resource.Success -> {
-//                            hideLoading()
-//
-//                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
-//
-//                        }
-//                        is Resource.Error -> {
-//                            hideLoading()
-//                            view?.makeSnackbar("${it.message}")
-//
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
+
 
     private fun loginUser01() {
         val email = binding.etEmail.text.toString()

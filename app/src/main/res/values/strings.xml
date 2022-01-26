@@ -59,4 +59,6 @@
     <string name="sell">sell</string>
     <string name="buy">buy</string>
     <string name="dialog_box_message">Are you sure you want to sign out?</string>
+    <string name="don_t_want_to_register">don\'t want to register?</string>
+    <string name="currency_exchange_rates">Currency exchange rates</string>
 </resources>

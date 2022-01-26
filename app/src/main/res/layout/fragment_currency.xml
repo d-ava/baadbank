@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/currency"
+        android:text="@string/currency_exchange_rates"
         android:textColor="@color/bb_black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"

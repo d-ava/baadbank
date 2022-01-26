@@ -58,6 +58,7 @@ class CalculatorFragment :
 //            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
             amount = binding.etAmount.text.toString()
 
+
             binding.etAmount.text?.clear()
             currencyConverter03()
 
