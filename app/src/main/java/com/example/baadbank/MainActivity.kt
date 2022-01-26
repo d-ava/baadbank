@@ -70,11 +70,7 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         is Resource.Success -> {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "success ${it.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
+
                             Utils.currencyListForAdapter = it.data!!
 
                             Log.d("---", "currency list for adapter $currencyListForAdapter")

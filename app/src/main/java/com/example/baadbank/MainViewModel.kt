@@ -1,5 +1,6 @@
 package com.example.baadbank
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.data.CommercialRates
@@ -26,16 +27,17 @@ class MainViewModel @Inject constructor(private val repository: CurrencyReposito
 
     init {
         viewModelScope.launch {
+            Log.d("---", "1 get currency")
             repository.getCurrency().collect {
                 _getCurrency.emit(it)
             }
-
+            Log.d("---", "2 get commercial")
             viewModelScope.launch {
                 repository.getCommercialRates().collect {
                     _getCommercialRates.emit(it)
                 }
             }
-
+            Log.d("---", "3 splash screen false")
            _isLoading.value = false
         }
     }
