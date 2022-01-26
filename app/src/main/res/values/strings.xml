@@ -61,4 +61,5 @@
     <string name="dialog_box_message">Are you sure you want to sign out?</string>
     <string name="don_t_want_to_register">don\'t want to register?</string>
     <string name="currency_exchange_rates">Currency exchange rates</string>
+    <string name="welcome_string">Hello, %1$s!</string>
 </resources>

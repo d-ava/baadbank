@@ -1,7 +1,7 @@
 package com.example.baadbank
 
 //progress bar - დათო
-//Todo cursor color - დათო <- better change edittext to material edit text aaaaa
+//cursor color - დათო <- better change edittext to material edit text aaaaa
 //status bar color
 //calculator input type დათო
 //string to resources - ანა
