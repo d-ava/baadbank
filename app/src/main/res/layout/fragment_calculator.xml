@@ -11,7 +11,7 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/progress_bar_elevation"
+        android:elevation="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/heading_margin_start"
+        android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/calculator"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/default_text_size"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,9 +41,9 @@
         android:id="@+id/spinnerLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/heading_margin_start"
-        android:minHeight="@dimen/default_min_height"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/currency_tobe_converted"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/spinnerRight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,34 +52,60 @@
         android:id="@+id/spinnerRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/heading_margin_start"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/currency_spinner_text"
-        android:minHeight="@dimen/default_min_height"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/spinnerLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
+ <!--   <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etAmountLayout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toStartOf="@id/ivArrowForward"
+        app:layout_constraintTop_toBottomOf="@id/spinnerLeft"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAmountMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/ubuntu_light"
+            android:hint="enter amount"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>-->
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etAmount"
-        android:layout_width="@dimen/default_150dp"
-        android:layout_height="@dimen/default_min_height"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
+        android:textCursorDrawable="@color/bb_green_01"
         android:imeOptions="actionDone"
+        android:cursorVisible="false"
         android:inputType="number"
         android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@id/ivArrowForward"
         app:layout_constraintTop_toBottomOf="@id/spinnerLeft"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivArrowForward"
-        android:layout_width="@dimen/default_40dp"
-        android:layout_height="@dimen/default_40dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_arrow_forward"
         app:layout_constraintBottom_toBottomOf="@id/etAmount"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,15 +115,15 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvValue"
-        android:layout_width="@dimen/default_150dp"
-        android:layout_height="@dimen/default_min_height"
-        android:layout_marginEnd="@dimen/default_32dp"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/login_register_button_background"
         android:fontFamily="@font/ubuntu_bold"
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/etAmount"
         app:layout_constraintStart_toEndOf="@id/ivArrowForward"
         app:layout_constraintTop_toTopOf="@+id/etAmount"
@@ -107,8 +133,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnConvert"
         android:layout_width="100dp"
-        android:layout_height="@dimen/default_40dp"
-        android:layout_marginTop="@dimen/default_32dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_shape_line"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/convert"
@@ -122,7 +148,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/default_32dp"
+        android:layout_margin="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnConvert"
         tools:listitem="@layout/item_calculator" />

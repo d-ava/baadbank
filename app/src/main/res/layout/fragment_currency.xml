@@ -7,25 +7,15 @@
     android:orientation="vertical"
     tools:context=".ui.currency.CurrencyFragment">
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:elevation="@dimen/progress_bar_elevation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/heading_margin_start"
+        android:layout_marginStart="80dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/currency"
+        android:text="@string/currency_exchange_rates"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/default_text_size"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -36,74 +26,214 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/default_32dp" />
+        app:layout_constraintGuide_begin="32dp" />
+
+    <TextView
+        android:id="@+id/tvOfficialRates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/official_rates"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUSDValue"
+        app:layout_constraintEnd_toEndOf="@+id/tvUSDValue"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDValue" />
+
+    <TextView
+        android:id="@+id/tvCommercialRates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/commercial_rates"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUSDValue"
+        app:layout_constraintEnd_toEndOf="@+id/tvUsdSellValue"
+        app:layout_constraintStart_toStartOf="@+id/tvUsdBuyValue" />
+
+    <TextView
+        android:id="@+id/tvBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/buy"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUsdBuyValue"
+        app:layout_constraintBottom_toTopOf="@+id/tvUsdBuyValue"
+
+         />
+
+    <TextView
+        android:id="@+id/tvSell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/sell"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUsdSellValue"
+        app:layout_constraintBottom_toTopOf="@+id/tvUsdBuyValue"
+
+        />
+
+
+
+
+
 
     <TextView
         android:id="@+id/tvUSDCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_100dp"
-        android:layout_marginTop="@dimen/default_100dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/ubuntu_bold"
-        tools:text="USD"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gdTop" />
+        app:layout_constraintTop_toBottomOf="@id/gdTop"
+        tools:text="USD" />
 
     <TextView
         android:id="@+id/tvEURCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_100dp"
-        android:layout_marginTop="@dimen/default_8dp"
+
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/ubuntu_bold"
-        tools:text="EUR"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUSDCurrency" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvUSDCurrency"
+        app:layout_constraintTop_toBottomOf="@id/tvUSDCurrency"
+        tools:text="EUR" />
 
     <TextView
         android:id="@+id/tvGBPCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_100dp"
-        android:layout_marginTop="@dimen/default_8dp"
-        android:fontFamily="@font/ubuntu_bold"
-        tools:text="GBP"
-        android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEURCurrency" />
 
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toBottomOf="@id/tvEURCurrency"
+        tools:text="GBP" />
 
 
     <TextView
         android:id="@+id/tvUSDValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_100dp"
-        android:fontFamily="@font/ubuntu_bold"
-        tools:text="usd Value"
-        android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="220dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+
         app:layout_constraintTop_toTopOf="@+id/tvUSDCurrency"
+        tools:text="3.01"
 
         />
+
+    <TextView
+        android:id="@+id/tvUsdBuyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvUSDCurrency"
+        tools:text="3.11"
+
+        />
+
+    <TextView
+        android:id="@+id/tvUsdSellValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvUSDCurrency"
+        tools:text="3.31"
+
+        />
+
+    <TextView
+        android:id="@+id/tvEurSellValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvEURCurrency"
+        tools:text="3.31"
+
+        />
+
+    <TextView
+        android:id="@+id/tvGbpSellValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvGBPCurrency"
+        tools:text="3.31"
+
+        />
+
+    <TextView
+        android:id="@+id/tvEurBuyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvEURCurrency"
+        tools:text="4.11"
+
+        />
+    <TextView
+        android:id="@+id/tvGbpBuyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/bb_black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDCurrency"
+        app:layout_constraintTop_toTopOf="@+id/tvGBPCurrency"
+        tools:text="4.11"
+
+        />
+
+
 
     <TextView
         android:id="@+id/tvLari"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_100dp"
+        android:layout_marginEnd="100dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/gel"
         android:textColor="@color/bb_grey"
-        android:textSize="@dimen/secondary_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/gdTop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
 
@@ -113,13 +243,14 @@
         android:id="@+id/tvEURValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_100dp"
         android:fontFamily="@font/ubuntu_bold"
-        tools:text="eur Value"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDValue"
         app:layout_constraintTop_toTopOf="@+id/tvEURCurrency"
+
+
+        tools:text="4.02"
 
         />
 
@@ -127,20 +258,22 @@
         android:id="@+id/tvGBPValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_100dp"
         android:fontFamily="@font/ubuntu_bold"
-        tools:text="usd Value"
         android:textColor="@color/bb_black"
-        android:textSize="@dimen/secondary_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvUSDValue"
         app:layout_constraintTop_toTopOf="@+id/tvGBPCurrency"
 
+        tools:text="5.03"
+
         />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

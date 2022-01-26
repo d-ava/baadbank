@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import androidx.core.graphics.drawable.toDrawable
 import com.example.baadbank.R
+import com.example.baadbank.data.CommercialRates
 import com.example.baadbank.data.Converted
 import com.example.baadbank.data.CurrencyItem
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,8 @@ object Utils {
     var currencyListForAdapter: List<CurrencyItem> = listOf()
     var currencyList: MutableList<String> = mutableListOf()
     var convertedList: MutableList<Converted> = mutableListOf()
+
+    var commercialRatesList:List<CommercialRates.CommercialRates> = listOf()
 
 
     fun showLoadingDialog(context: Context): Dialog {

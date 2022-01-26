@@ -25,7 +25,7 @@
     <string name="gel">₾</string>
     <string name="convert">Convert</string>
     <string name="currency_spinner_text">Select desired currency</string>
-    <string name="calculator">Calculator</string>
+    <string name="calculator">Currency Calculator</string>
     <string name="currency_money_amount">enter amount u want to convert</string>
     <string name="currency_tobe_converted">choose cureency u want to be converted</string>
     <string name="crypto_currency">Crypto Currency</string>
@@ -54,7 +54,11 @@
     <string name="edit_user_information">Edit User Information</string>
     <string name="converted">converted</string>
     <string name="price">Price</string>
-
-    <string name="welcome_to_user">Hello, %1$s!</string>
+    <string name="official_rates">official rates</string>
+    <string name="commercial_rates">commercial rates</string>
+    <string name="sell">sell</string>
+    <string name="buy">buy</string>
     <string name="dialog_box_message">Are you sure you want to sign out?</string>
+    <string name="don_t_want_to_register">don\'t want to register?</string>
+    <string name="currency_exchange_rates">Currency exchange rates</string>
 </resources>

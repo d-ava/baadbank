@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +26,6 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
     private val args: UserInfoChangeDialogFragmentArgs by navArgs()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,14 +43,21 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
         setListeners()
         loadUserInfo()
-
+        onBackPress()
 
     }
 
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        })
+    }
 
 
-
-    private fun saveUserInfo(){
+    private fun saveUserInfo() {
         val name = binding.etFullName.text.toString()
         val phone = binding.etPhoneNumber.text.toString()
 
@@ -86,7 +93,6 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 //        userReference.child("phoneNumber").setValue(binding.etPhoneNumber.text.toString())
 //
 //    }
-
 
 
     override fun onDestroy() {

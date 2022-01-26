@@ -21,6 +21,7 @@ import com.example.baadbank.ui.CalculatorAdapter
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.convertedList
 import com.example.baadbank.util.Utils.currencyList
+import com.example.baadbank.util.Utils.currencyListForAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -57,9 +58,9 @@ class CalculatorFragment :
         binding.btnConvert.setOnClickListener {
 
 
-
 //            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
             amount = binding.etAmount.text.toString()
+
 
             binding.etAmount.text?.clear()
             currencyConverter03()
@@ -68,12 +69,9 @@ class CalculatorFragment :
     }
 
 
-
     private fun currencyConverter03() {
         viewModel.calculateValue03()
-//        lifecycleScope.launchWhenCreated {
-//
-//        }
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -95,7 +93,7 @@ class CalculatorFragment :
 
 
 
-                            convertedList.add(Converted(fromCurrency,toCurrency,amount,result))
+                            convertedList.add(Converted(fromCurrency, toCurrency, amount, result))
 
                             calculatorAdapter.setData(convertedList)
 
@@ -111,7 +109,6 @@ class CalculatorFragment :
             }
         }
     }
-
 
 
     private fun setRecycler() {
@@ -132,6 +129,7 @@ class CalculatorFragment :
                 requireContext(),
                 R.layout.bb_spinner_item,
                 currencyList
+
             )
 
         val spinnerFrom = binding.spinnerLeft
@@ -178,9 +176,7 @@ class CalculatorFragment :
     }
 
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
+
 
 
 }

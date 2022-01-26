@@ -3,6 +3,7 @@ package com.example.baadbank.di
 //import com.example.baadbank.network.CoinGeckoApi
 import com.example.baadbank.BuildConfig
 import com.example.baadbank.network.CoinGeckoApi
+import com.example.baadbank.network.CommercialApi
 import com.example.baadbank.network.ConvertApi
 import com.example.baadbank.network.CurrencyApi
 import com.squareup.moshi.Moshi
@@ -45,6 +46,15 @@ object CurrencyNetworkModule {
     fun provideClientConvert(): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addInterceptor(ConvertInterceptor())
+        }.build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("OkHttpCommercial")
+    fun provideCommercialRates(): OkHttpClient {
+        return OkHttpClient.Builder().apply {
+            addInterceptor(CommercialRatesInterceptor())
         }.build()
     }
 
@@ -142,6 +152,32 @@ object CurrencyNetworkModule {
     @Provides
     fun provideApiCoinGecko(@Named("Convert") retrofit: Retrofit.Builder): ConvertApi {
         return retrofit.build().create(ConvertApi::class.java)
+
+
+    }
+
+
+
+    @Singleton
+    @Provides
+    @Named("Commercial")
+    fun provideCommercialRetrofit(
+        moshi: Moshi,
+        @Named("OkHttpCommercial") client: OkHttpClient
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(
+                MoshiConverterFactory.create(moshi)
+            )
+    }
+
+
+    @Singleton
+    @Provides
+    fun apiCommercial(@Named("Commercial") retrofit: Retrofit.Builder): CommercialApi {
+        return retrofit.build().create(CommercialApi::class.java)
 
 
     }

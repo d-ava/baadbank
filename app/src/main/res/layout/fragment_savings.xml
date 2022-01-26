@@ -100,6 +100,7 @@
         android:background="@drawable/button_shape_line"
         android:textCursorDrawable="@color/bb_green_01"
 
+
         android:fontFamily="@font/ubuntu_bold"
         android:imeOptions="actionDone"
         android:inputType="number"

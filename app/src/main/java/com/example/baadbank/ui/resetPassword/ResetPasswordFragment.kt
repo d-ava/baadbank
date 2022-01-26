@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -32,7 +33,17 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
     override fun start() {
 
         setListeners()
+        onBackPress()
 
+    }
+
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        })
     }
 
     private fun setListeners() {

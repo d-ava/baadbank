@@ -1,20 +1,35 @@
 package com.example.baadbank.ui
 
+import android.content.DialogInterface
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.R
 
 import com.example.baadbank.databinding.FragmentNavHomeGuestBinding
+import com.example.baadbank.util.Utils
 
-class NavHomeFragmentGuest : BaseFragment<FragmentNavHomeGuestBinding>(FragmentNavHomeGuestBinding::inflate) {
+class NavHomeFragmentGuest :
+    BaseFragment<FragmentNavHomeGuestBinding>(FragmentNavHomeGuestBinding::inflate) {
 
     override fun start() {
 
         setListeners()
-
+        onBackPress()
     }
 
-    private fun setListeners(){
+    private fun onBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+
+            }
+        })
+    }
+
+
+    private fun setListeners() {
 
 
         binding.tvGuest.setOnClickListener {
@@ -22,7 +37,7 @@ class NavHomeFragmentGuest : BaseFragment<FragmentNavHomeGuestBinding>(FragmentN
         }
 
         binding.homeNavTab.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
 
                 R.id.calculatorScreen -> {
                     binding.homeNavContainer.findNavController().navigate(R.id.toCalculatorScreen)
@@ -38,7 +53,6 @@ class NavHomeFragmentGuest : BaseFragment<FragmentNavHomeGuestBinding>(FragmentN
                 }
 
                 else -> false
-
 
 
             }

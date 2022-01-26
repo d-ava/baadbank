@@ -2,20 +2,21 @@ package com.example.baadbank
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.baadbank.extensions.makeSnackbar
-import com.example.baadbank.ui.login.LoginViewModel
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils
+import com.example.baadbank.util.Utils.commercialRatesList
+import com.example.baadbank.util.Utils.currencyList
+import com.example.baadbank.util.Utils.currencyListForAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,27 +26,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        getCurrency()
+        getCommercialRatesList()
+        getCurrency()
         installSplashScreen().apply {
-//            setKeepOnScreenCondition {
-//                viewModel.isLoading.value
-//            }
+            setKeepOnScreenCondition {
+                viewModel.isLoading.value
+            }
         }
         setContentView(R.layout.activity_main)
 
 
     }
 
-    private fun getCurrency() {
-
+    private fun getCommercialRatesList() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getCurrency.collect {
+                viewModel.getCommercialRates.collect {
                     when (it) {
                         is Resource.Loading -> {
                         }
                         is Resource.Success -> {
-                            Utils.currencyListForAdapter = it.data!!
+
+                            commercialRatesList = it.data!!.commercialRatesList
+                            Log.d("---", "commercial rates - $commercialRatesList")
                         }
                         is Resource.Error -> {
                         }
@@ -57,60 +60,44 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    private fun getCurrency00() {
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.loadCurrency.collect {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            showLoading()
-////                            progressBar(true)
-//                        }
-//                        is Resource.Success -> {
-//                            hideLoading()
-////                            progressBar(false)
-//                            for (item in it.data!!) {
-//                                if (item.currency == "USD") {
-//                                    binding.tvUSDCurrency.text = item.currency
-//                                    binding.tvUSDValue.text =
-//                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-//                                            .toPlainString()
-//                                            .toString()
-//                                }
-//                                if (item.currency == "EUR") {
-//                                    binding.tvEURCurrency.text = item.currency
-//                                    binding.tvEURValue.text =
-//                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-//                                            .toPlainString()
-//                                            .toString()
-//                                }
-//                                if (item.currency == "GBP") {
-//                                    binding.tvGBPCurrency.text = item.currency
-//                                    binding.tvGBPValue.text =
-//                                        BigDecimal(item.value).setScale(2, RoundingMode.HALF_EVEN)
-//                                            .toPlainString()
-//                                            .toString()
-//                                }
-//
-//
-//                            }
-//
-//                            adapter.setData(it.data)
-//                            for (c in it.data) {
-//                                Utils.currencyList.add(c.currency)
-//                            }
-//
-//
-//                        }
-//                        is Resource.Error -> {
-//                            view?.makeSnackbar("${it.message}")
-//                        }
-//                    }
-//                }
-//
-//
-//            }
-//        }
-//    }
+    private fun getCurrency() {
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getCurrency.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+
+                        }
+                        is Resource.Success -> {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "success ${it.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            Utils.currencyListForAdapter = it.data!!
+
+                            Log.d("---", "currency list for adapter $currencyListForAdapter")
+
+                            for (c in it.data) {
+                                Utils.currencyList.add(c.currency)
+                            }
+
+                            Log.d("---", "currency list - $currencyList")
+
+
+                        }
+                        is Resource.Error -> {
+
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
 
 }
