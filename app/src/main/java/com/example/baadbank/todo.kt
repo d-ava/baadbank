@@ -1,7 +1,7 @@
 package com.example.baadbank
 
 //progress bar - დათო
-//Todo cursor color - დათო <- better change edittext to material edit text
+//Todo cursor color - დათო <- better change edittext to material edit text aaaaa
 //status bar color
 //calculator input type დათო
 //string to resources - ანა
@@ -26,7 +26,7 @@ package com.example.baadbank
 //Todo unit test
 
 //back press   error. stack problems with navigation - ანა
-//Todo load during splash screen - დათო
+//load during splash screen - დათო
 //Todo App Logo დათო
 //
 

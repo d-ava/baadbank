@@ -25,7 +25,7 @@
     <string name="gel">₾</string>
     <string name="convert">Convert</string>
     <string name="currency_spinner_text">Select desired currency</string>
-    <string name="calculator">Calculator</string>
+    <string name="calculator">Currency Calculator</string>
     <string name="currency_money_amount">enter amount u want to convert</string>
     <string name="currency_tobe_converted">choose cureency u want to be converted</string>
     <string name="crypto_currency">Crypto Currency</string>
