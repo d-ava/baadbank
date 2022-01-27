@@ -1,7 +1,7 @@
 package com.example.baadbank.network
 
-import com.example.baadbank.data.CoinGecko
-import com.example.baadbank.data.Ping
+import com.example.baadbank.model.CoinGecko
+import com.example.baadbank.model.Ping
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,10 +1,10 @@
-package com.example.baadbank.ui
+package com.example.baadbank.ui.recyclerAdapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.baadbank.data.CoinGecko
+import com.example.baadbank.model.CoinGecko
 import com.example.baadbank.databinding.ItemCryptoBinding
 import com.example.baadbank.extensions.glideExtension
 import java.math.BigDecimal

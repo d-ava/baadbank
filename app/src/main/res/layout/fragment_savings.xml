@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/account_ballance"
+        android:text="@string/savings_ballance"
         android:textColor="@color/bb_black"
         android:textSize="@dimen/secondary_text_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,15 +92,14 @@
         tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etAdd"
+        android:id="@+id/etValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
+
         android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/button_shape_line"
         android:textCursorDrawable="@color/bb_green_01"
-
-
         android:fontFamily="@font/ubuntu_bold"
         android:imeOptions="actionDone"
         android:inputType="number"

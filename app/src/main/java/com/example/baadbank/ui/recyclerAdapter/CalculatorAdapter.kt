@@ -1,10 +1,10 @@
-package com.example.baadbank.ui
+package com.example.baadbank.ui.recyclerAdapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.baadbank.data.Converted
+import com.example.baadbank.model.Converted
 import com.example.baadbank.databinding.ItemCalculatorBinding
 
 class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewHolder>() {
@@ -21,7 +21,7 @@ class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewH
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CalculatorAdapter.CalculatorViewHolder {
+    ): CalculatorViewHolder {
         return CalculatorViewHolder(
             ItemCalculatorBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -31,7 +31,7 @@ class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewH
         )
     }
 
-    override fun onBindViewHolder(holder: CalculatorAdapter.CalculatorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CalculatorViewHolder, position: Int) {
         holder.onBind()
     }
 

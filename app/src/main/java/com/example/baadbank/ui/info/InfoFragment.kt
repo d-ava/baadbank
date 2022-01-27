@@ -6,26 +6,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.example.baadbank.data.User
+import com.example.baadbank.model.User
 import com.example.baadbank.databinding.FragmentInfoBinding
 
-import com.example.baadbank.extensions.glideExtension
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Utils.auth
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::inflate) {
 
-    var auth00: FirebaseAuth = FirebaseAuth.getInstance()
+//    var auth00: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val viewModel: InfoViewModel by activityViewModels()
 
@@ -35,7 +28,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
         loadUserInfo()
         setListeners()
         onBackPress()
-//        showImage2()
+
 
     }
 
@@ -82,7 +75,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
 
             btnSignOut.setOnClickListener {
-                auth00.signOut()
+                auth.signOut()
                 findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
             }
 

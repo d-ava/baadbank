@@ -1,6 +1,5 @@
-package com.example.baadbank.data
+package com.example.baadbank.model
 
-import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

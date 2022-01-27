@@ -1,9 +1,8 @@
 package com.example.baadbank.ui.crypto
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.baadbank.data.CoinGecko
+import com.example.baadbank.model.CoinGecko
 import com.example.baadbank.repository.CryptoRepository
 //import com.example.baadbank.repository.CryptoRepository
 import com.example.baadbank.util.Resource

@@ -1,10 +1,10 @@
-package com.example.baadbank
+package com.example.baadbank.ui.recyclerAdapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.baadbank.data.CurrencyItem
+import com.example.baadbank.model.CurrencyItem
 import com.example.baadbank.databinding.ItemCurrencyBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -24,7 +24,7 @@ class CurrencyItemsAdapter : RecyclerView.Adapter<CurrencyItemsAdapter.CurrencyI
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CurrencyItemsAdapter.CurrencyItemViewHolder {
+    ): CurrencyItemViewHolder {
         return CurrencyItemViewHolder(
             ItemCurrencyBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -35,7 +35,7 @@ class CurrencyItemsAdapter : RecyclerView.Adapter<CurrencyItemsAdapter.CurrencyI
     }
 
     override fun onBindViewHolder(
-        holder: CurrencyItemsAdapter.CurrencyItemViewHolder,
+        holder: CurrencyItemViewHolder,
         position: Int
     ) {
         holder.onBind()

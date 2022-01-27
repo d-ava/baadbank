@@ -1,7 +1,7 @@
 package com.example.baadbank.repository
 
 
-import com.example.baadbank.data.User
+import com.example.baadbank.model.User
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
 import com.example.baadbank.util.Utils.databaseReference
@@ -87,26 +87,26 @@ class FireBaseRepository @Inject constructor() {
         }
     }
 
-    suspend fun registerUser(
-        fullName: String,
-        userEmail: String,
-        phoneNumber: String,
-        userPassword: String
-    ): Resource<AuthResult> {
-        return withContext(IO) {
-            safeCall {
-                val registrationResult =
-                    auth.createUserWithEmailAndPassword(userEmail, userPassword).await()
-
-
-                val userId = registrationResult.user?.uid!!
-                val newUser =
-                    User(fullName = fullName, phone = phoneNumber, email = userEmail, savings = 0.0)
-                databaseReference.child(userId).setValue(newUser)
-                Resource.Success(registrationResult)
-            }
-        }
-    }
+//    suspend fun registerUser(
+//        fullName: String,
+//        userEmail: String,
+//        phoneNumber: String,
+//        userPassword: String
+//    ): Resource<AuthResult> {
+//        return withContext(IO) {
+//            safeCall {
+//                val registrationResult =
+//                    auth.createUserWithEmailAndPassword(userEmail, userPassword).await()
+//
+//
+//                val userId = registrationResult.user?.uid!!
+//                val newUser =
+//                    User(fullName = fullName, phone = phoneNumber, email = userEmail, savings = 0.0)
+//                databaseReference.child(userId).setValue(newUser)
+//                Resource.Success(registrationResult)
+//            }
+//        }
+//    }
 
     suspend fun registerUser01(
         fullName: String,

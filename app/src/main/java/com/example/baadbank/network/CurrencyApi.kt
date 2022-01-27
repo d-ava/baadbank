@@ -1,6 +1,6 @@
 package com.example.baadbank.network
 
-import com.example.baadbank.data.CurrencyItem
+import com.example.baadbank.model.CurrencyItem
 import retrofit2.Response
 import retrofit2.http.GET
 

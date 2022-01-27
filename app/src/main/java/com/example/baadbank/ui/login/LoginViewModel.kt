@@ -21,9 +21,7 @@ class LoginViewModel @Inject constructor(
     private val _userLogInStatus03: MutableSharedFlow<Resource<AuthResult>> = MutableSharedFlow()
     val userLogInStatus03: SharedFlow<Resource<AuthResult>> = _userLogInStatus03
 
-    //as philipp said
-//    private val _userLogInTest= MutableSharedFlow<Resource<AuthResult>>()
-//    val userLogInTest = _userLogInTest.asSharedFlow()
+
 
 
     fun logIn03(email: String, password: String) {
