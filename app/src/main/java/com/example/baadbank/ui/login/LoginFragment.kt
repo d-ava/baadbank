@@ -101,10 +101,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
             }
 
-            ivNameLogo.setOnClickListener {
-                showLoading()
-            }
-
 
         }
 
