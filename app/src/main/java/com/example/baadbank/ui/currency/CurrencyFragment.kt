@@ -1,11 +1,13 @@
 package com.example.baadbank.ui.currency
 
+import android.util.Log
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.baadbank.ui.recyclerAdapter.CurrencyItemsAdapter
+import com.example.baadbank.CurrencyItemsAdapter
 import com.example.baadbank.databinding.FragmentCurrencyBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment

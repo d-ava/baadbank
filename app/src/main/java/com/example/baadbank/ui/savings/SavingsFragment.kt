@@ -44,12 +44,12 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
-            addTake02(false)
+            addTake00(false)
 //            binding.etAdd.text?.clear()
         }
 
         binding.btnTake.setOnClickListener {
-            addTake02(true)
+            addTake00(true)
 //            binding.etTake.text?.clear()
         }
     }
@@ -77,67 +77,55 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         }
     }
 
-    private fun addTake02(negative: Boolean){
+    private fun addTake00(negative: Boolean) {
+        if (negative) {
 
+            viewModel.addTake00(binding.etAdd.text.toString().toDouble() * -1)
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.addTake.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                            is Resource.Success -> {
+                                hideLoading()
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                view?.makeSnackbar("${it.message}")
+                            }
 
-
-
-        viewModel.addTake01(binding.etValue.text.toString(), negative)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.addTake.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                            showLoading()
                         }
-                        is Resource.Success -> {
-                            hideLoading()
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                            view?.makeSnackbar("${it.message}")
-                        }
-
                     }
                 }
             }
+
+
+        } else {
+            viewModel.addTake00(binding.etAdd.text.toString().toDouble())
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.addTake.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                            is Resource.Success -> {
+                                hideLoading()
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                view?.makeSnackbar("${it.message}")
+                            }
+
+                        }
+                    }
+                }
+            }
+
         }
-
     }
-
-
-//    private fun addTake01(negative: Boolean){
-//        var amount:Double = binding.etAdd.text.toString().toDouble()
-//        if (negative){
-//            amount = binding.etAdd.text.toString().toDouble() * -1
-//        }
-//        viewModel.addTake00(amount)
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.addTake.collect {
-//                    when (it) {
-//                        is Resource.Loading -> {
-//                            showLoading()
-//                        }
-//                        is Resource.Success -> {
-//                            hideLoading()
-//                        }
-//                        is Resource.Error -> {
-//                            hideLoading()
-//                            view?.makeSnackbar("${it.message}")
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//
-//
-//    }
-
-
-
 
 
 

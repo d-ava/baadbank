@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.baadbank.model.UserPreferences
+import com.example.baadbank.data.UserPreferences
 import com.example.baadbank.repository.UserDataStoreRepository.PreferencesKeys.EMAIL
 import com.example.baadbank.repository.UserDataStoreRepository.PreferencesKeys.PASSWORD
 import com.example.baadbank.repository.UserDataStoreRepository.PreferencesKeys.REMEMBER

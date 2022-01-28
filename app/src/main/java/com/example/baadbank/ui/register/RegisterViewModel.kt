@@ -22,39 +22,39 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
     val userRegisterStatus: SharedFlow<Resource<AuthResult>> = _userRegisterStatus
 
 
-//    fun registerUser(
-//        fullName: String,
-//        email: String,
-//        phoneNumber: String,
-//        password: String
-//    ) {
-//        viewModelScope.launch {
-//            val error =
-//                if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
-//                    "Empty Strings"
-//                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//                    "Not valid email"
-//                } else {
-//                    null
-//                }
-//
-//            error?.let {
-//                _userRegisterStatus.emit(Resource.Error(it))
-//
-//            }
-//            _userRegisterStatus.emit(Resource.Loading())
-//
-//
-//            val registrationResult = repository.registerUser(
-//                fullName = fullName,
-//                userEmail = email,
-//                phoneNumber = phoneNumber,
-//                userPassword = password
-//            )
-//            _userRegisterStatus.emit(registrationResult)
-//
-//        }
-//    }
+    fun registerUser(
+        fullName: String,
+        email: String,
+        phoneNumber: String,
+        password: String
+    ) {
+        viewModelScope.launch {
+            val error =
+                if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
+                    "Empty Strings"
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    "Not valid email"
+                } else {
+                    null
+                }
+
+            error?.let {
+                _userRegisterStatus.emit(Resource.Error(it))
+
+            }
+            _userRegisterStatus.emit(Resource.Loading())
+
+
+            val registrationResult = repository.registerUser(
+                fullName = fullName,
+                userEmail = email,
+                phoneNumber = phoneNumber,
+                userPassword = password
+            )
+            _userRegisterStatus.emit(registrationResult)
+
+        }
+    }
 
 
     private val _userRegisterStatus01: MutableSharedFlow<Resource<AuthResult>> = MutableSharedFlow()

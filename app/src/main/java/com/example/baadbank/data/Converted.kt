@@ -1,4 +1,4 @@
-package com.example.baadbank.model
+package com.example.baadbank.data
 
 data class Converted(
     val fromCurrency: String = "",

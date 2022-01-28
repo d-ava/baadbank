@@ -6,8 +6,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.baadbank.model.CoinGecko
-import com.example.baadbank.model.CurrencyItem
+import com.example.baadbank.data.CoinGecko
+import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
@@ -46,6 +46,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
 
+
     private fun loginUser01() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
@@ -75,6 +76,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             }
         }
     }
+
+
+
 
 
     private fun setListeners() {
@@ -126,7 +130,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
-    private fun setLoginCredentials() {
+    private fun setLoginCredentials(){
 
         viewModel.userPreferences.observe(viewLifecycleOwner, { userPreferences ->
             val email = userPreferences.email

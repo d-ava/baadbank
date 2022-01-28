@@ -48,7 +48,7 @@
     <string name="repeat_password">repeat password</string>
     <string name="go_back">go back</string>
     <string name="savings">Savings</string>
-    <string name="savings_ballance">Savings Ballance</string>
+    <string name="account_ballance">Account Ballance</string>
     <string name="add">ADD</string>
     <string name="take">TAKE</string>
     <string name="edit_user_information">Edit User Information</string>
@@ -62,7 +62,4 @@
     <string name="don_t_want_to_register">don\'t want to register?</string>
     <string name="currency_exchange_rates">Currency exchange rates</string>
     <string name="welcome_string">Hello, %1$s!</string>
-    <string name="server_loading_error">there was error while loading data</string>
-    <string name="unknown_error">unknown error occurred</string>
-    <string name="enter_amount">please enter amount</string>
 </resources>

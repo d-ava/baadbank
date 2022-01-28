@@ -63,7 +63,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         }
                         is Resource.Success -> {
                             hideLoading()
-//                            view?.makeSnackbar("register hurrraaay")
+                            view?.makeSnackbar("register hurrraaay")
                             findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
 
                         }
@@ -82,8 +82,49 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     }
 
 
+    private fun registerUser() {
+        val fullName = binding.etFullName.text.toString()
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+        val phoneNumber = binding.etPhoneNumber.text.toString()
+
+        viewModel.registerUser(
+            email = email,
+            fullName = fullName,
+            password = password,
+            phoneNumber = phoneNumber
+        )
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userRegisterStatus.collect() {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
+                        is Resource.Success -> {
+                            hideLoading()
+                            view?.makeSnackbar("register hurrraaay")
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                            view?.makeSnackbar("${it.message}")
+
+                        }
+                    }
+
+                }
+            }
+        }
 
 
+    }
+
+    private fun progressBar(visible: Boolean) {
+        binding.progressbar.isVisible = visible
+    }
 
     private fun setListeners() {
         binding.btnRegister.setOnClickListener {

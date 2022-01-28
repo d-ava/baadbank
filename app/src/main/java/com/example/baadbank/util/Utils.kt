@@ -5,11 +5,14 @@ import android.content.Context
 import android.graphics.Color
 import androidx.core.graphics.drawable.toDrawable
 import com.example.baadbank.R
-import com.example.baadbank.model.CommercialRates
-import com.example.baadbank.model.Converted
-import com.example.baadbank.model.CurrencyItem
+import com.example.baadbank.data.CommercialRates
+import com.example.baadbank.data.Converted
+import com.example.baadbank.data.CurrencyItem
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 object Utils {
 

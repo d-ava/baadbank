@@ -1,4 +1,4 @@
-package com.example.baadbank.model
+package com.example.baadbank.data
 
 
 import com.squareup.moshi.Json

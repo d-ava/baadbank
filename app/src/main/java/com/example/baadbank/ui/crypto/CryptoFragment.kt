@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.crypto
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.baadbank.databinding.FragmentCryptoBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
-import com.example.baadbank.ui.recyclerAdapter.CryptoAdapter
+import com.example.baadbank.ui.CryptoAdapter
 import com.example.baadbank.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect

@@ -2,8 +2,9 @@ package com.example.baadbank.ui.currency
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.baadbank.model.CommercialRates
-import com.example.baadbank.model.CurrencyItem
+import com.example.baadbank.data.CoinGecko
+import com.example.baadbank.data.CommercialRates
+import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.repository.CurrencyRepository
 import com.example.baadbank.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
