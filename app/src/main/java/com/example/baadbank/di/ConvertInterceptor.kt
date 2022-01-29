@@ -1,5 +1,6 @@
 package com.example.baadbank.di
 
+import com.example.baadbank.BuildConfig.API_KEY
 import com.example.baadbank.ui.calculator.amount
 import com.example.baadbank.ui.calculator.fromCurrency
 import com.example.baadbank.ui.calculator.toCurrency
@@ -23,7 +24,7 @@ class ConvertInterceptor: Interceptor {
             .url("https://test-api.tbcbank.ge/v1/exchange-rates/nbg/convert?amount=$amount&from=$fromCurrency&to=$toCurrency")
             .get()
             .addHeader("Accept", "application/json")
-            .addHeader("apikey", "7tmMH0B4OEqJqfspTiPFL89JafPKrt6g")
+            .addHeader("apikey", API_KEY)
             .build()
 
         return OkHttpClient().newCall(request).execute()

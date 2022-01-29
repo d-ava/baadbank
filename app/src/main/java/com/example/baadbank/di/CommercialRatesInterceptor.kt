@@ -1,5 +1,6 @@
 package com.example.baadbank.di
 
+import com.example.baadbank.BuildConfig.API_KEY
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ class CommercialRatesInterceptor: Interceptor {
             .url("https://test-api.tbcbank.ge/v1/exchange-rates/commercial")
             .get()
             .addHeader("Accept", "application/json")
-            .addHeader("apikey", "7tmMH0B4OEqJqfspTiPFL89JafPKrt6g")
+            .addHeader("apikey", API_KEY)
             .build()
 
 
