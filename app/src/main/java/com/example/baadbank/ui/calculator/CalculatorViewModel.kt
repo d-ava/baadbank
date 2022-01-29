@@ -32,7 +32,7 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
 
                 repository.getCurrencyConverter03().collect {
 
-                    Log.d("---", "from VM ${it.data}")
+
                     _loadCalculatedValue03.emit(it)
 
                 }

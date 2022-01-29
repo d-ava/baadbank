@@ -76,7 +76,7 @@ class CalculatorFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.loadCalculatedValue03.collect {
-                    Log.d("---", "fragment data before ${it.data}")
+
                     when (it) {
                         is Resource.Loading -> {
 
@@ -84,7 +84,7 @@ class CalculatorFragment :
                         }
                         is Resource.Success -> {
                             hideLoading()
-                            Log.d("---", "fragment data before ${it.data}")
+
                             val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
                                 .toPlainString().toString()
                             binding.tvValue.text = value

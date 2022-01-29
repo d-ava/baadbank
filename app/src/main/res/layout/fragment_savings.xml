@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.savings.SavingsFragment">
 
+
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"

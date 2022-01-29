@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.savings
 
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,20 +45,17 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
-            addTake00(false)
+            addTakeTest("add")
+//            addTake00(false)
 //            binding.etAdd.text?.clear()
         }
 
         binding.btnTake.setOnClickListener {
-            addTake00(true)
+//            addTake00(true)
+            addTakeTest("take")
 //            binding.etTake.text?.clear()
         }
     }
-
-
-
-
-
 
 
     private fun loadUserInfo() {
@@ -66,7 +64,8 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadUserInfo.collect {
-                    binding.tvWelcome.text = String.format(getString(R.string.welcome_string),it.fullName)
+                    binding.tvWelcome.text =
+                        String.format(getString(R.string.welcome_string), it.fullName)
                     binding.tvBallance.text =
                         BigDecimal(it.savings).setScale(2, RoundingMode.HALF_EVEN).toPlainString()
                             .toString()
@@ -76,6 +75,38 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
             }
         }
     }
+
+
+    private fun addTakeTest(button: String) {
+
+
+            viewModel.addTakeTest(binding.etAdd.text.toString(), button)
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.addTakeTest.collect {
+                        when(it){
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                            is Resource.Success -> {
+
+                                hideLoading()
+
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                val message = it.message
+                                view?.makeSnackbar(message!!)
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+    }
+
 
     private fun addTake00(negative: Boolean) {
         if (negative) {
@@ -126,8 +157,6 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
         }
     }
-
-
 
 
 }

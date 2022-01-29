@@ -13,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,34 +32,26 @@ class SavingsViewModel @Inject constructor(private val repository: SavingsReposi
     }
 
 
-//    private val _loadUserInfo00: MutableSharedFlow<User> = MutableSharedFlow()
-//    val loadUserInfo00: SharedFlow<User> = _loadUserInfo00
+    private val _addTakeTest: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
+    val addTakeTest: SharedFlow<Resource<Double>> = _addTakeTest
 
-//    fun loadUserInfo00(){
-//
-//        viewModelScope.launch {
-//
-//            repository.loadUserInfo00(_loadUserInfo)
-////            _loadUserInfo00.emit(Resource.Loading())
-////
-////            _loadUserInfo00.emit(repository.loadUserInfo00())
-//
-//        }
-//
-//
-//    }
+fun addTakeTest(amount:String, button:String){
+
+    viewModelScope.launch {
+
+        repository.addTakeTest(amount, button).collect {
+            _addTakeTest.emit(it)
+        }
+
+    }
 
 
 
+}
 
-//    fun addTake(amount: Double) {
-//        val totalAmount = savingsBalance.toDouble() + amount
-//        viewModelScope.launch {
-//            repository.addTake(totalAmount)
-//        }
-//
-//
-//    }
+
+
+
 
     private val _addTake: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
     val addTake: SharedFlow<Resource<Double>> = _addTake

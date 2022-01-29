@@ -16,19 +16,53 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.io.IOException
 import javax.inject.Inject
 
 class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
-
-
     private val userReference = databaseReference.child(auth.currentUser?.uid!!)
 
+    fun addTakeTest(newAmount: String, button: String): Flow<Resource<Double>> {
+        return flow {
 
+            try {
+                if (newAmount.isNullOrEmpty()) {
+                    emit(Resource.Error("please enter amount"))
+                } else {
+                    emit(Resource.Loading())
+
+                    var amount = newAmount.toDouble()
+                    if (button == "take") {
+                        amount *= -1
+                    }
+
+                    val totalAmount = savingsBalance.toDouble() + amount
+
+                    if (totalAmount < 0){
+                        emit(Resource.Error("not enough amount"))
+                    }else{
+
+                        userReference.child("savings").setValue(totalAmount).await() //// ??
+                        emit(Resource.Success())
+
+                    }
+
+
+                }
+
+            } catch (e: IOException) {
+                emit(Resource.Error(e.message ?: "error message"))
+            }
+
+        }
+    }
 
 
     fun addTake00(newAmount: Double): Resource<Double> {
@@ -44,43 +78,22 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
         }
     }
 
-//    private fun loadUserInfoFFF(){
-//        val user = auth.currentUser
-//        val userReference = databaseReference.child(user?.uid!!)
-//
-//        userReference.addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val fullName =  snapshot.child("fullName").value.toString()
-//                savingsBalance = snapshot.child("savings").value.toString()
-//                val savings = snapshot.child("savings").value.toString()
-//
-//                binding.tvWelcome.text = "welcome $fullName"
-//                binding.tvBallance.text = "$savingsBalance ₾" //need to set digits limit
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                view?.makeSnackbar("oncancelled")
-//            }
-//        })
-//
-//
-//    }
 
-    suspend fun loadUserInfo00(userFlow: MutableSharedFlow<User>){
+    suspend fun loadUserInfo00(userFlow: MutableSharedFlow<User>) {
         var userInfo = User()
         val user = auth.currentUser
         val userReference = databaseReference.child(user?.uid!!)
         Log.d("---", "userInfo $userInfo")
 
 
-        userReference.addValueEventListener(object: ValueEventListener{
+        userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                 userInfo = User(
+                userInfo = User(
                     fullName = snapshot.child("fullName").value.toString(),
                     savings = snapshot.child("savings").value.toString().toDouble(),
                     phone = snapshot.child("phone").value.toString(),
                     email = auth.currentUser?.email.toString()
-                    )
+                )
                 savingsBalance = snapshot.child("savings").value.toString()
                 Log.d("---", " savings ballance $savingsBalance")
                 Log.d("---", "userInfo 2 $userInfo")
@@ -94,19 +107,13 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
             }
 
 
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
 
 
-
-
-
     }
-
-
 
 
 }
