@@ -1,10 +1,5 @@
 package com.example.baadbank.ui.resetPassword
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -12,14 +7,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.baadbank.R
-import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.databinding.FragmentResetPasswordBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
-import com.example.baadbank.ui.dialogs.passwordChange.PasswordChangeDialogFragmentDirections
 import com.example.baadbank.util.Resource
-import com.squareup.moshi.subtypeOf
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -53,7 +44,7 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
             }
 
             btnResetPassword.setOnClickListener {
-                passwodReset()
+                passwordReset()
             }
 
         }
@@ -61,7 +52,7 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
 
     }
 
-    private fun passwodReset() {
+    private fun passwordReset() {
         val email = binding.etResetPassword.text.toString()
         viewModel.passwordReset(email)
 

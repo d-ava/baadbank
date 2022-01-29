@@ -1,7 +1,6 @@
 package com.example.baadbank.ui.register
 
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -40,47 +39,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             }
         })
     }
-
-    private fun registerUser01() {
-        val fullName = binding.etFullName.text.toString()
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
-        val phoneNumber = binding.etPhoneNumber.text.toString()
-
-        viewModel.registerUser01(
-            email = email,
-            fullName = fullName,
-            password = password,
-            phoneNumber = phoneNumber
-        )
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.userRegisterStatus01.collect() {
-                    when (it) {
-                        is Resource.Loading -> {
-                            showLoading()
-                        }
-                        is Resource.Success -> {
-                            hideLoading()
-                            view?.makeSnackbar("register hurrraaay")
-                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
-
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                            view?.makeSnackbar("${it.message}")
-
-                        }
-                    }
-
-                }
-            }
-        }
-
-
-    }
-
 
     private fun registerUser() {
         val fullName = binding.etFullName.text.toString()
@@ -122,13 +80,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     }
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
+
+
+
+
 
     private fun setListeners() {
         binding.btnRegister.setOnClickListener {
-            registerUser01()
+            registerUser()
         }
 
         binding.ivRegisterBackArrow.setOnClickListener {

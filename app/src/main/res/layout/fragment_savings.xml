@@ -93,20 +93,20 @@
         tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etAdd"
+        android:id="@+id/etAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="@dimen/default_32dp"
         android:background="@drawable/button_shape_line"
-        android:textCursorDrawable="@color/bb_green_01"
-
-
         android:fontFamily="@font/ubuntu_bold"
+
+
         android:imeOptions="actionDone"
         android:inputType="number"
         android:textAlignment="center"
         android:textColor="@color/bb_green_01"
+        android:textCursorDrawable="@color/bb_green_01"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@id/btnTake"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,6 @@
         app:layout_constraintEnd_toStartOf="@id/gdCenterVertical"
         app:layout_constraintTop_toBottomOf="@id/btnAdd"
         tools:ignore="TextContrastCheck" />
-
 
 
     <androidx.constraintlayout.widget.Guideline

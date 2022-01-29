@@ -102,15 +102,15 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
                 viewModel.passwordChange.collect {
                     when (it) {
                         is Resource.Loading -> {
-                            progressBar(true)
+
                         }
                         is Resource.Success -> {
-                            progressBar(false)
+
                             view?.makeSnackbar("password changed")
                             findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
                         }
                         is Resource.Error -> {
-                            progressBar(false)
+
                             binding.btnSaveChanges.text = "${it.message}"
 
                         }
@@ -124,57 +124,10 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun progressBar(visible: Boolean) {
-        binding.progressbar.isVisible = visible
-    }
 
 
-    private fun passwordChangeOld() {
-        if (binding.etCurrentPassword.text!!.isNotEmpty() &&
-            binding.etNewPassword.text!!.isNotEmpty() &&
-            binding.etRepeatPassword.text!!.isNotEmpty()
-        ) {
-            if (binding.etNewPassword.text.toString() == binding.etRepeatPassword.text.toString()
-            ) {
-                val user = auth.currentUser
-                if (user != null && user.email != null) {
-                    val credential = EmailAuthProvider.getCredential(
-                        user.email!!,
-                        binding.etCurrentPassword.text.toString()
-                    )
-
-                    user.reauthenticate(credential).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            view?.makeSnackbar("Re-auth success")
-
-                            user.updatePassword(binding.etNewPassword.text.toString())
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        view?.makeSnackbar("Your password has updated successfully")
-                                        auth.signOut()
-                                    }
-                                }
-                        } else {
-                            binding.btnSaveChanges.text = "Re-auth failed"
-//                            view?.makeSnackbar("Re-auth failed")
-                        }
-                    }
-                } else {
-                    findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
-
-                }
-            } else {
-//                view?.makeSnackbar("Password mismatching")
-                binding.btnSaveChanges.text = "Password mismatching"
-            }
-
-        } else {
-//            view?.makeSnackbar("Please enter all the fields")
-            binding.btnSaveChanges.text = "Please enter all the fields"
-        }
 
 
-    }
 
 
     override fun onDestroy() {

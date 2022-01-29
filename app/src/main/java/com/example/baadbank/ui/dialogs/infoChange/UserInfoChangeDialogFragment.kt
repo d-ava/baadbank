@@ -85,14 +85,7 @@ class UserInfoChangeDialogFragment : BottomSheetDialogFragment() {
 
     }
 
-//    private fun saveUserInformation() {
-//        val user = auth.currentUser
-//        val userReference = databaseReference.child(user?.uid!!)
-//
-//        userReference.child("fullName").setValue(binding.etFullName.text.toString())
-//        userReference.child("phoneNumber").setValue(binding.etPhoneNumber.text.toString())
-//
-//    }
+
 
 
     override fun onDestroy() {

@@ -1,14 +1,10 @@
 package com.example.baadbank.ui.savings
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.data.User
 import com.example.baadbank.repository.SavingsRepositoryImpl
 import com.example.baadbank.util.Resource
-import com.example.baadbank.util.Utils
-import com.example.baadbank.util.Utils.savingsBalance
-import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,20 +23,20 @@ class SavingsViewModel @Inject constructor(private val repository: SavingsReposi
 
     fun loadUserInfo() {
         viewModelScope.launch {
-            repository.loadUserInfo00(_loadUserInfo)
+            repository.loadUserInfo(_loadUserInfo)
         }
     }
 
 
-    private val _addTakeTest: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
-    val addTakeTest: SharedFlow<Resource<Double>> = _addTakeTest
+    private val _addTake: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
+    val addTake: SharedFlow<Resource<Double>> = _addTake
 
-fun addTakeTest(amount:String, button:String){
+fun addTake(amount:String, button:String){
 
     viewModelScope.launch {
 
-        repository.addTakeTest(amount, button).collect {
-            _addTakeTest.emit(it)
+        repository.addTake(amount, button).collect {
+            _addTake.emit(it)
         }
 
     }
@@ -53,26 +49,7 @@ fun addTakeTest(amount:String, button:String){
 
 
 
-    private val _addTake: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
-    val addTake: SharedFlow<Resource<Double>> = _addTake
 
-    fun addTake00(amount: Double){
-        val totalAmount = savingsBalance.toDouble() + amount
-
-        viewModelScope.launch {
-            if (amount.isNaN()){
-                _addTake.emit(Resource.Error("please enter amount"))
-            }
-            if (totalAmount<0){
-                _addTake.emit(Resource.Error("not enough amount"))
-            }else{
-                _addTake.emit(Resource.Loading())
-                repository.addTake00(totalAmount)
-                _addTake.emit(Resource.Success())
-            }
-
-        }
-    }
 
 }
 

@@ -15,16 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CryptoViewModel @Inject constructor(private val repository: CryptoRepository) : ViewModel() {
 
-    private val _loadCoins: MutableSharedFlow<List<CoinGecko>> = MutableSharedFlow()
-    val loadCoins:SharedFlow<List<CoinGecko>> = _loadCoins
 
-
-    fun loadCoins() {
-
-        viewModelScope.launch {
-            repository.getCoins().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
-            }
-        }
 
     val loadCoins03: SharedFlow<Resource<List<CoinGecko>>> =
         repository.getCoins().shareIn(viewModelScope, SharingStarted.WhileSubscribed())

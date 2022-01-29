@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::inflate) {
 
-    var auth00: FirebaseAuth = FirebaseAuth.getInstance()
+//    var auth00: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val viewModel: InfoViewModel by activityViewModels()
 
@@ -35,7 +35,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
         loadUserInfo()
         setListeners()
         onBackPress()
-//        showImage2()
+
 
     }
 
@@ -82,7 +82,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::infl
 
 
             btnSignOut.setOnClickListener {
-                auth00.signOut()
+                auth.signOut()
                 findNavController().navigate(InfoFragmentDirections.actionInfoFragmentToLoginFragment())
             }
 

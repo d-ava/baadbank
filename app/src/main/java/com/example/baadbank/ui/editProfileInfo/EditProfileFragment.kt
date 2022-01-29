@@ -1,10 +1,8 @@
 package com.example.baadbank.ui.editProfileInfo
 
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.baadbank.databinding.FragmentEditProfileBinding
-import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

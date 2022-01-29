@@ -25,7 +25,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
 
 
         setRecycler()
-//        adapterCrypto.setData(cryptoBody)
+
 
         getCoins()
 

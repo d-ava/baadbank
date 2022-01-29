@@ -32,8 +32,7 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
 
         setRecycler()
 
-//        getCurrency00()
-//        getCommercialRates()
+
 
 
         setCommericalRates()
@@ -104,7 +103,7 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
 
                         }
                         is Resource.Success -> {
-//                            Log.d("---", "commercial rates fragment ${it.data!!}")
+
                             for (item in it.data!!.commercialRatesList) {
                                 if (item.currency == "USD") {
                                     binding.tvUsdBuyValue.text = convertRates(item.buy)

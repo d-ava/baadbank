@@ -1,6 +1,5 @@
 package com.example.baadbank.ui.savings
 
-import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,16 +24,12 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private val viewModel: SavingsViewModel by activityViewModels()
 
-    lateinit var auth: FirebaseAuth
-    lateinit var databaseReference: DatabaseReference
-    lateinit var database: FirebaseDatabase
+
 
 
     override fun start() {
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database.reference.child("profile")
+
 
 
 
@@ -45,15 +40,15 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
 
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
-            addTakeTest("add")
-//            addTake00(false)
-//            binding.etAdd.text?.clear()
+            addTake("add")
+
+            binding.etAmount.text?.clear()
         }
 
         binding.btnTake.setOnClickListener {
-//            addTake00(true)
-            addTakeTest("take")
-//            binding.etTake.text?.clear()
+
+            addTake("take")
+            binding.etAmount.text?.clear()
         }
     }
 
@@ -77,13 +72,13 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     }
 
 
-    private fun addTakeTest(button: String) {
+    private fun addTake(button: String) {
 
 
-            viewModel.addTakeTest(binding.etAdd.text.toString(), button)
+            viewModel.addTake(binding.etAmount.text.toString(), button)
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.addTakeTest.collect {
+                    viewModel.addTake.collect {
                         when(it){
                             is Resource.Loading -> {
                                 showLoading()
@@ -108,55 +103,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     }
 
 
-    private fun addTake00(negative: Boolean) {
-        if (negative) {
 
-            viewModel.addTake00(binding.etAdd.text.toString().toDouble() * -1)
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.addTake.collect {
-                        when (it) {
-                            is Resource.Loading -> {
-                                showLoading()
-                            }
-                            is Resource.Success -> {
-                                hideLoading()
-                            }
-                            is Resource.Error -> {
-                                hideLoading()
-                                view?.makeSnackbar("${it.message}")
-                            }
-
-                        }
-                    }
-                }
-            }
-
-
-        } else {
-            viewModel.addTake00(binding.etAdd.text.toString().toDouble())
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.addTake.collect {
-                        when (it) {
-                            is Resource.Loading -> {
-                                showLoading()
-                            }
-                            is Resource.Success -> {
-                                hideLoading()
-                            }
-                            is Resource.Error -> {
-                                hideLoading()
-                                view?.makeSnackbar("${it.message}")
-                            }
-
-                        }
-                    }
-                }
-            }
-
-        }
-    }
 
 
 }

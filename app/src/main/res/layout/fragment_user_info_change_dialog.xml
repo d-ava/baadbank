@@ -44,8 +44,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/register_full_name_hint"
+
             android:imeOptions="actionDone"
-            android:inputType="none"
+            android:inputType="text"
             android:minHeight="48dp"
             tools:ignore="TextContrastCheck" />
 

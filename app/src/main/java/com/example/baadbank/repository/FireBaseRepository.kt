@@ -57,7 +57,7 @@ class FireBaseRepository @Inject constructor() {
 
     }
 
-    suspend fun loginUser01(email: String, password: String): Flow<Resource<AuthResult>>{
+    suspend fun loginUser(email: String, password: String): Flow<Resource<AuthResult>>{
         return flow {
                try {
                    emit(Resource.Loading())
@@ -74,41 +74,11 @@ class FireBaseRepository @Inject constructor() {
 
 
 
-    suspend fun loginUser(email: String, password: String): Resource<AuthResult> {
-        var auth00: FirebaseAuth = FirebaseAuth.getInstance()
-        return withContext(IO) {
-            safeCall {
 
-                val result =
-                    auth00.signInWithEmailAndPassword(email, password).await()
-                Resource.Success(result)
 
-            }
-        }
-    }
+
 
     suspend fun registerUser(
-        fullName: String,
-        userEmail: String,
-        phoneNumber: String,
-        userPassword: String
-    ): Resource<AuthResult> {
-        return withContext(IO) {
-            safeCall {
-                val registrationResult =
-                    auth.createUserWithEmailAndPassword(userEmail, userPassword).await()
-
-
-                val userId = registrationResult.user?.uid!!
-                val newUser =
-                    User(fullName = fullName, phone = phoneNumber, email = userEmail, savings = 0.0)
-                databaseReference.child(userId).setValue(newUser)
-                Resource.Success(registrationResult)
-            }
-        }
-    }
-
-    suspend fun registerUser01(
         fullName: String,
         userEmail: String,
         phoneNumber: String,

@@ -47,14 +47,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
 
 
-    private fun loginUser01() {
+    private fun loginUser() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
-        viewModel.logIn04(email, password)
+        viewModel.logIn(email, password)
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.userLogInStatus03.collect() {
+                viewModel.userLogInStatus.collect() {
                     when (it) {
                         is Resource.Loading -> {
                             showLoading()
@@ -87,7 +87,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.apply {
 
             btnLogin.setOnClickListener {
-                loginUser01()
+                loginUser()
 
             }
             tvRegister.setOnClickListener {

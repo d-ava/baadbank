@@ -18,6 +18,9 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
     ViewModel() {
 
 
+
+
+
     private val _userRegisterStatus: MutableSharedFlow<Resource<AuthResult>> = MutableSharedFlow()
     val userRegisterStatus: SharedFlow<Resource<AuthResult>> = _userRegisterStatus
 
@@ -28,6 +31,7 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
         phoneNumber: String,
         password: String
     ) {
+
         viewModelScope.launch {
             val error =
                 if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
@@ -45,53 +49,13 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
             _userRegisterStatus.emit(Resource.Loading())
 
 
-            val registrationResult = repository.registerUser(
-                fullName = fullName,
-                userEmail = email,
-                phoneNumber = phoneNumber,
-                userPassword = password
-            )
-            _userRegisterStatus.emit(registrationResult)
-
-        }
-    }
-
-
-    private val _userRegisterStatus01: MutableSharedFlow<Resource<AuthResult>> = MutableSharedFlow()
-    val userRegisterStatus01: SharedFlow<Resource<AuthResult>> = _userRegisterStatus01
-
-
-    fun registerUser01(
-        fullName: String,
-        email: String,
-        phoneNumber: String,
-        password: String
-    ) {
-
-        viewModelScope.launch {
-            val error =
-                if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
-                    "Empty Strings"
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    "Not valid email"
-                } else {
-                    null
-                }
-
-            error?.let {
-                _userRegisterStatus01.emit(Resource.Error(it))
-
-            }
-            _userRegisterStatus01.emit(Resource.Loading())
-
-
-            repository.registerUser01(
+            repository.registerUser(
                 fullName = fullName,
                 userEmail = email,
                 phoneNumber = phoneNumber,
                 userPassword = password
             ).collect {
-                _userRegisterStatus01.emit(it)
+                _userRegisterStatus.emit(it)
             }
 
 
