@@ -2,6 +2,9 @@ package com.example.baadbank.repository
 
 import android.util.Log
 import com.example.baadbank.data.User
+import com.example.baadbank.util.Constants.FULL_NAME
+import com.example.baadbank.util.Constants.PHONE
+import com.example.baadbank.util.Constants.SAVINGS
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
 import com.example.baadbank.util.Utils.databaseReference
@@ -24,7 +27,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
     private val userReference = databaseReference.child(auth.currentUser?.uid!!)
 
-    fun addTake(newAmount: String, button: String): Flow<Resource<Double>> {
+    override fun addTake(newAmount: String, button: String): Flow<Resource<Double>> {
         return flow {
 
             try {
@@ -44,7 +47,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
                         emit(Resource.Error("not enough amount"))
                     }else{
 
-                        userReference.child("savings").setValue(totalAmount).await() //// ??
+                        userReference.child(SAVINGS).setValue(totalAmount).await() //// ??
                         emit(Resource.Success())
 
                     }
@@ -62,33 +65,32 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
 
-    fun saveUserInfo(name: String, phone: String) {
+    override fun saveUserInfo(name: String, phone: String) {
         CoroutineScope(IO).launch {
-            userReference.child("phone").setValue(phone)
-            userReference.child("fullName").setValue(name)
+            userReference.child(PHONE).setValue(phone)
+            userReference.child(FULL_NAME).setValue(name)
 
         }
     }
 
 
-    suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
+    override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
         var userInfo = User()
         val user = auth.currentUser
         val userReference = databaseReference.child(user?.uid!!)
-        Log.d("---", "userInfo $userInfo")
+
 
 
         userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userInfo = User(
-                    fullName = snapshot.child("fullName").value.toString(),
-                    savings = snapshot.child("savings").value.toString().toDouble(),
-                    phone = snapshot.child("phone").value.toString(),
+                    fullName = snapshot.child(FULL_NAME).value.toString(),
+                    savings = snapshot.child(SAVINGS).value.toString().toDouble(),
+                    phone = snapshot.child(PHONE).value.toString(),
                     email = auth.currentUser?.email.toString()
                 )
-                savingsBalance = snapshot.child("savings").value.toString()
-                Log.d("---", " savings ballance $savingsBalance")
-                Log.d("---", "userInfo 2 $userInfo")
+                savingsBalance = snapshot.child(SAVINGS).value.toString()
+
 
                 CoroutineScope(IO).launch {
 

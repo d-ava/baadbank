@@ -32,7 +32,7 @@ object CurrencyNetworkModule {
     @Singleton
     @Provides
     @Named("OkHttpCurrency")
-    fun client00(): OkHttpClient {
+    fun provideClientCurrency(): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addInterceptor(CurrencyInterceptor())
         }.build()
@@ -103,7 +103,7 @@ object CurrencyNetworkModule {
 
     @Singleton
     @Provides
-    fun apiCurrency(@Named("Currency") retrofit: Retrofit.Builder): CurrencyApi {
+    fun provideApiCurrency(@Named("Currency") retrofit: Retrofit.Builder): CurrencyApi {
         return retrofit.build().create(CurrencyApi::class.java)
 
 
@@ -127,7 +127,7 @@ object CurrencyNetworkModule {
 
     @Singleton
     @Provides
-    fun apiCoinGecko(@Named("Coin") retrofit: Retrofit.Builder): CoinGeckoApi {
+    fun provideApiCoinGecko(@Named("Coin") retrofit: Retrofit.Builder): CoinGeckoApi {
         return retrofit.build().create(CoinGeckoApi::class.java)
 
 
@@ -150,7 +150,7 @@ object CurrencyNetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiCoinGecko(@Named("Convert") retrofit: Retrofit.Builder): ConvertApi {
+    fun provideApiConvert(@Named("Convert") retrofit: Retrofit.Builder): ConvertApi {
         return retrofit.build().create(ConvertApi::class.java)
 
 
@@ -176,7 +176,7 @@ object CurrencyNetworkModule {
 
     @Singleton
     @Provides
-    fun apiCommercial(@Named("Commercial") retrofit: Retrofit.Builder): CommercialApi {
+    fun provideApiCommercial(@Named("Commercial") retrofit: Retrofit.Builder): CommercialApi {
         return retrofit.build().create(CommercialApi::class.java)
 
 

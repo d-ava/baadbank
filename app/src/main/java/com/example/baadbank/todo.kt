@@ -13,7 +13,7 @@ package com.example.baadbank
 //savings minus value - დათო
 //register success loading - დათო
 //continue as guest looking cool - დათო
-//Todo Welcome screen - ანა
+//Welcome screen - ანა
 //currency fragment UI - დათო.  ყიდვა გაყიდვა. API
 //convert fragment make it easy
 //crypto item chain - დათო

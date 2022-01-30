@@ -6,8 +6,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CoinGecko(
-    @Json(name = "id")
-    val id: String,
+//    @Json(name = "id")
+//    val id: String,
     @Json(name = "symbol")
     val symbol: String,
     @Json(name = "name")

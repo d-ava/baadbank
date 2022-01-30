@@ -90,7 +90,7 @@ class CurrencyRepository @Inject constructor(
                     val response = convertApi.convertCurrency()
                     val body = response.body()
                     if (response.isSuccessful && body != null) {
-                        Log.d("---", "from repo ${body.value}")
+
                         emit(Resource.Success(body.value))
                     } else {
                         emit(Resource.Error(response.message()))

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.ItemCalculatorBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewHolder>() {
 
@@ -50,8 +52,12 @@ class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewH
                 tvConvertedValue.text = model.result
                 tvFromCurrency.text = model.fromCurrency
                 tvToCurrency.text = model.toCurrency
+
             }
 
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
+            binding.tvConverted.text = currentDate
 
         }
 

@@ -13,11 +13,14 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_16dp">
 
+
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
+
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -5,11 +5,9 @@ import com.example.baadbank.data.User
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
 import com.example.baadbank.util.Utils.databaseReference
-import com.example.baadbank.util.safeCall
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -65,7 +63,7 @@ class FireBaseRepository @Inject constructor() {
                        auth.signInWithEmailAndPassword(email, password).await()
                    emit(Resource.Success(result))
                }catch (e:Exception) {
-                   emit(Resource.Error(e.message ?: "uknown error"))
+                   emit(Resource.Error(e.message ?: "unknown error"))
 
                }
         }.flowOn(IO)
@@ -97,7 +95,7 @@ class FireBaseRepository @Inject constructor() {
                 databaseReference.child(userId).setValue(newUser)
                 emit(Resource.Success(registrationResult))
             }catch (e:FirebaseException){
-                emit(Resource.Error(e.message ?: "register message"))
+                emit(Resource.Error(e.message ?: "unknown error"))
             }
         }.flowOn(IO)
     }
