@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class CryptoViewModel @Inject constructor(private val repository: CryptoRepositoryImpl) : ViewModel() {
+class CryptoViewModel @Inject constructor(private val repository: CryptoRepository) : ViewModel() {
 
 
 

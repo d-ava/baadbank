@@ -1,11 +1,13 @@
 package com.example.baadbank.di
 
-//import com.example.baadbank.network.CoinGeckoApi
+
 import com.example.baadbank.BuildConfig
 import com.example.baadbank.network.CoinGeckoApi
 import com.example.baadbank.network.CommercialApi
 import com.example.baadbank.network.ConvertApi
 import com.example.baadbank.network.CurrencyApi
+import com.example.baadbank.repository.CryptoRepository
+import com.example.baadbank.repository.CryptoRepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -27,6 +29,13 @@ object CurrencyNetworkModule {
 
     private const val BASE_URL = "https://test-api.tbcbank.ge/v1/"
     private const val BASE_URL_COIN_GECKO = "https://api.coingecko.com/api/v3/"
+
+
+    @Singleton
+    @Provides
+    fun provideCryptoRepositoryImpl(
+        coinApi: CoinGeckoApi
+    )= CryptoRepositoryImpl(coinApi) as CryptoRepository
 
 
     @Singleton

@@ -79,7 +79,7 @@ class CurrencyRepository @Inject constructor(
 
 
 
-    suspend fun getCurrencyConverter03(): Flow<Resource<Double>> {
+    fun getCurrencyConverter(): Flow<Resource<Double>> {
         return flow {
             try {
 
@@ -95,12 +95,7 @@ class CurrencyRepository @Inject constructor(
                     } else {
                         emit(Resource.Error(response.message()))
                     }
-
-
                 }
-
-
-
             } catch (e: IOException) {
                 emit(Resource.Error(e.message ?: "error message"))
             }

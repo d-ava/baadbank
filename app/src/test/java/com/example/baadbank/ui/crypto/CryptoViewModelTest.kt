@@ -3,6 +3,7 @@ package com.example.baadbank.ui.crypto
 import com.example.baadbank.repository.FakeCryptoRepositoryImpl
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 
 class CryptoViewModelTest{
 
@@ -12,5 +13,8 @@ class CryptoViewModelTest{
     fun setup(){
         viewModel = CryptoViewModel(FakeCryptoRepositoryImpl())
     }
+
+    @Test
+    fun net(){}
 
 }
