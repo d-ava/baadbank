@@ -1,13 +1,11 @@
 package com.example.baadbank.ui.calculator
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.repository.CurrencyRepository
 import com.example.baadbank.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -16,11 +14,11 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
     ViewModel() {
 
 
-    private val _loadCalculatedValue: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
-    val loadCalculatedValue: SharedFlow<Resource<Double>> = _loadCalculatedValue
+    //private val _loadCalculatedValue: MutableSharedFlow<Resource<Double>> = MutableSharedFlow()
+    //val loadCalculatedValue: SharedFlow<Resource<Double>> = _loadCalculatedValue
 
 
-    fun calculateValue() {
+    /*fun calculateValue() {
 
 
         viewModelScope.launch {
@@ -33,9 +31,11 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
             }
 
         }
-    }
+    } */
 
 
+
+    val result = repository.getCurrencyConverter()
 
 
 

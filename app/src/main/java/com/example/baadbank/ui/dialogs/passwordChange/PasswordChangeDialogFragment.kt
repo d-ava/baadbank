@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.dialogs.passwordChange
 
 import android.app.Dialog
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -102,10 +103,11 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
                 viewModel.passwordChange.collect {
                     when (it) {
                         is Resource.Loading -> {
-
+                            binding.progressbar.visibility = View.VISIBLE
                         }
                         is Resource.Success -> {
 
+                            binding.progressbar.visibility = View.GONE
                             view?.makeSnackbar("password changed")
                             findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
                         }

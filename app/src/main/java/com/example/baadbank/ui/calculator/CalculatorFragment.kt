@@ -57,7 +57,7 @@ class CalculatorFragment :
 
 
             binding.etAmount.text?.clear()
-//            currencyConverter()
+            currencyConverter()
             currencyConverter000()
 
         }
@@ -71,6 +71,7 @@ class CalculatorFragment :
                 viewModel.loadCalculatedValue000.collect {
                     when (it) {
                         is Resource.Loading -> {
+                            showLoading()
                         }
                         is Resource.Success -> {
 
@@ -93,6 +94,7 @@ class CalculatorFragment :
 
                         }
                         is Resource.Error -> {
+                            hideLoading()
                         }
                     }
                 }
@@ -101,8 +103,49 @@ class CalculatorFragment :
 
     }
 
+    private fun currencyConverter()
+    {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.result.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
+                        is Resource.Success -> {
 
-    private fun currencyConverter() {
+                            hideLoading()
+                            Log.d("---", "collect from fragment - ${it.data}")
+
+                            val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
+                                .toPlainString().toString()
+                            binding.tvValue.text = value
+
+                            result = value
+
+
+
+                            convertedList.add(Converted(fromCurrency, toCurrency, amount, result))
+
+                            calculatorAdapter.setData(convertedList)
+
+
+
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+    /*private fun currencyConverter() {
         viewModel.calculateValue()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -141,6 +184,8 @@ class CalculatorFragment :
             }
         }
     }
+    */
+
 
 
     private fun setRecycler() {

@@ -23,21 +23,27 @@ class PasswordChangeViewModel @Inject constructor(private val repository: FireBa
 
     fun passwordChange(currentPassword: String, newPassword: String, repeatNewPassword: String) {
         viewModelScope.launch {
-            if (currentPassword.isNotEmpty() && newPassword.isNotEmpty() && repeatNewPassword.isNotEmpty()) {
-                if (newPassword == repeatNewPassword) {
-                    delay(500)
-                  _passwordChange.emit(Resource.Loading())
-                   repository.changePassword00(currentPassword, newPassword)
-                    Log.d("---", "Password changed")
-                    delay(500)
-                    _passwordChange.emit(Resource.Success())
+            try
+            {
+                if (currentPassword.isNotEmpty() && newPassword.isNotEmpty() && repeatNewPassword.isNotEmpty()) {
+                    if (newPassword == repeatNewPassword) {
+                        delay(500)
+                        _passwordChange.emit(Resource.Loading())
+                        repository.changePassword00(currentPassword, newPassword)
+                        Log.d("---", "Password changed")
+                        delay(500)
+                        _passwordChange.emit(Resource.Success())
+                    }else{
+                        Log.d("---", "Password mismatching")
+                        _passwordChange.emit(Resource.Error("Password mismatching"))
+                    }
                 }else{
-                    Log.d("---", "Password mismatching")
-                    _passwordChange.emit(Resource.Error("Password mismatching"))
+                    Log.d("---", "Please enter all the fields")
+                    _passwordChange.emit(Resource.Error("Please enter all the fields"))
                 }
-            }else{
-                Log.d("---", "Please enter all the fields")
-                _passwordChange.emit(Resource.Error("Please enter all the fields"))
+            } catch (e:Exception)
+            {
+                _passwordChange.emit(Resource.Error(e.message!!))
             }
         }
 
