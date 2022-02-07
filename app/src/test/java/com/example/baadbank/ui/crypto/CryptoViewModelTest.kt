@@ -3,11 +3,14 @@ package com.example.baadbank.ui.crypto
 import com.example.baadbank.repository.FakeCryptoRepositoryImpl
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class CryptoViewModelTest{
 
     private lateinit var viewModel: CryptoViewModel
+
+
 
     @Before
     fun setup(){
@@ -15,6 +18,9 @@ class CryptoViewModelTest{
     }
 
     @Test
-    fun net(){}
+    fun ttttt (){
+
+
+    }
 
 }

@@ -157,6 +157,9 @@ dependencies {
     //datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    //bottom animation bar
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
+
 }
 
 kapt{

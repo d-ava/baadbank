@@ -34,8 +34,8 @@
         android:layout_width="54dp"
         android:layout_height="9dp"
         android:layout_marginStart="@dimen/default_8dp"
-        android:scaleType="fitStart"
         android:contentDescription="@string/app_s_name"
+        android:scaleType="fitStart"
         android:src="@drawable/ic_baadbanklogo"
         app:layout_constraintBottom_toTopOf="@id/topLine"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,17 +63,26 @@
 
         />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+
+    <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/homeNavTab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_60dp"
         android:background="@color/bb_white"
-        app:itemIconSize="@dimen/default_30dp"
-        app:itemIconTint="@animator/tab_items_color"
-        app:itemTextColor="@animator/tab_items_color"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/home_tabs_guest" />
+        app:abb_iconSize="@dimen/default_30dp"
+        app:abb_indicatorAnimation="slide"
+        app:abb_indicatorAppearance="square"
+        app:abb_indicatorColor="@color/bb_green_01"
+        app:abb_indicatorHeight="2dp"
+        app:abb_indicatorMargin="@dimen/default_16dp"
+        app:abb_selectedIndex="0"
+        app:abb_selectedTabType="text"
+        app:abb_textStyle="bold"
+        app:abb_tabColor="@color/bb_grey"
+        app:abb_tabColorSelected="@color/bb_green_01"
+        app:abb_tabs="@menu/home_tabs_guest"
+        app:abb_textAppearance="@font/ubuntu_bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

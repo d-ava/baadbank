@@ -6,18 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.ItemCalculatorBinding
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewHolder>() {
 
+
     private val list: MutableList<Converted> = mutableListOf()
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun setData(list: List<Converted>) {
         this.list.clear()
         this.list.addAll(list)
-        notifyDataSetChanged()
+        notifyItemChanged(-1)
     }
 
     override fun onCreateViewHolder(
@@ -45,8 +48,11 @@ class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewH
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var model: Converted
 
+        @SuppressLint("SimpleDateFormat")
         fun onBind() {
-            model = list[adapterPosition]
+
+
+            model = list[absoluteAdapterPosition]
             binding.apply {
                 tvAmount.text = model.amount
                 tvConvertedValue.text = model.result

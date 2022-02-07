@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
                 viewModel.isLoading.value
             }
         }
+
+
+
         setContentView(R.layout.activity_main)
 
 

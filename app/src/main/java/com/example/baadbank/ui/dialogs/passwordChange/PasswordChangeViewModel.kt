@@ -27,18 +27,18 @@ class PasswordChangeViewModel @Inject constructor(private val repository: FireBa
             {
                 if (currentPassword.isNotEmpty() && newPassword.isNotEmpty() && repeatNewPassword.isNotEmpty()) {
                     if (newPassword == repeatNewPassword) {
-                        delay(500)
+
                         _passwordChange.emit(Resource.Loading())
                         repository.changePassword00(currentPassword, newPassword)
-                        Log.d("---", "Password changed")
-                        delay(500)
+
+
                         _passwordChange.emit(Resource.Success())
                     }else{
-                        Log.d("---", "Password mismatching")
+
                         _passwordChange.emit(Resource.Error("Password mismatching"))
                     }
                 }else{
-                    Log.d("---", "Please enter all the fields")
+
                     _passwordChange.emit(Resource.Error("Please enter all the fields"))
                 }
             } catch (e:Exception)
@@ -52,46 +52,3 @@ class PasswordChangeViewModel @Inject constructor(private val repository: FireBa
 
 }
 
-//
-//if (binding.etCurrentPassword.text!!.isNotEmpty() &&
-//binding.etNewPassword.text!!.isNotEmpty() &&
-//binding.etRepeatPassword.text!!.isNotEmpty()
-//) {
-//    if (binding.etNewPassword.text.toString() == binding.etRepeatPassword.text.toString()
-//    ) {
-//        val user = auth.currentUser
-//        if (user != null && user.email != null) {
-//            val credential = EmailAuthProvider.getCredential(
-//                user.email!!,
-//                binding.etCurrentPassword.text.toString()
-//            )
-//
-//            user.reauthenticate(credential).addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    view?.makeSnackbar("Re-auth success")
-//
-//                    user.updatePassword(binding.etNewPassword.text.toString())
-//                        .addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                view?.makeSnackbar("Your password has updated successfully")
-//                                auth.signOut()
-//                            }
-//                        }
-//                } else {
-//                    binding.btnSaveChanges.text = "Re-auth failed"
-////                            view?.makeSnackbar("Re-auth failed")
-//                }
-//            }
-//        } else {
-//            findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
-//
-//        }
-//    } else {
-////                view?.makeSnackbar("Password mismatching")
-//        binding.btnSaveChanges.text = "Password mismatching"
-//    }
-//
-//} else {
-////            view?.makeSnackbar("Please enter all the fields")
-//    binding.btnSaveChanges.text = "Please enter all the fields"
-//}

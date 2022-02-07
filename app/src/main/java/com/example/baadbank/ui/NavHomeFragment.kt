@@ -50,6 +50,7 @@ class NavHomeFragment : BaseFragment<FragmentNavHomeBinding>(FragmentNavHomeBind
         binding.homeNavTab.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.savingsScreen -> {
+
                     binding.homeNavContainer.findNavController().navigate(R.id.toSavingsScreen)
                     true
                 }

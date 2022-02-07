@@ -102,7 +102,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
         })
 

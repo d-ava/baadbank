@@ -4,14 +4,11 @@
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/bb_white</item>
 
-        <item name="android:animatedImageDrawable">@drawable/animation_logo</item>
-
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic__logo_splash</item>
 
 
 
 
         <item name="postSplashScreenTheme">@style/Theme.Baadbank</item>
     </style>
-
-
 </resources>

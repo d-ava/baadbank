@@ -8,6 +8,7 @@ import com.example.baadbank.util.Utils.databaseReference
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,8 +24,7 @@ class FireBaseRepository @Inject constructor() {
     private val user = auth.currentUser
 
 
-    suspend fun resetPassword(email:String):Resource<String>
-    {
+    suspend fun resetPassword(email: String): Resource<String> {
         return withContext(IO)
         {
             auth.sendPasswordResetEmail(email).await()
@@ -36,10 +36,10 @@ class FireBaseRepository @Inject constructor() {
 
     suspend fun changePassword00(currentPassword: String, newPassword: String): Resource<String> {
 
-
+        val ioDispatcher = Dispatchers.IO
         val credential = EmailAuthProvider.getCredential(user?.email!!, currentPassword)
 
-        return withContext(IO) {
+        return withContext(ioDispatcher) {
 
 
             user.reauthenticate(credential).await()
@@ -55,25 +55,20 @@ class FireBaseRepository @Inject constructor() {
 
     }
 
-    suspend fun loginUser(email: String, password: String): Flow<Resource<AuthResult>>{
+    suspend fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
-               try {
-                   emit(Resource.Loading())
-                   val result =
-                       auth.signInWithEmailAndPassword(email, password).await()
-                   emit(Resource.Success(result))
-               }catch (e:Exception) {
-                   emit(Resource.Error(e.message ?: "unknown error"))
+            try {
+                emit(Resource.Loading())
+                val result =
+                    auth.signInWithEmailAndPassword(email, password).await()
+                emit(Resource.Success(result))
+            } catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "unknown error"))
 
-               }
+            }
         }.flowOn(IO)
 
     }
-
-
-
-
-
 
 
     suspend fun registerUser(
@@ -94,7 +89,7 @@ class FireBaseRepository @Inject constructor() {
                     User(fullName = fullName, phone = phoneNumber, email = userEmail, savings = 0.0)
                 databaseReference.child(userId).setValue(newUser)
                 emit(Resource.Success(registrationResult))
-            }catch (e:FirebaseException){
+            } catch (e: FirebaseException) {
                 emit(Resource.Error(e.message ?: "unknown error"))
             }
         }.flowOn(IO)

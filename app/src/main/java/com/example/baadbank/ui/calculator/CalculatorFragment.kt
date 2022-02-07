@@ -58,50 +58,12 @@ class CalculatorFragment :
 
             binding.etAmount.text?.clear()
             currencyConverter()
-            currencyConverter000()
+
 
         }
     }
 
-    private fun currencyConverter000() {
 
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.loadCalculatedValue000.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                            showLoading()
-                        }
-                        is Resource.Success -> {
-
-                            hideLoading()
-                            Log.d("---", "collect from fragment - ${it.data}")
-
-                            val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
-                                .toPlainString().toString()
-                            binding.tvValue.text = value
-
-                            result = value
-
-
-
-                            convertedList.add(Converted(fromCurrency, toCurrency, amount, result))
-
-                            calculatorAdapter.setData(convertedList)
-
-
-
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                        }
-                    }
-                }
-            }
-        }
-
-    }
 
     private fun currencyConverter()
     {
@@ -145,46 +107,6 @@ class CalculatorFragment :
 
 
 
-    /*private fun currencyConverter() {
-        viewModel.calculateValue()
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.loadCalculatedValue.collect {
-
-                    when (it) {
-                        is Resource.Loading -> {
-
-                            showLoading()
-                        }
-                        is Resource.Success -> {
-                            hideLoading()
-                            Log.d("---", "collect from fragment - ${it.data}")
-
-                            val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
-                                .toPlainString().toString()
-                            binding.tvValue.text = value
-
-                            result = value
-
-
-
-                            convertedList.add(Converted(fromCurrency, toCurrency, amount, result))
-
-                            calculatorAdapter.setData(convertedList)
-
-
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                            view?.makeSnackbar("${it.message}")
-                        }
-
-                    }
-                }
-            }
-        }
-    }
-    */
 
 
 
@@ -245,7 +167,7 @@ class CalculatorFragment :
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+
             }
         }
 

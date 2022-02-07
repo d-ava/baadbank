@@ -1,13 +1,11 @@
 package com.example.baadbank.ui.dialogs.passwordChange
 
 import android.app.Dialog
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,17 +14,16 @@ import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentPasswordChangeDialogBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.util.Resource
-import com.example.baadbank.util.Utils.auth
+import com.example.baadbank.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.auth.EmailAuthProvider
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
-
+    private var loadingDialog: Dialog? = null
     private var _binding: FragmentPasswordChangeDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -70,28 +67,14 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
     private fun setListeners() {
         binding.btnSaveChanges.setOnClickListener {
-            passwordChange00()
+            passwordChange()
 
 
         }
     }
+
 
     private fun passwordChange() {
-        val currentPassword = binding.etCurrentPassword.text.toString()
-        val newPassword = binding.etNewPassword.text.toString()
-        val repeatNewPassword = binding.etRepeatPassword.text.toString()
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.passwordChange(currentPassword, newPassword, repeatNewPassword)
-            }
-        }
-
-
-    }
-
-
-    private fun passwordChange00() {
 
         val currentPassword = binding.etCurrentPassword.text.toString()
         val newPassword = binding.etNewPassword.text.toString()
@@ -103,16 +86,15 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
                 viewModel.passwordChange.collect {
                     when (it) {
                         is Resource.Loading -> {
-                            binding.progressbar.visibility = View.VISIBLE
+                            showLoading()
                         }
                         is Resource.Success -> {
-
-                            binding.progressbar.visibility = View.GONE
+                            hideLoading()
                             view?.makeSnackbar("password changed")
                             findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
                         }
                         is Resource.Error -> {
-
+                            hideLoading()
                             binding.btnSaveChanges.text = "${it.message}"
 
                         }
@@ -126,10 +108,15 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
 
     }
 
+    fun hideLoading() {
+        loadingDialog?.let { if (it.isShowing) it.cancel() }
+    }
 
+    fun showLoading() {
+        hideLoading()
+        loadingDialog = Utils.showLoadingDialog(requireContext())
 
-
-
+    }
 
 
     override fun onDestroy() {

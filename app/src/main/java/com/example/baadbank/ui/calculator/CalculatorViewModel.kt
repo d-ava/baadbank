@@ -39,14 +39,10 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
 
 
 
-    val loadCalculatedValue000: SharedFlow<Resource<Double>> =
-        repository.getCurrencyConverter().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+//    val loadCalculatedValue000: SharedFlow<Resource<Double>> =
+//        repository.getCurrencyConverter().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
 
-//    val loadCalculatedValue000: StateFlow<Resource<Double>> =
-//        repository.getCurrencyConverter().stateIn(
-//            viewModelScope,
-//            SharingStarted.WhileSubscribed(),
-//            Resource.Success(0.0))
+
 
 
 

@@ -4,6 +4,7 @@ import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.repository.FireBaseRepository
+import com.example.baadbank.util.RegisterUtil
 import com.example.baadbank.util.Resource
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,6 +42,9 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
                 } else {
                     null
                 }
+
+
+
 
             error?.let {
                 _userRegisterStatus.emit(Resource.Error(it))
