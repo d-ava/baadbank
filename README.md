@@ -2,9 +2,9 @@
 ![](forReadme/animlogo.gif)
 
 ## ABOUT
-mobile app from BAADBANK. 
-baad bank is not that bad. its green, gluten free and eco friendly :) 
-Name BAAD is an acronym of the first letters of its creators first and last names.  like ABBA :) 
+#### This repository contains an app that implements MVVM (repository, fragment, viewmodel) architecture using Hilt, Kotlin coroutines, Flow, Firebase, Datastore </br>
+**BAAD** bank is not that bad. Its green, gluten free and eco friendly </br>
+Name **BAAD** is an acronym of the first letters of its creators names.  like ABBA :) 
 
 ## FEATURES
 with this app users can:
