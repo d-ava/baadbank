@@ -76,13 +76,15 @@ class MainActivity : AppCompatActivity() {
 
                             Utils.currencyListForAdapter = it.data!!
 
-                            Log.d("---", "currency list for adapter $currencyListForAdapter")
+//                            Log.d("---", "currency list for adapter $currencyListForAdapter")
 
                             for (c in it.data) {
                                 Utils.currencyList.add(c.currency)
                             }
 
-                            Log.d("---", "currency list - $currencyList")
+
+
+//                            Log.d("---", "currency list - $currencyList")
 
 
                         }

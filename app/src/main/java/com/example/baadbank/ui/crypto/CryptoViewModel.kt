@@ -17,23 +17,11 @@ class CryptoViewModel @Inject constructor(private val repository: CryptoReposito
 
 
 
-    val loadCoins03: SharedFlow<Resource<List<CoinGecko>>> =
+    val loadCoins: SharedFlow<Resource<List<CoinGecko>>> =
         repository.getCoins().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
 
 
 
-    private val _loadCoins004:MutableSharedFlow<Resource<List<CoinGecko>>> = MutableSharedFlow()
-    var loadCoins004: SharedFlow<Resource<List<CoinGecko>>> = _loadCoins004
-
-
-    fun loadCoins004(){
-
-        viewModelScope.launch {
-            repository.getCoins().collect {
-                _loadCoins004.emit(it)
-            }
-        }
-    }
 
 
 

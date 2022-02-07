@@ -62,4 +62,12 @@
     <string name="don_t_want_to_register">don\'t want to register?</string>
     <string name="currency_exchange_rates">Currency exchange rates</string>
     <string name="welcome_string">Hello, %1$s!</string>
+    <string name="entered_amount">Entered Amount</string>
+    <string name="calculated_amount">Calculated Amount</string>
+    <string name="usd">USD</string>
+    <string name="eur">EUR</string>
+    <string name="gbp">GBP</string>
+    <string name="password_changed">password changed</string>
+    <string name="empty_strings">please fill all fields</string>
+    <string name="check_email">please check your email</string>
 </resources>

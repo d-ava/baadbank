@@ -17,8 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-var currencyBody: List<CurrencyItem> = listOf()
-var cryptoBody: List<CoinGecko> = listOf()
+//var currencyBody: List<CurrencyItem> = listOf()
+//var cryptoBody: List<CoinGecko> = listOf()
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {

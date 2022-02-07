@@ -1,6 +1,5 @@
 package com.example.baadbank.ui.calculator
 
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -52,8 +51,8 @@ class CalculatorFragment :
         binding.btnConvert.setOnClickListener {
 
 
-//            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
-            amount = binding.etAmount.text.toString()
+            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
+//            amount = binding.etAmount.text.toString()
 
 
             binding.etAmount.text?.clear()
@@ -77,7 +76,7 @@ class CalculatorFragment :
                         is Resource.Success -> {
 
                             hideLoading()
-                            Log.d("---", "collect from fragment - ${it.data}")
+
 
                             val value = BigDecimal(it.data!!).setScale(2, RoundingMode.HALF_EVEN)
                                 .toPlainString().toString()
@@ -96,6 +95,7 @@ class CalculatorFragment :
                         }
                         is Resource.Error -> {
                             hideLoading()
+                            view?.makeSnackbar("${it.message}")
                         }
                     }
                 }
@@ -135,6 +135,7 @@ class CalculatorFragment :
 
 
         spinnerFrom.adapter = arrAdapter
+
         spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 adapterView: AdapterView<*>?,
@@ -148,10 +149,13 @@ class CalculatorFragment :
 
             }
 
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
         }
+
+
         val spinnerTo = binding.spinnerRight
         spinnerTo.adapter = arrAdapter
         spinnerTo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

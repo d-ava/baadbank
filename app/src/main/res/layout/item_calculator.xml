@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_height="80dp"
     android:layout_marginStart="2dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="2dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
@@ -17,18 +17,46 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEnteredAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/entered_amount"
+            android:textSize="@dimen/default_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTime"
+
+
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCalculatedAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/calculated_amount"
+            android:textSize="@dimen/default_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEnteredAmount"
+
+
+            />
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-
-            android:layout_marginEnd="7dp"
+            android:layout_marginStart="@dimen/default_16dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvFromCurrency"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvFromCurrency"
+            tools:layout_editor_absoluteX="40dp"
             tools:text="400" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -40,23 +68,22 @@
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvConverted"
-            app:layout_constraintStart_toEndOf="@id/tvAmount"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="USD" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvConverted"
+            android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="@string/converted"
+            tools:text="time"
             android:textSize="@dimen/default_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvConvertedValue"
-            app:layout_constraintStart_toEndOf="@id/tvFromCurrency"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvConvertedValue"
@@ -65,23 +92,19 @@
             android:layout_marginEnd="7dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/default_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvToCurrency"
-            app:layout_constraintStart_toEndOf="@id/tvConverted"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="789.55" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvToCurrency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="7dp"
+            android:layout_marginEnd="@dimen/default_16dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvConvertedValue"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvConvertedValue"
             tools:text="USD" />
 
 

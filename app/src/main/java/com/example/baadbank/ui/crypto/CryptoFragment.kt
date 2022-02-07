@@ -1,6 +1,5 @@
 package com.example.baadbank.ui.crypto
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,8 +24,6 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
 
 
         setRecycler()
-
-
         getCoins()
 
 
@@ -49,7 +46,7 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadCoins03.collect {
+                viewModel.loadCoins.collect {
                     when (it) {
                         is Resource.Loading -> {
                             showLoading()

@@ -4,7 +4,6 @@ import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baadbank.repository.FireBaseRepository
-import com.example.baadbank.util.RegisterUtil
 import com.example.baadbank.util.Resource
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,7 +35,7 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
         viewModelScope.launch {
             val error =
                 if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
-                    "Empty Strings"
+                    "empty strings"
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     "Not valid email"
                 } else {

@@ -47,7 +47,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
                         emit(Resource.Error("not enough amount"))
                     }else{
 
-                        userReference.child(SAVINGS).setValue(totalAmount).await() //// ??
+                        userReference.child(SAVINGS).setValue(totalAmount).await()
                         emit(Resource.Success())
 
                     }
@@ -56,7 +56,7 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
                 }
 
             } catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "error message"))
+                emit(Resource.Error(e.message ?: "unknown error"))
             }
 
         }

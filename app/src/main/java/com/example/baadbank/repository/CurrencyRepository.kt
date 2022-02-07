@@ -30,12 +30,12 @@ class CurrencyRepository @Inject constructor(
                 if (response.isSuccessful && body != null) {
                     emit(Resource.Success(body))
                 } else {
-                    emit(Resource.Error("error message"))
+                    emit(Resource.Error("unknown error"))
                 }
 
 
             } catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "error message"))
+                emit(Resource.Error(e.message ?: "unknown error"))
             }
 
         }.flowOn(Dispatchers.IO)
@@ -54,12 +54,12 @@ class CurrencyRepository @Inject constructor(
                     emit(Resource.Success(body))
                 }else{
 
-                    emit(Resource.Error("error message"))
+                    emit(Resource.Error("unknown error"))
 
                 }
             }catch (e:IOException){
 //                Log.d("---", "from repo ${e.message}")
-                emit(Resource.Error(e.message ?: "error message"))
+                emit(Resource.Error(e.message ?: "unknown error"))
             }
 
 

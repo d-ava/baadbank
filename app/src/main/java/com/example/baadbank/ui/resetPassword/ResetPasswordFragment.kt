@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentResetPasswordBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
@@ -65,7 +66,7 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
                         }
                         is Resource.Success -> {
                             progressBar(false)
-                            view?.makeSnackbar("please check your email")
+                            view?.makeSnackbar(getString(R.string.check_email))
                             findNavController().popBackStack()
                         }
                         is Resource.Error -> {

@@ -1,13 +1,12 @@
 package com.example.baadbank.ui.currency
 
-import android.util.Log
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.baadbank.CurrencyItemsAdapter
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentCurrencyBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
@@ -31,28 +30,24 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
     override fun start() {
 
         setRecycler()
-
-
-
-
-        setCommericalRates()
+        setCommercialRates()
         setOfficialRates()
 
 
     }
 
-    private fun setCommericalRates() {
+    private fun setCommercialRates() {
 
         for (item in Utils.commercialRatesList) {
-            if (item.currency == "USD") {
+            if (item.currency == getString(R.string.usd)) {
                 binding.tvUsdBuyValue.text = convertRates(item.buy)
                 binding.tvUsdSellValue.text = convertRates(item.sell)
             }
-            if (item.currency == "EUR") {
+            if (item.currency == getString(R.string.eur)) {
                 binding.tvEurBuyValue.text = convertRates(item.buy)
                 binding.tvEurSellValue.text = convertRates(item.sell)
             }
-            if (item.currency == "GBP") {
+            if (item.currency == getString(R.string.gbp)) {
                 binding.tvGbpBuyValue.text = convertRates(item.buy)
                 binding.tvGbpSellValue.text = convertRates(item.sell)
             }
@@ -65,17 +60,17 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
     private fun setOfficialRates(){
 
         for (item in currencyListForAdapter) {
-            if (item.currency == "USD") {
+            if (item.currency == getString(R.string.usd)) {
                 binding.tvUSDCurrency.text = item.currency
                 binding.tvUSDValue.text = convertRates(item.value)
 
             }
-            if (item.currency == "EUR") {
+            if (item.currency == getString(R.string.eur)) {
                 binding.tvEURCurrency.text = item.currency
                 binding.tvEURValue.text = convertRates(item.value)
 
             }
-            if (item.currency == "GBP") {
+            if (item.currency == getString(R.string.gbp)) {
                 binding.tvGBPCurrency.text = item.currency
                 binding.tvGBPValue.text = convertRates(item.value)
 
@@ -93,91 +88,7 @@ class CurrencyFragment : BaseFragment<FragmentCurrencyBinding>(FragmentCurrencyB
     }
 
 
-    private fun getCommercialRates() {
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadCommercialRates.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-
-                        }
-                        is Resource.Success -> {
-
-                            for (item in it.data!!.commercialRatesList) {
-                                if (item.currency == "USD") {
-                                    binding.tvUsdBuyValue.text = convertRates(item.buy)
-                                    binding.tvUsdSellValue.text = convertRates(item.sell)
-                                }
-                                if (item.currency == "EUR") {
-                                    binding.tvEurBuyValue.text = convertRates(item.buy)
-                                    binding.tvEurSellValue.text = convertRates(item.sell)
-                                }
-                                if (item.currency == "GBP") {
-                                    binding.tvGbpBuyValue.text = convertRates(item.buy)
-                                    binding.tvGbpSellValue.text = convertRates(item.sell)
-                                }
-
-
-                            }
-                        }
-                        is Resource.Error -> {
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun getCurrency00() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadCurrency.collect {
-                    when (it) {
-                        is Resource.Loading -> {
-                            showLoading()
-
-                        }
-                        is Resource.Success -> {
-                            hideLoading()
-
-                            for (item in it.data!!) {
-                                if (item.currency == "USD") {
-                                    binding.tvUSDCurrency.text = item.currency
-                                    binding.tvUSDValue.text = convertRates(item.value)
-
-                                }
-                                if (item.currency == "EUR") {
-                                    binding.tvEURCurrency.text = item.currency
-                                    binding.tvEURValue.text = convertRates(item.value)
-
-                                }
-                                if (item.currency == "GBP") {
-                                    binding.tvGBPCurrency.text = item.currency
-                                    binding.tvGBPValue.text = convertRates(item.value)
-
-                                }
-
-
-                            }
-
-                            adapter.setData(it.data)
-                            for (c in it.data) {
-                                currencyList.add(c.currency)
-                            }
-
-
-                        }
-                        is Resource.Error -> {
-                            view?.makeSnackbar("${it.message}")
-                        }
-                    }
-                }
-
-
-            }
-        }
-    }
 
 
     private fun setRecycler() {

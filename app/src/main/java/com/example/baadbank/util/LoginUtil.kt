@@ -1,4 +1,4 @@
-package com.example.baadbank
+package com.example.baadbank.util
 
 object LoginUtil {
 

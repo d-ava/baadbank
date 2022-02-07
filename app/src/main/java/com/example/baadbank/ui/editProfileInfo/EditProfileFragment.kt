@@ -4,6 +4,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.baadbank.databinding.FragmentEditProfileBinding
 import com.example.baadbank.ui.BaseFragment
+import com.example.baadbank.util.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -20,7 +21,7 @@ class EditProfileFragment :
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        databaseReference = database.reference.child("profile")
+        databaseReference = database.reference.child(Constants.PROFILE)
 
         setListeners()
 
@@ -42,8 +43,8 @@ class EditProfileFragment :
         val user = auth.currentUser
         val userReference = databaseReference.child(user?.uid!!)
 
-        userReference.child("fullName").setValue(binding.etNameLastname.text.toString())
-        userReference.child("phoneNumber").setValue(binding.etPhone.text.toString())
+        userReference.child(Constants.FULL_NAME).setValue(binding.etNameLastname.text.toString())
+        userReference.child(Constants.PHONE).setValue(binding.etPhone.text.toString())
 
     }
 

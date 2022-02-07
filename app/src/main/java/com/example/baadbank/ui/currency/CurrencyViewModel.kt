@@ -2,7 +2,6 @@ package com.example.baadbank.ui.currency
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.baadbank.data.CoinGecko
 import com.example.baadbank.data.CommercialRates
 import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.repository.CurrencyRepository
@@ -20,6 +19,7 @@ class CurrencyViewModel @Inject constructor(private val repository:CurrencyRepos
 
     val loadCurrency: SharedFlow<Resource<List<CurrencyItem>>> =
         repository.getCurrency().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+
 
 
     val loadCommercialRates: SharedFlow<Resource<CommercialRates>> =

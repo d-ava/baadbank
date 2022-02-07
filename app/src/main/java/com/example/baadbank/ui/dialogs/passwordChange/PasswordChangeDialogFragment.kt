@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentPasswordChangeDialogBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.util.Resource
@@ -90,7 +91,7 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
                         }
                         is Resource.Success -> {
                             hideLoading()
-                            view?.makeSnackbar("password changed")
+                            view?.makeSnackbar(getString(R.string.password_changed))
                             findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
                         }
                         is Resource.Error -> {

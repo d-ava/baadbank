@@ -63,7 +63,7 @@ class CalculatorAdapter : RecyclerView.Adapter<CalculatorAdapter.CalculatorViewH
 
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
             val currentDate = sdf.format(Date())
-            binding.tvConverted.text = currentDate
+            binding.tvTime.text = currentDate
 
         }
 

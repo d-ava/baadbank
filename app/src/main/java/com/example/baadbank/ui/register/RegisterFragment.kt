@@ -62,7 +62,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         }
                         is Resource.Success -> {
                             hideLoading()
-                            view?.makeSnackbar("register hurrraaay")
+
                             findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
 
                         }

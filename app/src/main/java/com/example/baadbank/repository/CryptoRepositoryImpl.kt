@@ -21,12 +21,12 @@ class CryptoRepositoryImpl @Inject constructor(private val coinApi: CoinGeckoApi
                 if (response.isSuccessful && body != null){
                     emit(Resource.Success(body))
             }else{
-                emit(Resource.Error("error from repository"))
+                emit(Resource.Error("unknown error"))
             }
 
 
             }catch (e:IOException){
-                emit(Resource.Error(e.message?: "error message"))
+                emit(Resource.Error(e.message?: "unknown error"))
             }
 
         }.flowOn(IO)

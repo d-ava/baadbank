@@ -18,20 +18,20 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
     //val loadCalculatedValue: SharedFlow<Resource<Double>> = _loadCalculatedValue
 
 
-    /*fun calculateValue() {
-
-
-        viewModelScope.launch {
-
-            repository.getCurrencyConverter().collect {
-
-                Log.d("---", "collect from VM - ${it.data}")
-                _loadCalculatedValue.emit(it)
-
-            }
-
-        }
-    } */
+//    fun calculateValue() {
+//
+//
+//        viewModelScope.launch {
+//
+//            repository.getCurrencyConverter().collect {
+//
+//                Log.d("---", "collect from VM - ${it.data}")
+//                _loadCalculatedValue.emit(it)
+//
+//            }
+//
+//        }
+//    }
 
 
 
@@ -39,8 +39,7 @@ class CalculatorViewModel @Inject constructor(private val repository: CurrencyRe
 
 
 
-//    val loadCalculatedValue000: SharedFlow<Resource<Double>> =
-//        repository.getCurrencyConverter().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+
 
 
 
