@@ -2,7 +2,7 @@
 ![](forReadme/animlogo.gif)
 
 ## ABOUT
-#### This repository contains an app that implements MVVM (repository, fragment, viewmodel) architecture using Hilt, Kotlin coroutines, Flow, Firebase, Datastore </br>
+#### This repository contains an app that implements MVVM (repository, fragment, viewmodel) architecture using Hilt, Kotlin coroutines, Flow </br>
 **BAAD** bank is not that bad. Its green, gluten free and eco friendly </br>
 Name **BAAD** is an acronym of the first letters of its creators names.  like ABBA :) 
 
