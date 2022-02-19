@@ -10,7 +10,7 @@ fun ImageView.glideExtension(img: String?) {
         Glide.with(context).load(img).error(R.drawable.ic_close)
             .into(this)
 
-    } else setImageResource(R.drawable.ic_launcher_foreground)
+    } else setImageResource(R.drawable.ic__logo_splash)
 
 
 }
