@@ -50,10 +50,14 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
 
         @SuppressLint("SetTextI18n")
         fun onBind() {
-            model = list[adapterPosition]
+            model = list[absoluteAdapterPosition]
             binding.ivCoin.glideExtension(model.image)
             binding.apply {
-                tvCurrentPrice.text ="$ " + model.currentPrice.toString()
+
+
+
+
+                tvCurrentPrice.text ="$ " + BigDecimal(model.currentPrice).toPlainString().toString()
                 tvName.text = model.name
                 tvSymbol.text = model.symbol
                 val number:Double = model.marketCap.toString().toDouble()

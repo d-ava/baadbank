@@ -9,6 +9,8 @@
 
 
 
+
+
         <item name="postSplashScreenTheme">@style/Theme.Baadbank</item>
     </style>
 </resources>

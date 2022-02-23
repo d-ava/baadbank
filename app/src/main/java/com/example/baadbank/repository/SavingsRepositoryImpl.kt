@@ -1,6 +1,5 @@
 package com.example.baadbank.repository
 
-import android.util.Log
 import com.example.baadbank.data.User
 import com.example.baadbank.util.Constants.FULL_NAME
 import com.example.baadbank.util.Constants.PHONE
@@ -25,15 +24,21 @@ import javax.inject.Inject
 class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
-    private val userReference = databaseReference.child(auth.currentUser?.uid!!)
+
 
     override fun addTake(newAmount: String, button: String): Flow<Resource<Double>> {
+
+        val user = auth.currentUser
+        val userReference = databaseReference.child(user?.uid!!)
+
         return flow {
 
-            try {
-                if (newAmount.isNullOrEmpty()) {
-                    emit(Resource.Error("please enter amount"))
-                } else {
+            if (newAmount.isEmpty()) {
+                emit(Resource.Error("please enter amount"))
+            }else{
+
+                try {
+
                     emit(Resource.Loading())
 
                     var amount = newAmount.toDouble()
@@ -47,17 +52,26 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
                         emit(Resource.Error("not enough amount"))
                     }else{
 
-                        userReference.child(SAVINGS).setValue(totalAmount).await()
+
+
+                        userReference.child("savings").setValue(totalAmount).await()
+
+
+
                         emit(Resource.Success())
 
                     }
 
 
+
+
+                } catch (e: IOException) {
+                    emit(Resource.Error(e.message ?: "unknown error"))
                 }
 
-            } catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "unknown error"))
             }
+
+
 
         }
     }
@@ -66,6 +80,9 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
     override fun saveUserInfo(name: String, phone: String) {
+        val user = auth.currentUser
+        val userReference = databaseReference.child(user?.uid!!)
+
         CoroutineScope(IO).launch {
             userReference.child(PHONE).setValue(phone)
             userReference.child(FULL_NAME).setValue(name)
@@ -75,7 +92,8 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
 
 
     override suspend fun loadUserInfo(userFlow: MutableSharedFlow<User>) {
-        var userInfo = User()
+        var userInfo: User
+
         val user = auth.currentUser
         val userReference = databaseReference.child(user?.uid!!)
 
@@ -84,12 +102,13 @@ class SavingsRepositoryImpl @Inject constructor() : SavingsRepository {
         userReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userInfo = User(
-                    fullName = snapshot.child(FULL_NAME).value.toString(),
-                    savings = snapshot.child(SAVINGS).value.toString().toDouble(),
-                    phone = snapshot.child(PHONE).value.toString(),
+                    fullName = snapshot.child("fullName").value.toString(),
+                    savings = snapshot.child("savings").value.toString().toDouble(),
+                    phone = snapshot.child("phone").value.toString(),
                     email = auth.currentUser?.email.toString()
                 )
                 savingsBalance = snapshot.child(SAVINGS).value.toString()
+
 
 
                 CoroutineScope(IO).launch {

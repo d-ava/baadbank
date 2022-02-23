@@ -51,8 +51,12 @@ class CalculatorFragment :
         binding.btnConvert.setOnClickListener {
 
 
-            amount = binding.etAmount.text.toString().toDouble().toInt().toString()
-//            amount = binding.etAmount.text.toString()
+            amount = if (binding.etAmount.text.isNullOrEmpty()) {
+                ""
+            } else {
+                binding.etAmount.text.toString().toDouble().toInt().toString()
+            }
+
 
 
             binding.etAmount.text?.clear()
@@ -63,9 +67,7 @@ class CalculatorFragment :
     }
 
 
-
-    private fun currencyConverter()
-    {
+    private fun currencyConverter() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.result.collect {
@@ -91,7 +93,6 @@ class CalculatorFragment :
                             calculatorAdapter.setData(convertedList)
 
 
-
                         }
                         is Resource.Error -> {
                             hideLoading()
@@ -102,12 +103,6 @@ class CalculatorFragment :
             }
         }
     }
-
-
-
-
-
-
 
 
     private fun setRecycler() {

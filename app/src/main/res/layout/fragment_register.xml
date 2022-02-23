@@ -22,8 +22,8 @@
         android:id="@+id/ivRegisterMainBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/main_background"
         android:contentDescription="@string/app_s_main_background"
+        android:src="@drawable/main_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -150,9 +150,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"
             android:hint="@string/login_password_hint"
-            android:minHeight="@dimen/default_48dp"
             android:imeOptions="actionDone"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:minHeight="@dimen/default_48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,6 +170,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRepeatPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_light"

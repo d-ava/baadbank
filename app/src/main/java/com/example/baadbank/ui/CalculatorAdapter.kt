@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baadbank.data.Converted
 import com.example.baadbank.databinding.ItemCalculatorBinding
-import okhttp3.internal.notify
-import okhttp3.internal.notifyAll
 import java.text.SimpleDateFormat
 import java.util.*
 

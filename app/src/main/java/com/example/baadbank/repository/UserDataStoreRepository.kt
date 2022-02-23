@@ -60,10 +60,6 @@ class UserDataStoreRepository @Inject constructor(@ApplicationContext context:Co
         }
     }
 
-    suspend fun removeUsername() {
-        dataStore.edit { preference ->
-            preference.remove(EMAIL)
-        }
-    }
+
 
 }

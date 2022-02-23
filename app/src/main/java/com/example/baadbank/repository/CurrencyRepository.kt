@@ -42,22 +42,22 @@ class CurrencyRepository @Inject constructor(
 
     }
 
-    fun getCommercialRates(): Flow<Resource<CommercialRates>>{
+    fun getCommercialRates(): Flow<Resource<CommercialRates>> {
         return flow {
             try {
 
                 emit(Resource.Loading())
                 val response = commercialApi.getCommercialRates()
                 val body = response.body()
-                if (response.isSuccessful && body !=null){
+                if (response.isSuccessful && body != null) {
 
                     emit(Resource.Success(body))
-                }else{
+                } else {
 
                     emit(Resource.Error("unknown error"))
 
                 }
-            }catch (e:IOException){
+            } catch (e: IOException) {
 //                Log.d("---", "from repo ${e.message}")
                 emit(Resource.Error(e.message ?: "unknown error"))
             }
@@ -69,18 +69,15 @@ class CurrencyRepository @Inject constructor(
     }
 
 
-
-
-
-
-
     fun getCurrencyConverter(): Flow<Resource<Double>> {
         return flow {
-            try {
 
-                if (amount.isEmpty()){
-                    emit(Resource.Error("please enter amount"))
-                }else{
+            if (amount.isEmpty()) {
+                emit(Resource.Error("please enter amount"))
+            } else {
+                try {
+
+
                     emit(Resource.Loading())
                     val response = convertApi.convertCurrency()
                     val body = response.body()
@@ -90,16 +87,18 @@ class CurrencyRepository @Inject constructor(
                     } else {
                         emit(Resource.Error(response.message()))
                     }
+
+                } catch (e: IOException) {
+                    emit(Resource.Error(e.message ?: "error message"))
                 }
-            } catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "error message"))
+
             }
+
+
         }.flowOn(IO)
 
 
     }
-
-
 
 
 }

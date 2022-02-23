@@ -1,10 +1,16 @@
 package com.example.baadbank
 
+import android.animation.ObjectAnimator
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.animation.AnticipateInterpolator
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,14 +23,18 @@ import com.example.baadbank.util.Utils.currencyListForAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.time.Duration
+import java.time.Instant
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
 
@@ -36,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 viewModel.isLoading.value
             }
         }
+
+
+
 
 
 
@@ -84,7 +97,6 @@ class MainActivity : AppCompatActivity() {
                             for (c in it.data) {
                                 Utils.currencyList.add(c.currency)
                             }
-
 
 
 //                            Log.d("---", "currency list - $currencyList")

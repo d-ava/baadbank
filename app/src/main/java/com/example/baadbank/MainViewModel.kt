@@ -43,6 +43,8 @@ class MainViewModel @Inject constructor(private val repository: CurrencyReposito
     }
 
 
+
+
 //    val loadCommercialRates: SharedFlow<Resource<CommercialRates>> =
 //        repository.getCommercialRates().shareIn(viewModelScope, SharingStarted.WhileSubscribed())
 

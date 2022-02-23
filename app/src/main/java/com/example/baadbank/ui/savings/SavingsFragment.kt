@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.savings
 
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,12 +26,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     private val viewModel: SavingsViewModel by activityViewModels()
 
 
-
-
     override fun start() {
-
-
-
 
 
         setListeners()
@@ -46,7 +42,7 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
         }
 
         binding.btnTake.setOnClickListener {
-
+            loadUserInfo()
             addTake("take")
             binding.etAmount.text?.clear()
         }
@@ -75,35 +71,32 @@ class SavingsFragment : BaseFragment<FragmentSavingsBinding>(FragmentSavingsBind
     private fun addTake(button: String) {
 
 
-            viewModel.addTake(binding.etAmount.text.toString(), button)
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.addTake.collect {
-                        when(it){
-                            is Resource.Loading -> {
-                                showLoading()
-                            }
-                            is Resource.Success -> {
+        viewModel.addTake(binding.etAmount.text.toString(), button)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.addTake.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
+                        is Resource.Success -> {
 
-                                hideLoading()
+                            hideLoading()
 
-                            }
-                            is Resource.Error -> {
-                                hideLoading()
-                                val message = it.message
-                                view?.makeSnackbar(message!!)
-                            }
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                            val message = it.message
+                            Log.d("---", "error log")
+                            view?.makeSnackbar(message!!)
                         }
                     }
                 }
             }
-
+        }
 
 
     }
-
-
-
 
 
 }

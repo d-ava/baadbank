@@ -18,6 +18,7 @@ import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -91,6 +92,7 @@ class PasswordChangeDialogFragment : BottomSheetDialogFragment() {
                         }
                         is Resource.Success -> {
                             hideLoading()
+
                             view?.makeSnackbar(getString(R.string.password_changed))
                             findNavController().navigate(PasswordChangeDialogFragmentDirections.actionPasswordChangeDialogFragmentToLoginFragment())
                         }

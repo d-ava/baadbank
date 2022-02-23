@@ -1,15 +1,17 @@
 package com.example.baadbank.ui.login
 
 
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.baadbank.data.CoinGecko
-import com.example.baadbank.data.CurrencyItem
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.extensions.makeSnackbar
+import com.example.baadbank.extensions.safeNavigate
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
 import com.example.baadbank.util.Utils.auth
@@ -17,8 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-//var currencyBody: List<CurrencyItem> = listOf()
-//var cryptoBody: List<CoinGecko> = listOf()
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
@@ -32,7 +32,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun start() {
 
-        auth.signOut() //droebit
+
+        auth.signOut()
         val userLogged = auth.currentUser
         userLogged?.let {
             binding.btnLogin.text = userLogged.email
@@ -62,11 +63,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         is Resource.Success -> {
                             hideLoading()
                             saveToUserDatastore()
-                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+                            findNavController().safeNavigate(LoginFragmentDirections.actionLoginFragmentToNavHomeFragment())
+
 
                         }
                         is Resource.Error -> {
                             hideLoading()
+                            Log.d("---", "log error")
                             view?.makeSnackbar("${it.message}")
 
                         }

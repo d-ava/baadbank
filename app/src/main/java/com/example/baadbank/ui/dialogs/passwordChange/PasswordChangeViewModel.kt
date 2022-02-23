@@ -21,26 +21,24 @@ class PasswordChangeViewModel @Inject constructor(private val repository: FireBa
 
     fun passwordChange(currentPassword: String, newPassword: String, repeatNewPassword: String) {
         viewModelScope.launch {
-            try
-            {
+            try {
                 if (currentPassword.isNotEmpty() && newPassword.isNotEmpty() && repeatNewPassword.isNotEmpty()) {
                     if (newPassword == repeatNewPassword) {
 
                         _passwordChange.emit(Resource.Loading())
-                        repository.changePassword00(currentPassword, newPassword)
+                        repository.changePassword(currentPassword, newPassword)
 
 
                         _passwordChange.emit(Resource.Success())
-                    }else{
+                    } else {
 
                         _passwordChange.emit(Resource.Error("Password mismatching"))
                     }
-                }else{
+                } else {
 
                     _passwordChange.emit(Resource.Error("Please enter all the fields"))
                 }
-            } catch (e:Exception)
-            {
+            } catch (e: Exception) {
                 _passwordChange.emit(Resource.Error(e.message!!))
             }
         }

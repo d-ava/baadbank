@@ -1,5 +1,6 @@
 package com.example.baadbank.ui.register
 
+import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -8,6 +9,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.baadbank.databinding.FragmentRegisterBinding
 import com.example.baadbank.extensions.makeSnackbar
+import com.example.baadbank.extensions.safeNavigate
 import com.example.baadbank.ui.BaseFragment
 import com.example.baadbank.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,12 +47,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         val phoneNumber = binding.etPhoneNumber.text.toString()
+        val repeatPassword = binding.etRepeatPassword.text.toString()
 
         viewModel.registerUser(
             email = email,
             fullName = fullName,
             password = password,
-            phoneNumber = phoneNumber
+            phoneNumber = phoneNumber,
+            repeatPassword = repeatPassword
         )
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -62,12 +66,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         }
                         is Resource.Success -> {
                             hideLoading()
-
-                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                            findNavController().safeNavigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+//                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
 
                         }
                         is Resource.Error -> {
                             hideLoading()
+                            Log.d("---", "error log")
                             view?.makeSnackbar("${it.message}")
 
                         }
@@ -79,10 +84,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
 
     }
-
-
-
-
 
 
     private fun setListeners() {

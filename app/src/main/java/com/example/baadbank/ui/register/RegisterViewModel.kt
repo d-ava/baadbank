@@ -18,9 +18,6 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
     ViewModel() {
 
 
-
-
-
     private val _userRegisterStatus: MutableSharedFlow<Resource<AuthResult>> = MutableSharedFlow()
     val userRegisterStatus: SharedFlow<Resource<AuthResult>> = _userRegisterStatus
 
@@ -29,34 +26,20 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
         fullName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        repeatPassword: String
+
     ) {
 
         viewModelScope.launch {
-            val error =
-                if (fullName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty()) {
-                    "empty strings"
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    "Not valid email"
-                } else {
-                    null
-                }
 
-
-
-
-            error?.let {
-                _userRegisterStatus.emit(Resource.Error(it))
-
-            }
             _userRegisterStatus.emit(Resource.Loading())
-
-
             repository.registerUser(
                 fullName = fullName,
                 userEmail = email,
                 phoneNumber = phoneNumber,
-                userPassword = password
+                userPassword = password,
+                repeatPassword = repeatPassword
             ).collect {
                 _userRegisterStatus.emit(it)
             }
@@ -65,6 +48,8 @@ class RegisterViewModel @Inject constructor(private val repository: FireBaseRepo
         }
 
     }
+
+
 
 
 }
