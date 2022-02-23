@@ -19,6 +19,7 @@ with this app users can:
 ## SCREENSHOTS
 <img src="forReadme/01.jpg" width=300> <img src="forReadme/02.jpg" width=300> <img src="forReadme/03.jpg" width=300> <img src="forReadme/04.JPG" width=300>
 
+
 ## APP PACKAGES
 -**data**: It contains all the data accessing and manipulating components. <br/>
 -**di**: Dependency providing classes using Hilt. <br/>
@@ -28,7 +29,9 @@ with this app users can:
 -**ui**: View classes along with viewmodels, basefragment and recycler adapters. <br/>
 -**utils**: Utility classes. <br/>
 
-## TECHNOLOGIES
+## TECHNOLOGIES <br/>
+
+<img src="forReadme/structure.jpg" height=300>
 
 - Design pattern -  MVVM 
 - Safe args - navigation component
