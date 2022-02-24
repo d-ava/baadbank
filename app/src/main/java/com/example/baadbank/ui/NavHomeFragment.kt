@@ -1,6 +1,10 @@
 package com.example.baadbank.ui
 
 import android.content.DialogInterface
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
@@ -26,12 +30,14 @@ class NavHomeFragment : BaseFragment<FragmentNavHomeBinding>(FragmentNavHomeBind
         })
     }
 
+
+
     private fun setUpDialogBox() {
         val dialogBoxBuilder = AlertDialog.Builder(requireContext())
         dialogBoxBuilder.setTitle(R.string.sign_out)
         dialogBoxBuilder.setMessage(getString(R.string.dialog_box_message))
         dialogBoxBuilder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-            auth.signOut()
+//            auth.signOut()
             findNavController().popBackStack()
         }
         dialogBoxBuilder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->

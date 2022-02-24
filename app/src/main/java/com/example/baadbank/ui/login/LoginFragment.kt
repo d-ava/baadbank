@@ -1,6 +1,7 @@
 package com.example.baadbank.ui.login
 
 
+import android.graphics.drawable.AnimationDrawable
 import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -9,6 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentLoginBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.extensions.safeNavigate
@@ -27,10 +29,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     lateinit var password: String
     lateinit var email: String
 
+    private lateinit var frameAnimation: AnimationDrawable
+
     private val viewModel: LoginViewModel by activityViewModels()
 
 
     override fun start() {
+
+
+        binding.ivNameLogo.setBackgroundResource(R.drawable.animation_logo)
+        frameAnimation = binding.ivNameLogo.background as AnimationDrawable
+        frameAnimation.start()
 
 
         auth.signOut()
