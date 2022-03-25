@@ -106,4 +106,14 @@
             android:name="userInformation"
             app:argType="com.example.baadbank.data.User" />
     </dialog>
+    <fragment
+        android:id="@+id/coinDetailFragment"
+        android:name="com.example.baadbank.ui.CoinDetailFragment"
+        android:label="fragment_coin_detail"
+        tools:layout="@layout/fragment_coin_detail" />
+    <action
+        android:id="@+id/toCoinDetailFragment"
+        app:destination="@+id/coinDetailFragment"
+        />
+
 </navigation>

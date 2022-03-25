@@ -4,7 +4,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.baadbank.R
 import com.example.baadbank.databinding.FragmentCryptoBinding
 import com.example.baadbank.extensions.makeSnackbar
 import com.example.baadbank.ui.BaseFragment
@@ -30,7 +34,11 @@ class CryptoFragment : BaseFragment<FragmentCryptoBinding>(FragmentCryptoBinding
     }
 
     private fun setRecycler() {
-        adapterCrypto = CryptoAdapter()
+        adapterCrypto = CryptoAdapter{
+//            view?.makeSnackbar("name is ${it.name}")
+          activity?.findNavController(R.id.fragment_container_view)?.navigate(R.id.toCoinDetailFragment)
+
+        }
         binding.recycler.apply {
             adapter = adapterCrypto
             layoutManager = LinearLayoutManager(requireContext())

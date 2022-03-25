@@ -9,7 +9,9 @@ import com.example.baadbank.databinding.ItemCryptoBinding
 import com.example.baadbank.extensions.glideExtension
 import java.math.BigDecimal
 
-class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
+class CryptoAdapter(
+    private val onItemClicked: ((crypto: CoinGecko) -> Unit)
+) : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
 
     private val list: MutableList<CoinGecko> = mutableListOf()
 
@@ -53,13 +55,15 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
             model = list[absoluteAdapterPosition]
             binding.ivCoin.glideExtension(model.image)
             binding.apply {
+                root.setOnClickListener {
+                    onItemClicked(model)
+                }
 
-
-                tvCurrentPrice.text ="$ " + model.currentPrice.toString()
+                tvCurrentPrice.text = "$ " + model.currentPrice.toString()
                 tvName.text = model.name
                 tvSymbol.text = model.symbol
-                val number:Double = model.marketCap.toString().toDouble()
-                tvMarketCap.text = "$ "+BigDecimal(number).toPlainString().toString()
+                val number: Double = model.marketCap.toString().toDouble()
+                tvMarketCap.text = "$ " + BigDecimal(number).toPlainString().toString()
 
             }
 
